@@ -244,3 +244,241 @@ const factions = {
         role: "CQB Specialist",
         pts: 75,
         stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "7+" },
+        weapons: [
+          { name: "AK-74U", dice: 6, hit: "8+", range: '24"', keywords: "CQB" },
+          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+        ],
+        abilities: ["Urban Predator", "Ambush Shock", "Aggressive Entry"],
+        upgrades: { weapon: 1, equipment: 1 }
+      },
+      {
+        id: "ins_marksman",
+        name: "Marksman",
+        role: "Veteran Fighter",
+        pts: 75,
+        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "9+" },
+        weapons: [
+          { name: "SVD Dragunov", dice: 3, hit: "4+", range: '36"', keywords: "CQB" },
+          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+        ],
+        abilities: ["Steady Aim", "Ambush Shock"],
+        upgrades: { support: 1 }
+      },
+      {
+        id: "ins_medic",
+        name: "Field Medic",
+        role: "Veteran Fighter",
+        pts: 80,
+        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "8+" },
+        weapons: [
+          { name: "AK-47", dice: 6, hit: "7+", range: '36"', keywords: "" },
+          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+        ],
+        abilities: ["Field Treatment", "Ambush Shock", "Last Chance"],
+        upgrades: { equipment: 1, support: 1 }
+      },
+      {
+        id: "ins_atgun",
+        name: "AT Weapons Fighter",
+        role: "AT Team Gunner",
+        pts: 110,
+        stats: { MOV: '6"', MOR: 2, CEV: 1, DR: "8+" },
+        weapons: [
+          { name: "AK-47", dice: 6, hit: "7+", range: '36"', keywords: "" },
+          { name: "RPG-7", dice: 4, hit: "6+", range: '36"', keywords: "PEN(3) / ENC / RLD" },
+          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+        ],
+        abilities: ["Ambush Shock"],
+        upgrades: { equipment: 1 }
+      },
+      {
+        id: "ins_atloader",
+        name: "AT Loader",
+        role: "Fighter",
+        pts: 60,
+        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "9+" },
+        weapons: [
+          { name: "AK-47", dice: 6, hit: "7+", range: '36"', keywords: "" },
+          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+        ],
+        abilities: ["Ambush Shock", "Assisted Reload"],
+        upgrades: { equipment: 1 }
+      }
+    ]
+  }
+};
+
+// ============================================
+// STATE - tracks what's happening right now
+// ============================================
+
+let selectedFaction = null;  // which faction is selected
+let currentList = [];        // units added to the list
+let totalPoints = 0;         // running points total
+
+// ============================================
+// INIT - runs when the page loads
+// ============================================
+
+document.addEventListener("DOMContentLoaded", function() {
+  setupFactionButtons();
+});
+
+// ============================================
+// FUNCTIONS
+// ============================================
+
+function setupFactionButtons() {
+  const buttons = document.querySelectorAll(".faction-btn");
+  
+  buttons.forEach(function(button) {
+    button.addEventListener("click", function() {
+      const factionKey = button.getAttribute("data-faction");
+      selectFaction(factionKey);
+    });
+  });
+}
+
+function selectFaction(factionKey) {
+  selectedFaction = factions[factionKey];
+  
+  if (!selectedFaction) return;
+  
+  currentList = [];
+  totalPoints = 0;
+  
+  renderUnitBrowser();
+}
+function renderUnitBrowser() {
+  const app = document.getElementById("app");
+  
+  app.innerHTML = `
+    <div id="points-bar">
+      <span id="list-name">${selectedFaction.name}</span>
+      <span id="points-display">0 / ${POINTS_LIMIT} PTS</span>
+    </div>
+
+    <div id="unit-browser">
+      <div id="unit-list">
+        <div class="section-label">SELECT UNITS</div>
+        ${selectedFaction.units.map(function(unit) {
+          return `
+            <div class="unit-card" data-id="${unit.id}">
+              <div class="unit-card-role">${unit.role}</div>
+              <div class="unit-card-row">
+                <span class="unit-card-name">${unit.name}</span>
+                <span class="unit-card-pts">${unit.pts}pt</span>
+              </div>
+              ${unit.note ? `<div class="unit-note">⚠ ${unit.note}</div>` : ""}
+            </div>
+          `;
+        }).join("")}
+      </div>
+
+      <div id="active-list">
+        <div class="section-label">YOUR LIST</div>
+        <div id="list-entries">
+          <div class="empty-list">— NO UNITS ADDED —</div>
+        </div>
+      </div>
+    </div>
+  `;
+
+  setupUnitCards();
+}
+function setupUnitCards() {
+  const cards = document.querySelectorAll(".unit-card");
+  
+  cards.forEach(function(card) {
+    card.addEventListener("click", function() {
+      const unitId = card.getAttribute("data-id");
+      addUnit(unitId);
+    });
+  });
+}
+
+function addUnit(unitId) {
+  const unit = selectedFaction.units.find(function(u) {
+    return u.id === unitId;
+  });
+  
+  if (!unit) return;
+
+  currentList.push({
+    uid: unitId + "_" + Date.now(),
+    unit: unit
+  });
+
+  totalPoints += unit.pts;
+  
+  updatePointsDisplay();
+  updateListDisplay();
+}
+function updatePointsDisplay() {
+  const display = document.getElementById("points-display");
+  if (!display) return;
+
+  display.textContent = totalPoints + " / " + POINTS_LIMIT + " PTS";
+
+  if (totalPoints > POINTS_LIMIT) {
+    display.style.color = "#e74c3c";
+  } else if (totalPoints > POINTS_LIMIT * 0.85) {
+    display.style.color = "#e67e22";
+  } else {
+    display.style.color = selectedFaction.accent;
+  }
+}
+
+function updateListDisplay() {
+  const listEntries = document.getElementById("list-entries");
+  if (!listEntries) return;
+
+  if (currentList.length === 0) {
+    listEntries.innerHTML = `<div class="empty-list">— NO UNITS ADDED —</div>`;
+    return;
+  }
+
+  listEntries.innerHTML = currentList.map(function(entry) {
+    return `
+      <div class="list-entry" data-uid="${entry.uid}">
+        <div class="list-entry-info">
+          <span class="list-entry-role">${entry.unit.role}</span>
+          <span class="list-entry-name">${entry.unit.name}</span>
+        </div>
+        <div class="list-entry-right">
+          <span class="list-entry-pts">${entry.unit.pts}pt</span>
+          <button class="remove-btn" data-uid="${entry.uid}">✕</button>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  setupRemoveButtons();
+}
+
+function setupRemoveButtons() {
+  const buttons = document.querySelectorAll(".remove-btn");
+
+  buttons.forEach(function(button) {
+    button.addEventListener("click", function() {
+      const uid = button.getAttribute("data-uid");
+      removeUnit(uid);
+    });
+  });
+}
+
+function removeUnit(uid) {
+  const entry = currentList.find(function(e) {
+    return e.uid === uid;
+  });
+
+  if (!entry) return;
+
+  totalPoints -= entry.unit.pts;
+  currentList = currentList.filter(function(e) {
+    return e.uid !== uid;
+  });
+
+  updatePointsDisplay();
+  updateListDisplay();
+}
