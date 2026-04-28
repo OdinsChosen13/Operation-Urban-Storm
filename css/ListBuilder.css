@@ -2,10 +2,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 12px 16px;
+  padding: 14px 20px;
   background: #111418;
   border-bottom: 2px solid #2a2e35;
-  font-size: 14px;
   letter-spacing: 2px;
   position: sticky;
   top: 0;
@@ -15,7 +14,12 @@
 
 #list-name {
   color: #ffffff;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+#points-display {
+  font-size: 18px;
   font-weight: bold;
 }
 
@@ -30,43 +34,44 @@
 #unit-list {
   width: 50%;
   border-right: 2px solid #2a2e35;
-  border-bottom: none;
-  padding: 12px;
+  padding: 16px;
   overflow-y: auto;
 }
 
 #active-list {
   width: 50%;
-  padding: 12px;
+  padding: 16px;
   overflow-y: auto;
 }
 
 .section-label {
-  font-size: 10px;
-  letter-spacing: 3px;
-  color: #555;
-  margin-bottom: 10px;
+  font-size: 11px;
+  letter-spacing: 4px;
+  color: #d4a017;
+  margin-bottom: 12px;
+  text-transform: uppercase;
 }
 
 .unit-card {
-  background: #111418;
+  background: #1a1e24;
   border: 1px solid #2a2e35;
-  padding: 10px 12px;
-  margin-bottom: 6px;
+  padding: 12px 14px;
+  margin-bottom: 8px;
   cursor: pointer;
+  transition: all 0.15s;
 }
 
 .unit-card:hover {
-  border-color: #4a7c59;
-  background: #111f17;
+  border-color: #8fbc8f;
+  background: #1a2a1e;
 }
 
 .unit-card-role {
   font-size: 11px;
-  color: #555;
-  letter-spacing: 2px;
+  color: #8fbc8f;
+  letter-spacing: 3px;
   text-transform: uppercase;
-  margin-bottom: 2px;
+  margin-bottom: 4px;
 }
 
 .unit-card-row {
@@ -76,68 +81,93 @@
 }
 
 .unit-card-name {
-  color: #c8cdd4;
-  font-size: 15px;
+  color: #d4a017;
+  font-size: 16px;
 }
 
 .unit-card-pts {
   color: #8fbc8f;
-  font-size: 15px;
+  font-size: 16px;
   font-weight: bold;
 }
 
 .unit-note {
-  font-size: 10px;
+  font-size: 11px;
   color: #e67e22;
-  margin-top: 4px;
+  margin-top: 6px;
   letter-spacing: 1px;
 }
 
 .empty-list {
-  color: #333;
+  color: #555;
   text-align: center;
-  padding: 30px 0;
-  letter-spacing: 2px;
+  padding: 40px 0;
+  letter-spacing: 3px;
+  font-size: 12px;
+}
+
+.list-section-label {
   font-size: 11px;
+  color: #d4a017;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  margin: 16px 0 8px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #2a2e35;
+  padding-bottom: 6px;
+}
+
+.invalid-label {
+  color: #e74c3c;
+  font-size: 11px;
+}
+
+.list-warning {
+  color: #e74c3c;
+  font-size: 13px;
+  letter-spacing: 2px;
+  padding: 10px 0;
 }
 
 .list-entry {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #111418;
+  background: #1a1e24;
   border: 1px solid #2a2e35;
-  padding: 8px 12px;
+  padding: 10px 14px;
   margin-bottom: 6px;
 }
 
 .list-entry-info {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
 }
 
 .list-entry-role {
-  font-size: 10px;
-  color: #555;
+  font-size: 11px;
+  color: #8fbc8f;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
 
 .list-entry-name {
-  color: #c8cdd4;
-  font-size: 13px;
+  color: #d4a017;
+  font-size: 15px;
 }
 
 .list-entry-right {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
 }
 
 .list-entry-pts {
   color: #8fbc8f;
-  font-size: 13px;
+  font-size: 15px;
   font-weight: bold;
 }
 
@@ -146,9 +176,10 @@
   border: 1px solid #e74c3c;
   color: #e74c3c;
   cursor: pointer;
-  font-size: 11px;
-  padding: 2px 8px;
+  font-size: 12px;
+  padding: 4px 10px;
   font-family: 'Share Tech Mono', monospace;
+  transition: all 0.15s;
 }
 
 .remove-btn:hover {
@@ -159,20 +190,20 @@
 #faction-select {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  padding: 40px 20px;
-  max-width: 400px;
+  gap: 16px;
+  padding: 60px 20px;
+  max-width: 440px;
   margin: 0 auto;
 }
 
 .faction-btn {
-  background: #111418;
+  background: #1a1e24;
   border: 2px solid #2a2e35;
-  color: #c8cdd4;
-  padding: 16px 24px;
+  color: #ffffff;
+  padding: 20px 24px;
   cursor: pointer;
   font-family: 'Share Tech Mono', monospace;
-  font-size: 16px;
+  font-size: 18px;
   letter-spacing: 4px;
   text-align: left;
   transition: all 0.15s;
@@ -181,4 +212,23 @@
 .faction-btn:hover {
   border-color: #8fbc8f;
   color: #8fbc8f;
+}
+
+.validation-valid {
+  color: #8fbc8f;
+  font-size: 13px;
+  letter-spacing: 3px;
+  padding: 14px 0;
+  border-top: 1px solid #2a2e35;
+  margin-top: 16px;
+}
+
+.validation-invalid {
+  color: #e74c3c;
+  font-size: 13px;
+  letter-spacing: 2px;
+  padding: 14px 0;
+  border-top: 1px solid #2a2e35;
+  margin-top: 16px;
+  line-height: 2;
 }

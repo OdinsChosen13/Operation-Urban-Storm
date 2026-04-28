@@ -312,9 +312,48 @@ const factions = {
 // STATE - tracks what's happening right now
 // ============================================
 
-let selectedFaction = null;  // which faction is selected
-let currentList = [];        // units added to the list
-let totalPoints = 0;         // running points total
+let selectedFaction = null;
+let totalPoints = 0;
+
+// New list structure
+let currentList = {
+  squadLeader: null,
+  fireteams: [],
+  independent: [],
+  vehicles: []
+};
+
+// Phonetic alphabet for fireteam naming
+const PHONETIC = [
+  "ALPHA", "BRAVO", "CHARLIE", "DELTA",
+  "ECHO", "FOXTROT", "GOLF", "HOTEL"
+];
+
+// Specialist unit IDs - one per fireteam
+const SPECIALISTS = [
+  "usa_mg", "usa_gren", "usa_medic",
+  "usa_cqb", "usa_marksman",
+  "ins_mg", "ins_rpg", "ins_cqb",
+  "ins_marksman", "ins_medic"
+];
+
+// Independent units - exist outside fireteams
+const INDEPENDENT_UNITS = [
+  "usa_atspec", "usa_atloader",
+  "usa_sniper",
+  "ins_atgun", "ins_atloader",
+  "ins_marksman"
+];
+
+// Squad leader unit IDs
+const SQUAD_LEADERS = [
+  "usa_ssg", "ins_cl"
+];
+
+// Team leader unit IDs
+const TEAM_LEADERS = [
+  "usa_sgt", "ins_tl"
+];
 
 // ============================================
 // INIT - runs when the page loads
@@ -341,17 +380,24 @@ function setupFactionButtons() {
 
 function selectFaction(factionKey) {
   selectedFaction = factions[factionKey];
-  
+
   if (!selectedFaction) return;
-  
-  currentList = [];
+
+  // Reset list to correct structure
+  currentList = {
+    squadLeader: null,
+    fireteams: [],
+    independent: [],
+    vehicles: []
+  };
+
   totalPoints = 0;
-  
+
   renderUnitBrowser();
 }
 function renderUnitBrowser() {
   const app = document.getElementById("app");
-  
+
   app.innerHTML = `
     <div id="points-bar">
       <span id="list-name">${selectedFaction.name}</span>
@@ -385,6 +431,7 @@ function renderUnitBrowser() {
   `;
 
   setupUnitCards();
+  updateListDisplay();
 }
 function setupUnitCards() {
   const cards = document.querySelectorAll(".unit-card");
@@ -401,18 +448,189 @@ function addUnit(unitId) {
   const unit = selectedFaction.units.find(function(u) {
     return u.id === unitId;
   });
-  
+
   if (!unit) return;
 
-  currentList.push({
-    uid: unitId + "_" + Date.now(),
-    unit: unit
-  });
+  // Route the unit to the correct part of the list
+  if (SQUAD_LEADERS.includes(unitId)) {
+    addSquadLeader(unit);
+  } else if (TEAM_LEADERS.includes(unitId)) {
+    addTeamLeader(unit);
+  } else if (INDEPENDENT_UNITS.includes(unitId)) {
+    addIndependent(unit);
+  } else {
+    addFireteamModel(unit);
+  }
 
-  totalPoints += unit.pts;
-  
   updatePointsDisplay();
   updateListDisplay();
+}
+
+function addSquadLeader(unit) {
+  // Only one squad leader allowed
+  if (currentList.squadLeader) {
+    showWarning("A Squad Leader is already in your list.");
+    return;
+  }
+  currentList.squadLeader = {
+    uid: unit.id + "_" + Date.now(),
+    unit: unit
+  };
+  totalPoints += unit.pts;
+}
+
+function addTeamLeader(unit) {
+  // Create a new fireteam
+  const index = currentList.fireteams.length;
+  if (index >= PHONETIC.length) {
+    showWarning("Maximum number of fireteams reached.");
+    return;
+  }
+  const fireteam = {
+    id: "fireteam_" + Date.now(),
+    name: PHONETIC[index],
+    teamLeader: {
+      uid: unit.id + "_" + Date.now(),
+      unit: unit
+    },
+    models: []
+  };
+  currentList.fireteams.push(fireteam);
+  totalPoints += unit.pts;
+}
+
+function addIndependent(unit) {
+  currentList.independent.push({
+    uid: unit.id + "_" + Date.now(),
+    unit: unit
+  });
+  totalPoints += unit.pts;
+}
+
+function addFireteamModel(unit) {
+  // Must have at least one fireteam
+  if (currentList.fireteams.length === 0) {
+    showWarning("Add a Team Leader first to create a Fireteam.");
+    return;
+  }
+
+  // If only one fireteam, assign automatically
+  if (currentList.fireteams.length === 1) {
+    assignToFireteam(unit, 0);
+    return;
+  }
+
+  // Multiple fireteams - ask user which one
+  showFireteamPicker(unit);
+}
+
+function assignToFireteam(unit, fireteamIndex) {
+  const fireteam = currentList.fireteams[fireteamIndex];
+
+  // Check specialist limit
+  if (SPECIALISTS.includes(unit.id)) {
+    const alreadyHasSpecialist = fireteam.models.some(function(m) {
+      return m.unit.id === unit.id;
+    });
+    if (alreadyHasSpecialist) {
+      showWarning("Fireteam " + fireteam.name + " already has a " + unit.name + ".");
+      return;
+    }
+  }
+
+  fireteam.models.push({
+    uid: unit.id + "_" + Date.now(),
+    unit: unit
+  });
+  totalPoints += unit.pts;
+
+  updatePointsDisplay();
+  updateListDisplay();
+}
+
+function showWarning(message) {
+  const existing = document.getElementById("warning-toast");
+  if (existing) existing.remove();
+
+  const toast = document.createElement("div");
+  toast.id = "warning-toast";
+  toast.textContent = message;
+  toast.style.cssText = `
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a0808;
+    border: 1px solid #e74c3c;
+    color: #e74c3c;
+    padding: 10px 20px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 12px;
+    letter-spacing: 2px;
+    z-index: 100;
+  `;
+  document.body.appendChild(toast);
+  setTimeout(function() { toast.remove(); }, 3000);
+}
+
+function showFireteamPicker(unit) {
+  const existing = document.getElementById("fireteam-picker");
+  if (existing) existing.remove();
+
+  const picker = document.createElement("div");
+  picker.id = "fireteam-picker";
+  picker.style.cssText = `
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #111418;
+    border: 2px solid #2a2e35;
+    padding: 20px;
+    z-index: 100;
+    min-width: 280px;
+  `;
+
+  picker.innerHTML = `
+    <div style="font-size:11px; letter-spacing:3px; color:#555; margin-bottom:12px;">
+      ASSIGN TO FIRETEAM
+    </div>
+    <div style="font-size:13px; color:#fff; margin-bottom:16px;">
+      ${unit.name}
+    </div>
+    ${currentList.fireteams.map(function(ft, index) {
+      return `
+        <button class="picker-btn" data-index="${index}"
+          style="display:block; width:100%; background:#0d0f12;
+          border:1px solid #2a2e35; color:#c8cdd4; padding:10px;
+          margin-bottom:6px; cursor:pointer; font-family:'Share Tech Mono',monospace;
+          font-size:13px; letter-spacing:2px; text-align:left;">
+          FIRETEAM ${ft.name}
+        </button>
+      `;
+    }).join("")}
+    <button id="picker-cancel"
+      style="display:block; width:100%; background:transparent;
+      border:1px solid #333; color:#555; padding:8px;
+      margin-top:8px; cursor:pointer; font-family:'Share Tech Mono',monospace;
+      font-size:11px; letter-spacing:2px;">
+      CANCEL
+    </button>
+  `;
+
+  document.body.appendChild(picker);
+
+  picker.querySelectorAll(".picker-btn").forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      const index = parseInt(btn.getAttribute("data-index"));
+      picker.remove();
+      assignToFireteam(unit, index);
+    });
+  });
+
+  document.getElementById("picker-cancel").addEventListener("click", function() {
+    picker.remove();
+  });
 }
 function updatePointsDisplay() {
   const display = document.getElementById("points-display");
@@ -433,52 +651,218 @@ function updateListDisplay() {
   const listEntries = document.getElementById("list-entries");
   if (!listEntries) return;
 
-  if (currentList.length === 0) {
-    listEntries.innerHTML = `<div class="empty-list">— NO UNITS ADDED —</div>`;
-    return;
-  }
+  let html = "";
 
-  listEntries.innerHTML = currentList.map(function(entry) {
-    return `
-      <div class="list-entry" data-uid="${entry.uid}">
+  // Squad Leader
+  if (currentList.squadLeader) {
+    html += `
+      <div class="list-section-label">SQUAD LEADER</div>
+      <div class="list-entry">
         <div class="list-entry-info">
-          <span class="list-entry-role">${entry.unit.role}</span>
-          <span class="list-entry-name">${entry.unit.name}</span>
+          <span class="list-entry-role">${currentList.squadLeader.unit.role}</span>
+          <span class="list-entry-name">${currentList.squadLeader.unit.name}</span>
         </div>
         <div class="list-entry-right">
-          <span class="list-entry-pts">${entry.unit.pts}pt</span>
-          <button class="remove-btn" data-uid="${entry.uid}">✕</button>
+          <span class="list-entry-pts">${currentList.squadLeader.unit.pts}pt</span>
+          <button class="remove-btn" data-uid="${currentList.squadLeader.uid}" data-type="squadLeader">✕</button>
         </div>
       </div>
     `;
-  }).join("");
+  } else {
+    html += `
+      <div class="list-section-label">SQUAD LEADER</div>
+      <div class="list-warning">⚠ REQUIRED — NO SQUAD LEADER</div>
+    `;
+  }
 
+  // Fireteams
+  if (currentList.fireteams.length === 0) {
+    html += `
+      <div class="list-section-label">FIRETEAMS</div>
+      <div class="empty-list">— ADD A TEAM LEADER TO CREATE A FIRETEAM —</div>
+    `;
+  } else {
+    currentList.fireteams.forEach(function(fireteam) {
+      const modelCount = fireteam.models.length + 1; // +1 for TL
+      const isValid = modelCount >= 2;
+
+      html += `
+        <div class="list-section-label">
+          FIRETEAM ${fireteam.name}
+          ${!isValid ? '<span class="invalid-label">⚠ NEEDS 1+ MODEL</span>' : ""}
+        </div>
+        <div class="list-entry">
+          <div class="list-entry-info">
+            <span class="list-entry-role">TEAM LEADER</span>
+            <span class="list-entry-name">${fireteam.teamLeader.unit.name}</span>
+          </div>
+          <div class="list-entry-right">
+            <span class="list-entry-pts">${fireteam.teamLeader.unit.pts}pt</span>
+            <button class="remove-btn" 
+              data-uid="${fireteam.teamLeader.uid}" 
+              data-type="teamLeader"
+              data-fireteam="${fireteam.id}">✕</button>
+          </div>
+        </div>
+        ${fireteam.models.map(function(entry) {
+          return `
+            <div class="list-entry">
+              <div class="list-entry-info">
+                <span class="list-entry-role">${entry.unit.role}</span>
+                <span class="list-entry-name">${entry.unit.name}</span>
+              </div>
+              <div class="list-entry-right">
+                <span class="list-entry-pts">${entry.unit.pts}pt</span>
+                <button class="remove-btn"
+                  data-uid="${entry.uid}"
+                  data-type="model"
+                  data-fireteam="${fireteam.id}">✕</button>
+              </div>
+            </div>
+          `;
+        }).join("")}
+      `;
+    });
+  }
+
+  // Independent units
+  if (currentList.independent.length > 0) {
+    html += `<div class="list-section-label">INDEPENDENT</div>`;
+    currentList.independent.forEach(function(entry) {
+      html += `
+        <div class="list-entry">
+          <div class="list-entry-info">
+            <span class="list-entry-role">${entry.unit.role}</span>
+            <span class="list-entry-name">${entry.unit.name}</span>
+          </div>
+          <div class="list-entry-right">
+            <span class="list-entry-pts">${entry.unit.pts}pt</span>
+            <button class="remove-btn"
+              data-uid="${entry.uid}"
+              data-type="independent">✕</button>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  // Vehicles placeholder
+  if (currentList.vehicles.length > 0) {
+    html += `<div class="list-section-label">VEHICLES</div>`;
+    currentList.vehicles.forEach(function(entry) {
+      html += `
+        <div class="list-entry">
+          <div class="list-entry-info">
+            <span class="list-entry-role">VEHICLE</span>
+            <span class="list-entry-name">${entry.unit.name}</span>
+          </div>
+          <div class="list-entry-right">
+            <span class="list-entry-pts">TBD</span>
+            <button class="remove-btn"
+              data-uid="${entry.uid}"
+              data-type="vehicle">✕</button>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  // Validation summary
+  html += buildValidationSummary();
+
+  listEntries.innerHTML = html;
   setupRemoveButtons();
 }
 
-function setupRemoveButtons() {
-  const buttons = document.querySelectorAll(".remove-btn");
+function buildValidationSummary() {
+  const issues = [];
 
-  buttons.forEach(function(button) {
-    button.addEventListener("click", function() {
-      const uid = button.getAttribute("data-uid");
-      removeUnit(uid);
+  if (!currentList.squadLeader) {
+    issues.push("No Squad Leader");
+  }
+
+  currentList.fireteams.forEach(function(ft) {
+    if (ft.models.length < 1) {
+      issues.push("Fireteam " + ft.name + " needs at least 1 model");
+    }
+  });
+
+  if (totalPoints > POINTS_LIMIT) {
+    issues.push("Over points limit by " + (totalPoints - POINTS_LIMIT) + "pts");
+  }
+
+  if (issues.length === 0) {
+    if (currentList.squadLeader && currentList.fireteams.length > 0) {
+      return `<div class="validation-valid">✓ LIST VALID</div>`;
+    }
+    return "";
+  }
+
+  return `
+    <div class="validation-invalid">
+      ${issues.map(function(issue) {
+        return `<div>⚠ ${issue}</div>`;
+      }).join("")}
+    </div>
+  `;
+}
+
+function setupRemoveButtons() {
+  document.querySelectorAll(".remove-btn").forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      const uid = btn.getAttribute("data-uid");
+      const type = btn.getAttribute("data-type");
+      const fireteamId = btn.getAttribute("data-fireteam");
+      removeUnit(uid, type, fireteamId);
     });
   });
 }
 
-function removeUnit(uid) {
-  const entry = currentList.find(function(e) {
-    return e.uid === uid;
-  });
+function removeUnit(uid, type, fireteamId) {
+  if (type === "squadLeader") {
+    totalPoints -= currentList.squadLeader.unit.pts;
+    currentList.squadLeader = null;
 
-  if (!entry) return;
+  } else if (type === "teamLeader") {
+    const ft = currentList.fireteams.find(function(f) {
+      return f.id === fireteamId;
+    });
+    if (!ft) return;
+    totalPoints -= ft.teamLeader.unit.pts;
+    // Remove all models in this fireteam too
+    ft.models.forEach(function(m) { totalPoints -= m.unit.pts; });
+    currentList.fireteams = currentList.fireteams.filter(function(f) {
+      return f.id !== fireteamId;
+    });
+    renameFIreTeams();
 
-  totalPoints -= entry.unit.pts;
-  currentList = currentList.filter(function(e) {
-    return e.uid !== uid;
-  });
+  } else if (type === "model") {
+    const ft = currentList.fireteams.find(function(f) {
+      return f.id === fireteamId;
+    });
+    if (!ft) return;
+    const entry = ft.models.find(function(m) { return m.uid === uid; });
+    if (!entry) return;
+    totalPoints -= entry.unit.pts;
+    ft.models = ft.models.filter(function(m) { return m.uid !== uid; });
+
+  } else if (type === "independent") {
+    const entry = currentList.independent.find(function(e) {
+      return e.uid === uid;
+    });
+    if (!entry) return;
+    totalPoints -= entry.unit.pts;
+    currentList.independent = currentList.independent.filter(function(e) {
+      return e.uid !== uid;
+    });
+  }
 
   updatePointsDisplay();
   updateListDisplay();
+}
+
+function renameFIreTeams() {
+  currentList.fireteams.forEach(function(ft, index) {
+    ft.name = PHONETIC[index];
+  });
 }
