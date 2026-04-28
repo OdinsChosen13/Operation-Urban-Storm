@@ -14,297 +14,462 @@ const factions = {
     color: "#4a7c59",
     accent: "#8fbc8f",
     units: [
-      {
-        id: "usa_ssg",
-        name: "Staff Sergeant",
-        role: "Squad Leader",
-        pts: 110,
-        stats: { MOV: '6"', MOR: 4, CEV: 3, DR: "6+" },
-        weapons: [
-          { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
-          { name: "M9 Pistol", dice: 3, hit: "6+", range: '14"', keywords: "CQB" }
-        ],
-        abilities: ["Squad Leader (3\")", "Authority Override", "Rally", "Fireteam Cohesion", "Coordinated Fire"],
-        upgrades: { weapon: 1, equipment: 1, support: 1 },
-        required: true,
-        maxPerList: 1
-      },
-      {
-        id: "usa_sgt",
-        name: "Sergeant",
-        role: "Team Leader",
-        pts: 100,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
-        weapons: [
-          { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
-          { name: "M9 Pistol", dice: 3, hit: "6+", range: '14"', keywords: "CQB" }
-        ],
-        abilities: ["Stress Transfer", "Fireteam Cohesion", "Coordinated Fire", "Lead From The Front"],
-        upgrades: { weapon: 1, equipment: 1, support: 1 }
-      },
-      {
-        id: "usa_pfc",
-        name: "Private First Class",
-        role: "Rifleman",
-        pts: 90,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
-        weapons: [
-          { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
-          { name: "M9 Pistol", dice: 3, hit: "6+", range: '14"', keywords: "CQB" }
-        ],
-        abilities: ["Fireteam Cohesion", "Coordinated Fire"],
-        upgrades: { weapon: 1, equipment: 1, support: 1 }
-      },
-      {
-        id: "usa_mg",
-        name: "Machine Gunner",
-        role: "Specialist",
-        pts: 110,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
-        weapons: [
-          { name: "M249 SAW", dice: 7, hit: "6+", range: '36"', keywords: "ENC / C-FIRE" },
-          { name: "M9 Pistol", dice: 3, hit: "6+", range: '14"', keywords: "CQB" }
-        ],
-        abilities: ["Fireteam Cohesion", "Coordinated Fire"],
-        upgrades: { equipment: 1, support: 1 }
-      },
-      {
-        id: "usa_gren",
-        name: "Grenadier",
-        role: "Specialist",
-        pts: 100,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
-        weapons: [
-          { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
-          { name: "M203 Launcher", dice: 4, hit: "6+", range: '14"', keywords: "IDF / EXPL(2) / RLD" },
-          { name: "M203 Smoke", dice: 1, hit: "-", range: '14"', keywords: "IDF / SMOKE / RLD" },
-          { name: "M9 Pistol", dice: 3, hit: "6+", range: '14"', keywords: "CQB" }
-        ],
-        abilities: ["Fireteam Cohesion (M4A1 only)", "Coordinated Fire (M4A1 only)"],
-        upgrades: { weapon: 1, equipment: 2 }
-      },
-      {
-        id: "usa_medic",
-        name: "Combat Medic",
-        role: "Specialist",
-        pts: 110,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
-        weapons: [
-          { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
-          { name: "M9 Pistol", dice: 3, hit: "6+", range: '14"', keywords: "CQB" }
-        ],
-        abilities: ["Fireteam Cohesion", "Coordinated Fire", "Last Chance", "Field Treatment"],
-        upgrades: { weapon: 1, equipment: 1, support: 2 }
-      },
-      {
-        id: "usa_cqb",
-        name: "CQB Specialist",
-        role: "Specialist",
-        pts: 110,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
-        weapons: [
-          { name: "MK18 CQBR", dice: 5, hit: "5+", range: '18"', keywords: "CQB" },
-          { name: "M9 Pistol", dice: 3, hit: "6+", range: '14"', keywords: "CQB" }
-        ],
-        abilities: ["Fireteam Cohesion", "Coordinated Fire", "Aggressive Entry", "Urban Predator"],
-        upgrades: { weapon: 1, equipment: 1 }
-      },
-      {
-        id: "usa_marksman",
-        name: "Marksman",
-        role: "Specialist",
-        pts: 100,
-        stats: { MOV: '5"', MOR: 3, CEV: 3, DR: "6+" },
-        weapons: [
-          { name: "M110 SASS", dice: 3, hit: "4+", range: '36"', keywords: "" },
-          { name: "M9 Pistol", dice: 3, hit: "6+", range: '14"', keywords: "CQB" }
-        ],
-        abilities: ["Fireteam Cohesion", "Coordinated Fire", "Steady Aim", "Urban Predator"],
-        upgrades: { weapon: 1, equipment: 1, support: 1 }
-      },
-      {
-        id: "usa_atspec",
-        name: "AT Specialist",
-        role: "Specialist",
-        pts: 130,
-        stats: { MOV: '6"', MOR: 3, CEV: 2, DR: "6+" },
-        weapons: [
-          { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
-          { name: "FGM-148 Javelin", dice: 4, hit: "4+", range: '36"', keywords: "RLD / ENC / PEN(4) / DEPLOY" },
-          { name: "M9 Pistol", dice: 3, hit: "6+", range: '14"', keywords: "CQB" }
-        ],
-        abilities: ["Fireteam Cohesion (M4A1 only)", "Coordinated Fire (M4A1 only)", "Deploy"],
-        upgrades: { weapon: 1, equipment: 1, support: 1 }
-      },
-      {
-        id: "usa_atloader",
-        name: "AT Loader",
-        role: "Private First Class",
-        pts: 85,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
-        weapons: [
-          { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
-          { name: "M9 Pistol", dice: 3, hit: "6+", range: '14"', keywords: "CQB" }
-        ],
-        abilities: ["Fireteam Cohesion", "Coordinated Fire", "Assisted Reload"],
-        upgrades: { weapon: 1, equipment: 1, support: 1 }
-      },
-      {
-        id: "usa_sniper",
-        name: "Sniper",
-        role: "Sergeant",
-        pts: 120,
-        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "7+" },
-        weapons: [
-          { name: "M24 SWS", dice: 2, hit: "3+", range: '36"', keywords: "RLD / ENC" },
-          { name: "M9 Pistol", dice: 3, hit: "6+", range: '14"', keywords: "CQB" }
-        ],
-        abilities: ["Fireteam Cohesion", "Coordinated Fire"],
-        upgrades: { support: 1 },
-        note: "In development"
-      }
+  {
+    id: "usa_ssg",
+    name: "Staff Sergeant",
+    role: "Squad Leader",
+    pts: 110,
+    stats: { MOV: '6"', MOR: 4, CEV: 3, DR: "6+" },
+    weapons: [
+      { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
+      { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+    ],
+    abilities: ["Squad Leader (3\")", "Rally", "Authority Override"],
+    upgrades: [
+      { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+      { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
+      { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
+      { socket: "EQUIPMENT", name: "AT4", pts: 15, effect: "PEN 2 / ENC / ONE-SHOT. List limit 2." },
+      { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
+      { socket: "EQUIPMENT", name: "SL Radio", pts: 25, effect: "Issue orders to RTO regardless of distance/LoS." }
+    ],
+    required: true,
+    maxPerList: 1
+  },
+  {
+    id: "usa_sgt",
+    name: "Sergeant",
+    role: "Team Leader",
+    pts: 100,
+    stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
+    weapons: [
+      { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
+      { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+    ],
+    abilities: ["Lead From The Front", "Stress Transfer", "Fireteam Cohesion"],
+    upgrades: [
+      { socket: "WEAPON", name: "XM7 Rifle", pts: 10, effect: "5D / 4+ / 36\" — replaces M4A1 Carbine" },
+      { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+      { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
+      { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
+      { socket: "EQUIPMENT", name: "AT4", pts: 15, effect: "PEN 2 / ENC / ONE-SHOT. Leaders only. List limit 2." },
+      { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
     ]
+  },
+  {
+    id: "usa_pfc",
+    name: "Private First Class",
+    role: "Rifleman",
+    pts: 90,
+    stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
+    weapons: [
+      { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
+      { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+    ],
+    abilities: ["Fireteam Cohesion"],
+    upgrades: [
+      { socket: "WEAPON", name: "XM7 Rifle", pts: 10, effect: "5D / 4+ / 36\" — replaces M4A1 Carbine" },
+      { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+      { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
+      { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
+      { socket: "EQUIPMENT", name: "M72 LAW", pts: 10, effect: "PEN 1 / ONE-SHOT. List limit 2." },
+      { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
+      { socket: "EQUIPMENT", name: "RTO Radio", pts: 25, effect: "Issue orders to friendlies within 2\". Requires SL Radio. List limit 1." }
+    ]
+  },
+  {
+    id: "usa_mg",
+    name: "Machine Gunner",
+    role: "Specialist",
+    pts: 110,
+    stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
+    weapons: [
+      { name: "M249 SAW", dice: 7, hit: "6+", range: '36"', keywords: "C-FIRE / ENC" },
+      { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+    ],
+    abilities: ["Fireteam Cohesion"],
+    upgrades: [
+      { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+      { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
+      { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" },
+      { socket: "SUPPORT", name: "Assault Pack", pts: 15, effect: "C-FIRE generates +2 Stress instead of +1" }
+    ]
+  },
+  {
+    id: "usa_gren",
+    name: "Grenadier",
+    role: "Specialist",
+    pts: 100,
+    stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
+    weapons: [
+      { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
+      { name: "M203 Launcher", dice: 3, hit: "7+", range: '14"', keywords: "IDF / EXPL 2 / RLD" },
+      { name: "M203 Smoke", dice: 0, hit: "—", range: '14"', keywords: "IDF / SMOKE / RLD" },
+      { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+    ],
+    abilities: ["Fireteam Cohesion (M4A1 only)"],
+    upgrades: [
+      { socket: "WEAPON", name: "XM7 Rifle", pts: 10, effect: "5D / 4+ / 36\" — replaces M4A1. M203 retained." },
+      { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+      { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
+      { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
+      { socket: "EQUIPMENT", name: "M72 LAW", pts: 10, effect: "PEN 1 / ONE-SHOT. List limit 2." },
+      { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
+    ]
+  },
+  {
+    id: "usa_medic",
+    name: "Combat Medic",
+    role: "Specialist",
+    pts: 110,
+    stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
+    weapons: [
+      { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
+      { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+    ],
+    abilities: ["Field Treatment", "Last Chance", "Fireteam Cohesion"],
+    upgrades: [
+      { socket: "EQUIPMENT", name: "M72 LAW", pts: 10, effect: "PEN 1 / ONE-SHOT. List limit 2." },
+      { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
+      { socket: "SUPPORT", name: "Advanced Aid Bag", pts: 15, effect: "Last Chance roll improved by 1" },
+      { socket: "SUPPORT", name: "Trauma Kit", pts: 10, effect: "Field Treatment may target this model" }
+    ]
+  },
+  {
+    id: "usa_cqb",
+    name: "CQB Specialist",
+    role: "Specialist",
+    pts: 110,
+    stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
+    weapons: [
+      { name: "Mk 18 CQBR", dice: 5, hit: "5+", range: '18"', keywords: "CQB" },
+      { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+    ],
+    abilities: ["Aggressive Entry", "Urban Predator"],
+    upgrades: [
+      { socket: "WEAPON", name: "M590 Shotgun", pts: 15, effect: "6D / 6+ / 8\" / CQB — replaces Mk 18 CQBR" },
+      { socket: "WEAPON", name: "M26 MASS", pts: 10, effect: "4D / 6+ / 8\" / CQB — underbarrel, Mk 18 retained" },
+      { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
+      { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
+    ]
+  },
+  {
+    id: "usa_marksman",
+    name: "Marksman",
+    role: "Specialist",
+    pts: 100,
+    stats: { MOV: '5"', MOR: 3, CEV: 3, DR: "6+" },
+    weapons: [
+      { name: "M110 SASS", dice: 3, hit: "4+", range: '36"', keywords: "" },
+      { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+    ],
+    abilities: ["Steady Aim"],
+    upgrades: [
+      { socket: "WEAPON", name: "Mk 12 SPR", pts: 10, effect: "4D / 4+ / 30\" — replaces M110 SASS" },
+      { socket: "SUPPORT", name: "Rangefinder", pts: 15, effect: "+1 hit value on all Shoot actions. List limit 1." },
+      { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" }
+    ]
+  },
+  {
+    id: "usa_sniper",
+    name: "Sniper",
+    role: "Sniper Team",
+    pts: 125,
+    stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "7+" },
+    weapons: [
+      { name: "M24 SWS", dice: 2, hit: "3+", range: '48"', keywords: "RLD / ENC" },
+      { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+    ],
+    abilities: ["Concealment", "Minimum Range 8\"", "Coherency Range 2\""],
+    upgrades: [
+      { socket: "SUPPORT", name: "Ghillie Suit", pts: 20, effect: "Cannot be targeted beyond 8\" unless fired this turn" },
+      { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" }
+    ],
+    maxPerList: 1,
+    independentOnly: true,
+    note: "PROVISIONAL"
+  },
+  {
+    id: "usa_spotter",
+    name: "Spotter",
+    role: "Sniper Team",
+    pts: 85,
+    stats: { MOV: '6"', MOR: 2, CEV: 3, DR: "7+" },
+    weapons: [
+      { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
+      { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+    ],
+    abilities: ["Overwatch Correction", "Acquire Target"],
+    upgrades: [
+      { socket: "WEAPON", name: "XM7 Rifle", pts: 10, effect: "5D / 4+ / 36\" — replaces M4A1 Carbine" },
+      { socket: "SUPPORT", name: "Laser Designator", pts: 8, effect: "Acquire Target grants +2 dice instead of +1" }
+    ],
+    maxPerList: 1,
+    independentOnly: true,
+    note: "PROVISIONAL"
+  },
+  {
+    id: "usa_javelin",
+    name: "Javelin Gunner",
+    role: "AT Team",
+    pts: 135,
+    stats: { MOV: '6"', MOR: 3, CEV: 2, DR: "6+" },
+    weapons: [
+      { name: "FGM-148 Javelin", dice: 4, hit: "4+", range: '48"', keywords: "RLD / ENC / PEN 4 / Deploy" },
+      { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+    ],
+    abilities: ["Deploy", "Minimum Range 6\"", "Coherency Range 2\""],
+    upgrades: [
+      { socket: "WEAPON", name: "M3 MAAWS", pts: 0, effect: "4D / 5+ / 24\" / RLD / PEN 2 / EXPL 2 — free swap, no Deploy" },
+      { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
+    ],
+    maxPerList: 1,
+    independentOnly: true
+  },
+  {
+    id: "usa_atloader",
+    name: "AT Loader",
+    role: "AT Team",
+    pts: 85,
+    stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
+    weapons: [
+      { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
+      { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+    ],
+    abilities: ["Assisted Reload"],
+    upgrades: [
+      { socket: "WEAPON", name: "XM7 Rifle", pts: 10, effect: "5D / 4+ / 36\" — replaces M4A1 Carbine" },
+      { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+      { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
+    ],
+    maxPerList: 1,
+    independentOnly: true
+  }
+]
   },
   "insurgents": {
     name: "Insurgents",
     color: "#7c4a2a",
     accent: "#dc9f6a",
     units: [
-      {
-        id: "ins_cl",
-        name: "Cell Leader",
-        role: "Squad Leader",
-        pts: 100,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
-        weapons: [
-          { name: "AK-47", dice: 6, hit: "7+", range: '36"', keywords: "" },
-          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
-        ],
-        abilities: ["Squad Leader (3\")", "Authority Override", "Rally", "Ambush Shock"],
-        upgrades: { weapon: 1, equipment: 1, support: 1 },
-        required: true,
-        maxPerList: 1
-      },
-      {
-        id: "ins_tl",
-        name: "Team Leader",
-        role: "Team Leader",
-        pts: 80,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "8+" },
-        weapons: [
-          { name: "AK-47", dice: 6, hit: "7+", range: '36"', keywords: "" },
-          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
-        ],
-        abilities: ["Stress Transfer", "Ambush Shock", "Lead From The Front"],
-        upgrades: { weapon: 1, equipment: 1, support: 1 }
-      },
-      {
-        id: "ins_fighter",
-        name: "Fighter",
-        role: "Fighter",
-        pts: 60,
-        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "9+" },
-        weapons: [
-          { name: "AK-47", dice: 6, hit: "7+", range: '36"', keywords: "" },
-          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
-        ],
-        abilities: ["Ambush Shock"],
-        upgrades: { equipment: 1 }
-      },
-      {
-        id: "ins_mg",
-        name: "MG Weapons Fighter",
-        role: "Machine Gunner",
-        pts: 90,
-        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "8+" },
-        weapons: [
-          { name: "RPK Machine Gun", dice: 7, hit: "8+", range: '36"', keywords: "ENC / C-FIRE" },
-          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
-        ],
-        abilities: ["Ambush Shock"],
-        upgrades: { equipment: 1, support: 1 }
-      },
-      {
-        id: "ins_rpg",
-        name: "RPG Weapons Fighter",
-        role: "RPG Specialist",
-        pts: 100,
-        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "8+" },
-        weapons: [
-          { name: "AK-47", dice: 6, hit: "7+", range: '36"', keywords: "" },
-          { name: "RPG-7", dice: 4, hit: "6+", range: '36"', keywords: "EXPL(2) / ENC / RLD" },
-          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
-        ],
-        abilities: ["Ambush Shock"],
-        upgrades: { equipment: 1 }
-      },
-      {
-        id: "ins_cqb",
-        name: "Street Fighter",
-        role: "CQB Specialist",
-        pts: 75,
-        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "7+" },
-        weapons: [
-          { name: "AK-74U", dice: 6, hit: "8+", range: '24"', keywords: "CQB" },
-          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
-        ],
-        abilities: ["Urban Predator", "Ambush Shock", "Aggressive Entry"],
-        upgrades: { weapon: 1, equipment: 1 }
-      },
-      {
-        id: "ins_marksman",
-        name: "Marksman",
-        role: "Veteran Fighter",
-        pts: 75,
-        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "9+" },
-        weapons: [
-          { name: "SVD Dragunov", dice: 3, hit: "4+", range: '36"', keywords: "CQB" },
-          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
-        ],
-        abilities: ["Steady Aim", "Ambush Shock"],
-        upgrades: { support: 1 }
-      },
-      {
-        id: "ins_medic",
-        name: "Field Medic",
-        role: "Veteran Fighter",
-        pts: 80,
-        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "8+" },
-        weapons: [
-          { name: "AK-47", dice: 6, hit: "7+", range: '36"', keywords: "" },
-          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
-        ],
-        abilities: ["Field Treatment", "Ambush Shock", "Last Chance"],
-        upgrades: { equipment: 1, support: 1 }
-      },
-      {
-        id: "ins_atgun",
-        name: "AT Weapons Fighter",
-        role: "AT Team Gunner",
-        pts: 110,
-        stats: { MOV: '6"', MOR: 2, CEV: 1, DR: "8+" },
-        weapons: [
-          { name: "AK-47", dice: 6, hit: "7+", range: '36"', keywords: "" },
-          { name: "RPG-7", dice: 4, hit: "6+", range: '36"', keywords: "PEN(3) / ENC / RLD" },
-          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
-        ],
-        abilities: ["Ambush Shock"],
-        upgrades: { equipment: 1 }
-      },
-      {
-        id: "ins_atloader",
-        name: "AT Loader",
-        role: "Fighter",
-        pts: 60,
-        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "9+" },
-        weapons: [
-          { name: "AK-47", dice: 6, hit: "7+", range: '36"', keywords: "" },
-          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
-        ],
-        abilities: ["Ambush Shock", "Assisted Reload"],
-        upgrades: { equipment: 1 }
-      }
+  {
+    id: "ins_cl",
+    name: "Cell Leader",
+    role: "Squad Leader",
+    pts: 100,
+    stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
+    weapons: [
+      { name: "AK-47 Rifle", dice: 6, hit: "7+", range: '36"', keywords: "" },
+      { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+    ],
+    abilities: ["Squad Leader (3\")", "Rally", "Authority Override"],
+    upgrades: [
+      { socket: "WEAPON", name: "Shotgun", pts: 8, effect: "6D / 7+ / 8\" / CQB — replaces AK-47" },
+      { socket: "WEAPON", name: "MP5", pts: 8, effect: "5D / 6+ / 12\" / CQB — replaces AK-47" },
+      { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+      { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
+      { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
+      { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
+    ],
+    required: true,
+    maxPerList: 1
+  },
+  {
+    id: "ins_tl",
+    name: "Team Leader",
+    role: "Team Leader",
+    pts: 80,
+    stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "8+" },
+    weapons: [
+      { name: "AK-47 Rifle", dice: 6, hit: "7+", range: '36"', keywords: "" },
+      { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+    ],
+    abilities: ["Lead From The Front", "Stress Transfer"],
+    upgrades: [
+      { socket: "WEAPON", name: "Shotgun", pts: 8, effect: "6D / 7+ / 8\" / CQB — replaces AK-47" },
+      { socket: "WEAPON", name: "MP5", pts: 8, effect: "5D / 6+ / 12\" / CQB — replaces AK-47" },
+      { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+      { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
+      { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
+      { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
     ]
+  },
+  {
+    id: "ins_fighter",
+    name: "Fighter",
+    role: "Infantry",
+    pts: 60,
+    stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "9+" },
+    weapons: [
+      { name: "AK-47 Rifle", dice: 6, hit: "7+", range: '36"', keywords: "" },
+      { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+    ],
+    abilities: ["Ambush Shock"],
+    upgrades: [
+      { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+      { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
+      { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
+    ]
+  },
+  {
+    id: "ins_mg",
+    name: "MG Weapons Fighter",
+    role: "Machine Gunner",
+    pts: 90,
+    stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "8+" },
+    weapons: [
+      { name: "RPK", dice: 7, hit: "8+", range: '36"', keywords: "C-FIRE / ENC" },
+      { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+    ],
+    abilities: ["Ambush Shock"],
+    upgrades: [
+      { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+      { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
+      { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" },
+      { socket: "SUPPORT", name: "Assault Pack", pts: 15, effect: "C-FIRE generates +2 Stress instead of +1" }
+    ]
+  },
+  {
+    id: "ins_rpg",
+    name: "RPG Weapons Fighter",
+    role: "AT Specialist",
+    pts: 100,
+    stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "8+" },
+    weapons: [
+      { name: "AK-47 Rifle", dice: 6, hit: "7+", range: '36"', keywords: "" },
+      { name: "RPG-7 / PG-7V", dice: 4, hit: "6+", range: '36"', keywords: "EXPL 2 / RLD / ENC" },
+      { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+    ],
+    abilities: ["Ambush Shock"],
+    upgrades: [
+      { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+      { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
+    ]
+  },
+  {
+    id: "ins_cqb",
+    name: "Street Fighter",
+    role: "CQB Specialist",
+    pts: 75,
+    stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "7+" },
+    weapons: [
+      { name: "AK-74U Rifle", dice: 6, hit: "8+", range: '24"', keywords: "CQB" },
+      { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+    ],
+    abilities: ["Aggressive Entry", "Urban Predator", "Ambush Shock"],
+    upgrades: [
+      { socket: "WEAPON", name: "Shotgun", pts: 8, effect: "6D / 7+ / 8\" / CQB — replaces AK-74U" },
+      { socket: "WEAPON", name: "MP5", pts: 8, effect: "5D / 6+ / 12\" / CQB — replaces AK-74U" },
+      { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
+      { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
+    ]
+  },
+  {
+    id: "ins_marksman",
+    name: "Marksman",
+    role: "Veteran Fighter",
+    pts: 75,
+    stats: { MOV: '5"', MOR: 2, CEV: 2, DR: "9+" },
+    weapons: [
+      { name: "SVD Dragunov", dice: 3, hit: "4+", range: '36"', keywords: "" },
+      { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+    ],
+    abilities: ["Steady Aim", "Ambush Shock"],
+    upgrades: [
+      { socket: "SUPPORT", name: "Rangefinder", pts: 15, effect: "+1 hit value on all Shoot actions. List limit 1." },
+      { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" }
+    ]
+  },
+  {
+    id: "ins_medic",
+    name: "Field Medic",
+    role: "Veteran Fighter",
+    pts: 80,
+    stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "8+" },
+    weapons: [
+      { name: "AK-47 Rifle", dice: 6, hit: "7+", range: '36"', keywords: "" },
+      { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+    ],
+    abilities: ["Field Treatment", "Last Chance", "Ambush Shock"],
+    upgrades: [
+      { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
+      { socket: "SUPPORT", name: "Advanced Aid Bag", pts: 15, effect: "Last Chance roll improved by 1" },
+      { socket: "SUPPORT", name: "Trauma Kit", pts: 10, effect: "Field Treatment may target this model" }
+    ]
+  },
+  {
+    id: "ins_sharpshooter",
+    name: "Sharpshooter",
+    role: "Sniper Team",
+    pts: 85,
+    stats: { MOV: '6"', MOR: 2, CEV: 1, DR: "8+" },
+    weapons: [
+      { name: "Mosin-Nagant", dice: 2, hit: "4+", range: '48"', keywords: "RLD / ENC" },
+      { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+    ],
+    abilities: ["Concealment", "Minimum Range 8\"", "Coherency Range 2\""],
+    upgrades: [
+      { socket: "SUPPORT", name: "Ghillie Suit", pts: 20, effect: "Cannot be targeted beyond 8\" unless fired this turn" },
+      { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" }
+    ],
+    maxPerList: 1,
+    independentOnly: true,
+    note: "PROVISIONAL"
+  },
+  {
+    id: "ins_observer",
+    name: "Observer",
+    role: "Sniper Team",
+    pts: 50,
+    stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "9+" },
+    weapons: [
+      { name: "AK-47 Rifle", dice: 6, hit: "7+", range: '36"', keywords: "" },
+      { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+    ],
+    abilities: ["Overwatch Correction", "Acquire Target"],
+    upgrades: [
+      { socket: "SUPPORT", name: "Laser Designator", pts: 8, effect: "Acquire Target grants +2 dice instead of +1" }
+    ],
+    maxPerList: 1,
+    independentOnly: true,
+    note: "PROVISIONAL"
+  },
+  {
+    id: "ins_rpggunner",
+    name: "RPG Gunner",
+    role: "AT Team",
+    pts: 100,
+    stats: { MOV: '6"', MOR: 2, CEV: 1, DR: "8+" },
+    weapons: [
+      { name: "RPG-7 / PG-7VR", dice: 4, hit: "6+", range: '36"', keywords: "RLD / ENC / PEN 3" },
+      { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+    ],
+    abilities: ["Minimum Range 6\"", "Coherency Range 2\""],
+    upgrades: [
+      { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
+    ],
+    maxPerList: 1,
+    independentOnly: true
+  },
+  {
+    id: "ins_rpgloader",
+    name: "RPG Loader",
+    role: "AT Team",
+    pts: 50,
+    stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "9+" },
+    weapons: [
+      { name: "AK-47 Rifle", dice: 6, hit: "7+", range: '36"', keywords: "" },
+      { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+    ],
+    abilities: ["Assisted Reload"],
+    upgrades: [
+      { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+      { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
+    ],
+    maxPerList: 1,
+    independentOnly: true
+  }
+]
   }
 };
 
@@ -339,10 +504,10 @@ const SPECIALISTS = [
 
 // Independent units - exist outside fireteams
 const INDEPENDENT_UNITS = [
-  "usa_atspec", "usa_atloader",
-  "usa_sniper",
-  "ins_atgun", "ins_atloader",
-  "ins_marksman"
+  "usa_javelin", "usa_atloader",
+  "usa_sniper", "usa_spotter",
+  "ins_sharpshooter", "ins_observer",
+  "ins_rpggunner", "ins_rpgloader"
 ];
 
 // Squad leader unit IDs
