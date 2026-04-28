@@ -64,3 +64,15 @@ main a:hover {
   background-color: var(--accent);
   color: var(--bg-dark);
 }
+.back-link {
+  display: inline-block;
+  color: var(--accent);
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 3px;
+  margin-bottom: 16px;
+}
+
+.back-link:hover {
+  color: #ffffff;
+}
