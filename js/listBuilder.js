@@ -24,7 +24,8 @@ const factions = {
           { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
-        abilities: ["Squad Leader (3\")", "Rally", "Authority Override"],
+        abilities: ["Squad Leader (3\")", "Rally", "Authority Override", "Fireteam Cohesion", "Coordinated Fire"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1, SUPPORT: 1 },
         upgrades: [
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
@@ -46,7 +47,8 @@ const factions = {
           { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
-        abilities: ["Lead From The Front", "Stress Transfer", "Fireteam Cohesion"],
+        abilities: ["Lead From The Front", "Stress Transfer", "Fireteam Cohesion", "Coordinated Fire"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1, SUPPORT: 1 },
         upgrades: [
           { socket: "WEAPON", name: "XM7 Rifle", pts: 10, effect: "5D / 4+ / 36\" — replaces M4A1 Carbine" },
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
@@ -66,7 +68,8 @@ const factions = {
           { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
-        abilities: ["Fireteam Cohesion"],
+        abilities: ["Fireteam Cohesion", "Coordinated Fire"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1, SUPPORT: 1 },
         upgrades: [
           { socket: "WEAPON", name: "XM7 Rifle", pts: 10, effect: "5D / 4+ / 36\" — replaces M4A1 Carbine" },
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
@@ -87,7 +90,8 @@ const factions = {
           { name: "M249 SAW", dice: 7, hit: "6+", range: '36"', keywords: "C-FIRE / ENC" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
-        abilities: ["Fireteam Cohesion"],
+        abilities: ["Fireteam Cohesion", "Coordinated Fire"],
+        socketLimits: { EQUIPMENT: 1, SUPPORT: 1 },
         upgrades: [
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
@@ -107,7 +111,8 @@ const factions = {
           { name: "M203 Smoke", dice: 0, hit: "—", range: '14"', keywords: "IDF / SMOKE / RLD" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
-        abilities: ["Fireteam Cohesion (M4A1 only)"],
+        abilities: ["Fireteam Cohesion (M4A1 only)", "Coordinated Fire (M4A1 only)"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 2 },
         upgrades: [
           { socket: "WEAPON", name: "XM7 Rifle", pts: 10, effect: "5D / 4+ / 36\" — replaces M4A1. M203 retained." },
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
@@ -127,8 +132,10 @@ const factions = {
           { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
-        abilities: ["Field Treatment", "Last Chance", "Fireteam Cohesion"],
+        abilities: ["Field Treatment", "Last Chance", "Fireteam Cohesion", "Coordinated Fire"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1, SUPPORT: 2 },
         upgrades: [
+          { socket: "WEAPON", name: "XM7 Rifle", pts: 10, effect: "5D / 4+ / 36\" — replaces M4A1 Carbine" },
           { socket: "EQUIPMENT", name: "M72 LAW", pts: 10, effect: "PEN 1 / ONE-SHOT. List limit 2." },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
           { socket: "SUPPORT", name: "Advanced Aid Bag", pts: 15, effect: "Last Chance roll improved by 1" },
@@ -145,7 +152,8 @@ const factions = {
           { name: "Mk 18 CQBR", dice: 5, hit: "5+", range: '18"', keywords: "CQB" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
-        abilities: ["Aggressive Entry", "Urban Predator"],
+        abilities: ["Aggressive Entry", "Urban Predator", "Fireteam Cohesion", "Coordinated Fire"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
         upgrades: [
           { socket: "WEAPON", name: "M590 Shotgun", pts: 15, effect: "6D / 6+ / 8\" / CQB — replaces Mk 18 CQBR" },
           { socket: "WEAPON", name: "M26 MASS", pts: 10, effect: "4D / 6+ / 8\" / CQB — underbarrel, Mk 18 retained" },
@@ -163,9 +171,11 @@ const factions = {
           { name: "M110 SASS", dice: 3, hit: "4+", range: '36"', keywords: "" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
-        abilities: ["Steady Aim"],
+        abilities: ["Steady Aim", "Urban Predator", "Fireteam Cohesion", "Coordinated Fire"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1, SUPPORT: 1 },
         upgrades: [
           { socket: "WEAPON", name: "Mk 12 SPR", pts: 10, effect: "4D / 4+ / 30\" — replaces M110 SASS" },
+          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
           { socket: "SUPPORT", name: "Rangefinder", pts: 15, effect: "+1 hit value on all Shoot actions. List limit 1." },
           { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" }
         ]
@@ -181,6 +191,7 @@ const factions = {
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Concealment", "Minimum Range 8\"", "Coherency Range 2\""],
+        socketLimits: { SUPPORT: 1 },
         upgrades: [
           { socket: "SUPPORT", name: "Ghillie Suit", pts: 20, effect: "Cannot be targeted beyond 8\" unless fired this turn" },
           { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" }
@@ -200,6 +211,7 @@ const factions = {
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Overwatch Correction", "Acquire Target"],
+        socketLimits: { WEAPON: 1, SUPPORT: 1 },
         upgrades: [
           { socket: "WEAPON", name: "XM7 Rifle", pts: 10, effect: "5D / 4+ / 36\" — replaces M4A1 Carbine" },
           { socket: "SUPPORT", name: "Laser Designator", pts: 8, effect: "Acquire Target grants +2 dice instead of +1" }
@@ -219,6 +231,7 @@ const factions = {
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Deploy", "Minimum Range 6\"", "Coherency Range 2\""],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1, SUPPORT: 1 },
         upgrades: [
           { socket: "WEAPON", name: "M3 MAAWS", pts: 0, effect: "4D / 5+ / 24\" / RLD / PEN 2 / EXPL 2 — free swap, no Deploy" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
@@ -236,7 +249,8 @@ const factions = {
           { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
-        abilities: ["Assisted Reload"],
+        abilities: ["Assisted Reload", "Fireteam Cohesion", "Coordinated Fire"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1, SUPPORT: 1 },
         upgrades: [
           { socket: "WEAPON", name: "XM7 Rifle", pts: 10, effect: "5D / 4+ / 36\" — replaces M4A1 Carbine" },
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
@@ -263,7 +277,8 @@ const factions = {
           { name: "AK-47 Rifle", dice: 6, hit: "7+", range: '36"', keywords: "" },
           { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
         ],
-        abilities: ["Squad Leader (3\")", "Rally", "Authority Override"],
+        abilities: ["Squad Leader (3\")", "Rally", "Authority Override", "Ambush Shock"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1, SUPPORT: 1 },
         upgrades: [
           { socket: "WEAPON", name: "Shotgun", pts: 8, effect: "6D / 7+ / 8\" / CQB — replaces AK-47" },
           { socket: "WEAPON", name: "MP5", pts: 8, effect: "5D / 6+ / 12\" / CQB — replaces AK-47" },
@@ -285,7 +300,8 @@ const factions = {
           { name: "AK-47 Rifle", dice: 6, hit: "7+", range: '36"', keywords: "" },
           { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
         ],
-        abilities: ["Lead From The Front", "Stress Transfer"],
+        abilities: ["Lead From The Front", "Stress Transfer", "Ambush Shock"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1, SUPPORT: 1 },
         upgrades: [
           { socket: "WEAPON", name: "Shotgun", pts: 8, effect: "6D / 7+ / 8\" / CQB — replaces AK-47" },
           { socket: "WEAPON", name: "MP5", pts: 8, effect: "5D / 6+ / 12\" / CQB — replaces AK-47" },
@@ -306,6 +322,7 @@ const factions = {
           { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Ambush Shock"],
+        socketLimits: { EQUIPMENT: 1 },
         upgrades: [
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
@@ -323,6 +340,7 @@ const factions = {
           { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Ambush Shock"],
+        socketLimits: { EQUIPMENT: 1, SUPPORT: 1 },
         upgrades: [
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
@@ -342,6 +360,7 @@ const factions = {
           { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Ambush Shock"],
+        socketLimits: { EQUIPMENT: 1 },
         upgrades: [
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
@@ -358,6 +377,7 @@ const factions = {
           { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Aggressive Entry", "Urban Predator", "Ambush Shock"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
         upgrades: [
           { socket: "WEAPON", name: "Shotgun", pts: 8, effect: "6D / 7+ / 8\" / CQB — replaces AK-74U" },
           { socket: "WEAPON", name: "MP5", pts: 8, effect: "5D / 6+ / 12\" / CQB — replaces AK-74U" },
@@ -376,6 +396,7 @@ const factions = {
           { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Steady Aim", "Ambush Shock"],
+        socketLimits: { SUPPORT: 1 },
         upgrades: [
           { socket: "SUPPORT", name: "Rangefinder", pts: 15, effect: "+1 hit value on all Shoot actions. List limit 1." },
           { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" }
@@ -392,6 +413,7 @@ const factions = {
           { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Field Treatment", "Last Chance", "Ambush Shock"],
+        socketLimits: { EQUIPMENT: 1, SUPPORT: 1 },
         upgrades: [
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
           { socket: "SUPPORT", name: "Advanced Aid Bag", pts: 15, effect: "Last Chance roll improved by 1" },
@@ -409,6 +431,7 @@ const factions = {
           { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Concealment", "Minimum Range 8\"", "Coherency Range 2\""],
+        socketLimits: { SUPPORT: 1 },
         upgrades: [
           { socket: "SUPPORT", name: "Ghillie Suit", pts: 20, effect: "Cannot be targeted beyond 8\" unless fired this turn" },
           { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" }
@@ -428,6 +451,7 @@ const factions = {
           { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Overwatch Correction", "Acquire Target"],
+        socketLimits: { SUPPORT: 1 },
         upgrades: [
           { socket: "SUPPORT", name: "Laser Designator", pts: 8, effect: "Acquire Target grants +2 dice instead of +1" }
         ],
@@ -446,6 +470,7 @@ const factions = {
           { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Minimum Range 6\"", "Coherency Range 2\""],
+        socketLimits: { EQUIPMENT: 1 },
         upgrades: [
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
         ],
@@ -463,6 +488,7 @@ const factions = {
           { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Assisted Reload"],
+        socketLimits: { EQUIPMENT: 1 },
         upgrades: [
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
@@ -857,8 +883,33 @@ function setupListEntryClicks() {
 }
 
 // ============================================
-// MODALS
+// MODAL BUILDER
 // ============================================
+
+function buildUpgradeRows(unit, selectedUpgrades) {
+  return ["WEAPON", "EQUIPMENT", "SUPPORT"].map(function(socket) {
+    const sockUpgs = unit.upgrades.filter(function(u) { return u.socket === socket; });
+    if (!sockUpgs.length) return "";
+    return `
+      <div class="upgrade-socket-label">[${socket}]</div>
+      ${sockUpgs.map(function(upg) {
+        const isSel = selectedUpgrades.some(function(s) { return s.name === upg.name; });
+        const socketCount = selectedUpgrades.filter(function(s) { return s.socket === socket; }).length;
+        const limit = (unit.socketLimits && unit.socketLimits[socket]) || 99;
+        const atLimit = !isSel && socketCount >= limit;
+        return `
+          <div class="upgrade-row${isSel ? " selected" : ""}${atLimit ? " disabled" : ""}"
+            data-name="${upg.name}" data-pts="${upg.pts}" data-socket="${socket}"
+            ${atLimit ? 'data-disabled="true"' : ""}>
+            <div class="upgrade-info">
+              <span class="upgrade-name">${upg.name}</span>
+              <span class="upgrade-effect">${upg.effect}</span>
+            </div>
+            <span class="upgrade-pts">${upg.pts > 0 ? "+" + upg.pts + "pt" : "FREE"}</span>
+          </div>`;
+      }).join("")}`;
+  }).join("");
+}
 
 function buildModalHTML(unit, selectedUpgrades, editMode) {
   return `
@@ -892,27 +943,14 @@ function buildModalHTML(unit, selectedUpgrades, editMode) {
         ${unit.abilities.map(function(a){return `<span class="ability-tag">${a}</span>`;}).join("")}
       </div>
       ${unit.upgrades && unit.upgrades.length > 0 ? `
-        <div class="modal-section-label">UPGRADES</div>
-        <div id="modal-upgrades">
-          ${["WEAPON","EQUIPMENT","SUPPORT"].map(function(socket){
-            const sockUpgs = unit.upgrades.filter(function(u){return u.socket===socket;});
-            if (!sockUpgs.length) return "";
-            return `
-              <div class="upgrade-socket-label">[${socket}]</div>
-              ${sockUpgs.map(function(upg){
-                const isSel = selectedUpgrades.some(function(s){return s.name===upg.name;});
-                return `
-                  <div class="upgrade-row${isSel?" selected":""}" data-name="${upg.name}" data-pts="${upg.pts}" data-socket="${socket}">
-                    <div class="upgrade-info">
-                      <span class="upgrade-name">${upg.name}</span>
-                      <span class="upgrade-effect">${upg.effect}</span>
-                    </div>
-                    <span class="upgrade-pts">${upg.pts>0?"+"+upg.pts+"pt":"FREE"}</span>
-                  </div>`;
-              }).join("")}`;
-          }).join("")}
-        </div>` : ""}
-      <button id="modal-add-btn" ${editMode?'class="edit-mode"':""}>
+        <div class="modal-section-label">UPGRADES
+          <span class="upgrade-socket-summary">
+            ${Object.entries(unit.socketLimits || {}).map(function(e){return e[0]+"("+e[1]+")";}).join(" · ")}
+          </span>
+        </div>
+        <div id="modal-upgrades">${buildUpgradeRows(unit, selectedUpgrades)}</div>
+      ` : ""}
+      <button id="modal-add-btn" ${editMode ? 'class="edit-mode"' : ""}>
         ${editMode ? "✓ UPDATE" : "+ ADD TO LIST"} — <span id="modal-add-pts">${unit.pts + selectedUpgrades.reduce(function(s,u){return s+u.pts;},0)}</span> PTS
       </button>
     </div>`;
@@ -922,30 +960,39 @@ function setupModalEvents(overlay, unit, selectedUpgrades, onConfirm) {
   document.getElementById("modal-close").addEventListener("click", function () { overlay.remove(); });
   overlay.addEventListener("click", function (e) { if (e.target === overlay) overlay.remove(); });
 
-  overlay.querySelectorAll(".upgrade-row").forEach(function (row) {
-    row.addEventListener("click", function () {
-      const name = row.getAttribute("data-name");
-      const pts = parseInt(row.getAttribute("data-pts"));
-      const socket = row.getAttribute("data-socket");
-      const isSel = row.classList.contains("selected");
+  function refreshUpgradeRows() {
+    const container = document.getElementById("modal-upgrades");
+    if (container) container.innerHTML = buildUpgradeRows(unit, selectedUpgrades);
+    attachUpgradeListeners();
+  }
 
-      if (isSel) {
-        row.classList.remove("selected");
-        selectedUpgrades = selectedUpgrades.filter(function (u) { return u.name !== name; });
-      } else {
-        if (socket === "WEAPON") {
-          overlay.querySelectorAll(".upgrade-row[data-socket='WEAPON']").forEach(function (r) { r.classList.remove("selected"); });
-          selectedUpgrades = selectedUpgrades.filter(function (u) { return u.socket !== "WEAPON"; });
+  function attachUpgradeListeners() {
+    overlay.querySelectorAll(".upgrade-row").forEach(function (row) {
+      row.addEventListener("click", function () {
+        if (row.getAttribute("data-disabled") === "true") return;
+        const name = row.getAttribute("data-name");
+        const pts = parseInt(row.getAttribute("data-pts"));
+        const socket = row.getAttribute("data-socket");
+        const isSel = row.classList.contains("selected");
+
+        if (isSel) {
+          selectedUpgrades = selectedUpgrades.filter(function (u) { return u.name !== name; });
+        } else {
+          if (socket === "WEAPON") {
+            selectedUpgrades = selectedUpgrades.filter(function (u) { return u.socket !== "WEAPON"; });
+          }
+          selectedUpgrades.push({ name: name, pts: pts, socket: socket });
         }
-        row.classList.add("selected");
-        selectedUpgrades.push({ name: name, pts: pts, socket: socket });
-      }
 
-      const upgPts = selectedUpgrades.reduce(function (s, u) { return s + u.pts; }, 0);
-      document.getElementById("modal-add-pts").textContent = unit.pts + upgPts;
-      document.getElementById("modal-pts-display").textContent = (unit.pts + upgPts) + " PTS";
+        const upgPts = selectedUpgrades.reduce(function (s, u) { return s + u.pts; }, 0);
+        document.getElementById("modal-add-pts").textContent = unit.pts + upgPts;
+        document.getElementById("modal-pts-display").textContent = (unit.pts + upgPts) + " PTS";
+        refreshUpgradeRows();
+      });
     });
-  });
+  }
+
+  attachUpgradeListeners();
 
   document.getElementById("modal-add-btn").addEventListener("click", function () {
     const upgPts = selectedUpgrades.reduce(function (s, u) { return s + u.pts; }, 0);
@@ -967,7 +1014,7 @@ function showUnitModal(unitId) {
   overlay.innerHTML = buildModalHTML(unit, selectedUpgrades, false);
   document.body.appendChild(overlay);
 
-  setupModalEvents(overlay, unit, selectedUpgrades, function (upgrades, upgPts) {
+  setupModalEvents(overlay, unit, selectedUpgrades, function (upgrades) {
     addUnitWithUpgrades(unitId, upgrades);
   });
 }

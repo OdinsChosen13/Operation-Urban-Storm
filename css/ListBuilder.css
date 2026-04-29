@@ -139,6 +139,12 @@
   border: 1px solid #2a2e35;
   padding: 10px 14px;
   margin-bottom: 6px;
+  cursor: pointer;
+  transition: border 0.15s;
+}
+
+.list-entry:hover {
+  border-color: #d4a017;
 }
 
 .list-entry-info {
@@ -157,6 +163,13 @@
 .list-entry-name {
   color: #d4a017;
   font-size: 15px;
+}
+
+.list-entry-upgrades {
+  font-size: 10px;
+  color: #aaaaaa;
+  letter-spacing: 1px;
+  margin-top: 2px;
 }
 
 .list-entry-right {
@@ -232,6 +245,8 @@
   margin-top: 16px;
   line-height: 2;
 }
+
+/* ── MODAL ── */
 #unit-modal-overlay {
   position: fixed;
   top: 0;
@@ -311,6 +326,16 @@
   margin: 14px 0 8px 0;
   border-bottom: 1px solid #2a2e35;
   padding-bottom: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.upgrade-socket-summary {
+  font-size: 10px;
+  color: #555;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 #modal-stats {
@@ -415,6 +440,15 @@
   border-color: #d4a017;
 }
 
+.upgrade-row.disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.upgrade-row.disabled:hover {
+  border-color: #2a2e35;
+}
+
 .upgrade-info {
   display: flex;
   flex-direction: column;
@@ -462,12 +496,7 @@
   background: #8fbc8f;
   color: #0d0f12;
 }
-.list-entry-upgrades {
-  font-size: 10px;
-  color: #d4a017;
-  letter-spacing: 1px;
-  margin-top: 2px;
-}
+
 #modal-add-btn.edit-mode {
   background: #1a1800;
   border-color: #d4a017;
@@ -478,10 +507,74 @@
   background: #d4a017;
   color: #0d0f12;
 }
-.list-entry {
-  cursor: pointer;
-}
 
-.list-entry:hover {
-  border-color: #d4a017;
+/* ── MOBILE ── */
+@media (max-width: 600px) {
+  #unit-browser {
+    flex-direction: column;
+    height: auto;
+  }
+
+  #unit-list {
+    width: 100%;
+    border-right: none;
+    border-bottom: 2px solid #2a2e35;
+    max-height: 50vh;
+  }
+
+  #active-list {
+    width: 100%;
+    max-height: 50vh;
+  }
+
+  header h1 {
+    font-size: clamp(28px, 7vw, 48px);
+  }
+
+  #points-bar {
+    padding: 10px 14px;
+  }
+
+  #list-name {
+    font-size: 15px;
+  }
+
+  #points-display {
+    font-size: 15px;
+  }
+
+  .unit-card-name {
+    font-size: 14px;
+  }
+
+  .unit-card-pts {
+    font-size: 14px;
+  }
+
+  #unit-modal {
+    max-height: 90vh;
+    padding: 16px;
+  }
+
+  .modal-name {
+    font-size: 18px;
+  }
+
+  #modal-weapons {
+    font-size: 11px;
+  }
+
+  #modal-weapons th {
+    font-size: 9px;
+    padding: 3px 4px;
+  }
+
+  #modal-weapons td {
+    padding: 4px 4px;
+  }
+
+  .faction-btn {
+    font-size: 15px;
+    padding: 16px 18px;
+  }
 }
