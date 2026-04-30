@@ -1208,6 +1208,157 @@ function toggleUpgrade(upgrade, unit) {
 // ADD/EDIT/REMOVE UNIT FUNCTIONS
 // ============================================
 
+function showFireteamPicker(unit, upgradePoints, totalPts) {
+  // Create modal overlay
+  const overlay = document.createElement('div');
+  overlay.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 250;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  `;
+
+  // Create modal box
+  const modal = document.createElement('div');
+  modal.style.cssText = `
+    background: #111418;
+    border: 2px solid #8fbc8f;
+    padding: 30px;
+    max-width: 400px;
+    width: 100%;
+  `;
+
+  // Title
+  const title = document.createElement('div');
+  title.style.cssText = `
+    color: #8fbc8f;
+    font-size: 16px;
+    letter-spacing: 2px;
+    margin-bottom: 20px;
+    text-align: center;
+  `;
+  title.textContent = 'SELECT FIRETEAM';
+  modal.appendChild(title);
+
+  // Unit info
+  const unitInfo = document.createElement('div');
+  unitInfo.style.cssText = `
+    color: #ccc;
+    font-size: 14px;
+    margin-bottom: 20px;
+    text-align: center;
+  `;
+  unitInfo.textContent = `${unit.name} (${totalPts}pts)`;
+  modal.appendChild(unitInfo);
+
+  // Fireteam buttons
+  fireteams.forEach(ft => {
+    const members = activeList.filter(e => e.fireteamId === ft.id);
+    const ftPts = members.reduce((sum, m) => sum + m.totalPts, 0);
+    
+    const btn = document.createElement('button');
+    btn.style.cssText = `
+      width: 100%;
+      background: #1a1f26;
+      border: 1px solid #8fbc8f;
+      color: #8fbc8f;
+      padding: 15px;
+      margin-bottom: 10px;
+      cursor: pointer;
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 14px;
+      letter-spacing: 2px;
+      text-align: left;
+    `;
+    btn.innerHTML = `
+      <div style="display: flex; justify-content: space-between;">
+        <span>FIRETEAM ${ft.name.toUpperCase()}</span>
+        <span>${members.length} MODELS | ${ftPts}pts</span>
+      </div>
+    `;
+    
+    btn.onmouseover = () => {
+      btn.style.background = '#8fbc8f';
+      btn.style.color = '#111418';
+    };
+    btn.onmouseout = () => {
+      btn.style.background = '#1a1f26';
+      btn.style.color = '#8fbc8f';
+    };
+    
+    btn.onclick = () => {
+      document.body.removeChild(overlay);
+      finalizeAddUnit(unit, upgradePoints, totalPts, ft.id);
+    };
+    
+    modal.appendChild(btn);
+  });
+
+  // Cancel button
+  const cancelBtn = document.createElement('button');
+  cancelBtn.textContent = 'CANCEL';
+  cancelBtn.style.cssText = `
+    width: 100%;
+    background: #1a0808;
+    border: 1px solid #e74c3c;
+    color: #e74c3c;
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 2px;
+  `;
+  cancelBtn.onmouseover = () => {
+    cancelBtn.style.background = '#e74c3c';
+    cancelBtn.style.color = '#fff';
+  };
+  cancelBtn.onmouseout = () => {
+    cancelBtn.style.background = '#1a0808';
+    cancelBtn.style.color = '#e74c3c';
+  };
+  cancelBtn.onclick = () => document.body.removeChild(overlay);
+  
+  modal.appendChild(cancelBtn);
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+
+  // Close on overlay click
+  overlay.onclick = (e) => {
+    if (e.target === overlay) {
+      document.body.removeChild(overlay);
+    }
+  };
+}
+
+function finalizeAddUnit(unit, upgradePoints, totalPts, fireteamId) {
+  const entry = {
+    id: Date.now(),
+    unit: unit,
+    selectedUpgrades: [...selectedUpgrades],
+    totalPts: totalPts,
+    fireteamId: fireteamId
+  };
+
+  activeList.push(entry);
+  
+  // Close unit modal
+  const unitModalOverlay = document.getElementById('unit-modal-overlay');
+  if (unitModalOverlay) {
+    document.body.removeChild(unitModalOverlay);
+  }
+
+  renderActiveList();
+  updatePointsDisplay();
+}
+
 function addUnitToList() {
   const faction = factions[currentFaction];
   const unit = faction.units.find(u => u.id === currentModalUnitId);
@@ -1243,8 +1394,13 @@ function addUnitToList() {
       return;
     }
     
-    // Auto-assign to first fireteam for now
-    // TODO: Let user choose fireteam
+    // Show fireteam picker if multiple fireteams exist
+    if (fireteams.length > 1) {
+      showFireteamPicker(unit, upgradePoints, totalPts);
+      return; // Exit here, the picker will handle adding the unit
+    }
+    
+    // Only one fireteam exists, auto-assign
     fireteamId = fireteams[0].id;
   }
 
