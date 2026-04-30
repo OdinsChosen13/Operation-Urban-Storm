@@ -2,11 +2,15 @@
 // OPERATION URBAN STORM - LIST BUILDER
 // Version 1.6.0
 // Unit data sourced from OUS Unit Card Master
-// To update a unit: find it below and edit
+// UPDATED: Error modals, upgrade selection UI, clone button, VDV faction
 // ============================================
 
 const GAME_VERSION = "1.6.0";
 const POINTS_LIMIT = 1000;
+
+// ============================================
+// FACTION DATA
+// ============================================
 
 const factions = {
   "us-army": {
@@ -24,7 +28,8 @@ const factions = {
           { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
-        abilities: ["Squad Leader (3\")", "Rally", "Authority Override"],
+        abilities: ["Squad Leader (3\")", "Rally", "Authority Override", "Fireteam Cohesion", "Coordinated Fire"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1, SUPPORT: 1 },
         upgrades: [
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
@@ -46,7 +51,8 @@ const factions = {
           { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
-        abilities: ["Lead From The Front", "Stress Transfer", "Fireteam Cohesion"],
+        abilities: ["Lead From The Front", "Stress Transfer", "Fireteam Cohesion", "Coordinated Fire"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1, SUPPORT: 1 },
         upgrades: [
           { socket: "WEAPON", name: "XM7 Rifle", pts: 10, effect: "5D / 4+ / 36\" — replaces M4A1 Carbine" },
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
@@ -66,7 +72,8 @@ const factions = {
           { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
-        abilities: ["Fireteam Cohesion"],
+        abilities: ["Fireteam Cohesion", "Coordinated Fire"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1, SUPPORT: 1 },
         upgrades: [
           { socket: "WEAPON", name: "XM7 Rifle", pts: 10, effect: "5D / 4+ / 36\" — replaces M4A1 Carbine" },
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
@@ -87,7 +94,8 @@ const factions = {
           { name: "M249 SAW", dice: 7, hit: "6+", range: '36"', keywords: "C-FIRE / ENC" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
-        abilities: ["Fireteam Cohesion"],
+        abilities: ["Fireteam Cohesion", "Coordinated Fire"],
+        socketLimits: { EQUIPMENT: 1, SUPPORT: 1 },
         upgrades: [
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
@@ -96,24 +104,76 @@ const factions = {
         ]
       },
       {
-        id: "usa_gren",
+        id: "usa_at",
+        name: "AT Specialist",
+        role: "Specialist",
+        pts: 105,
+        stats: { MOV: '5"', MOR: 3, CEV: 3, DR: "6+" },
+        weapons: [
+          { name: "M3 MAAWS", dice: 4, hit: "4+", range: '36"', keywords: "EXPL 2 / RLD / ENC" },
+          { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" }
+        ],
+        abilities: ["Fireteam Cohesion", "Coordinated Fire"],
+        socketLimits: { EQUIPMENT: 1 },
+        upgrades: [
+          { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
+        ]
+      },
+      {
+        id: "usa_gs",
         name: "Grenadier",
         role: "Specialist",
         pts: 100,
         stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
         weapons: [
           { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
-          { name: "M203 Launcher", dice: 3, hit: "7+", range: '14"', keywords: "IDF / EXPL 2 / RLD" },
-          { name: "M203 Smoke", dice: 0, hit: "—", range: '14"', keywords: "IDF / SMOKE / RLD" },
+          { name: "M320 Grenade Launcher", dice: 3, hit: "5+", range: '24"', keywords: "EXPL 1 / RLD / UBW" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
-        abilities: ["Fireteam Cohesion (M4A1 only)"],
+        abilities: ["Fireteam Cohesion", "Coordinated Fire"],
+        socketLimits: { EQUIPMENT: 1, SUPPORT: 1 },
         upgrades: [
-          { socket: "WEAPON", name: "XM7 Rifle", pts: 10, effect: "5D / 4+ / 36\" — replaces M4A1. M203 retained." },
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
+          { socket: "SUPPORT", name: "Smoke Rounds", pts: 8, effect: "M320 fires SMOKE instead of EXPL. List limit 1." }
+        ]
+      },
+      {
+        id: "usa_dm",
+        name: "Designated Marksman",
+        role: "Specialist",
+        pts: 100,
+        stats: { MOV: '5"', MOR: 3, CEV: 3, DR: "6+" },
+        weapons: [
+          { name: "M110A1 CSASS", dice: 3, hit: "4+", range: '42"', keywords: "" },
+          { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+        ],
+        abilities: ["Fireteam Cohesion", "Coordinated Fire", "Steady Aim"],
+        socketLimits: { SUPPORT: 1 },
+        upgrades: [
+          { socket: "SUPPORT", name: "Suppressor", pts: 15, effect: "Only generates 1 Stress when hitting. List limit 1." },
+          { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" }
+        ]
+      },
+      {
+        id: "usa_cqb",
+        name: "Breacher",
+        role: "Specialist",
+        pts: 120,
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "5+" },
+        weapons: [
+          { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '24"', keywords: "CQB" },
+          { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+        ],
+        abilities: ["Aggressive Entry", "Urban Predator", "Fireteam Cohesion", "Coordinated Fire"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
+        upgrades: [
+          { socket: "WEAPON", name: "M870 Shotgun", pts: 12, effect: "6D / 6+ / 8\" / CQB — replaces M4A1" },
           { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
-          { socket: "EQUIPMENT", name: "M72 LAW", pts: 10, effect: "PEN 1 / ONE-SHOT. List limit 2." },
+          { socket: "EQUIPMENT", name: "Breaching Charge", pts: 12, effect: "Destroy one door/window within 1\". EXPL / ONE-SHOT." },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
         ]
       },
@@ -121,78 +181,44 @@ const factions = {
         id: "usa_medic",
         name: "Combat Medic",
         role: "Specialist",
-        pts: 110,
+        pts: 100,
         stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
         weapons: [
           { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
-        abilities: ["Field Treatment", "Last Chance", "Fireteam Cohesion"],
+        abilities: ["Fireteam Cohesion", "Coordinated Fire", "Field Treatment", "Last Chance"],
+        socketLimits: { EQUIPMENT: 1, SUPPORT: 1 },
         upgrades: [
-          { socket: "EQUIPMENT", name: "M72 LAW", pts: 10, effect: "PEN 1 / ONE-SHOT. List limit 2." },
+          { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
           { socket: "SUPPORT", name: "Advanced Aid Bag", pts: 15, effect: "Last Chance roll improved by 1" },
           { socket: "SUPPORT", name: "Trauma Kit", pts: 10, effect: "Field Treatment may target this model" }
         ]
       },
       {
-        id: "usa_cqb",
-        name: "CQB Specialist",
-        role: "Specialist",
-        pts: 110,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
-        weapons: [
-          { name: "Mk 18 CQBR", dice: 5, hit: "5+", range: '18"', keywords: "CQB" },
-          { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
-        ],
-        abilities: ["Aggressive Entry", "Urban Predator"],
-        upgrades: [
-          { socket: "WEAPON", name: "M590 Shotgun", pts: 15, effect: "6D / 6+ / 8\" / CQB — replaces Mk 18 CQBR" },
-          { socket: "WEAPON", name: "M26 MASS", pts: 10, effect: "4D / 6+ / 8\" / CQB — underbarrel, Mk 18 retained" },
-          { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
-          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
-        ]
-      },
-      {
-        id: "usa_marksman",
-        name: "Marksman",
-        role: "Specialist",
-        pts: 100,
-        stats: { MOV: '5"', MOR: 3, CEV: 3, DR: "6+" },
-        weapons: [
-          { name: "M110 SASS", dice: 3, hit: "4+", range: '36"', keywords: "" },
-          { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
-        ],
-        abilities: ["Steady Aim"],
-        upgrades: [
-          { socket: "WEAPON", name: "Mk 12 SPR", pts: 10, effect: "4D / 4+ / 30\" — replaces M110 SASS" },
-          { socket: "SUPPORT", name: "Rangefinder", pts: 15, effect: "+1 hit value on all Shoot actions. List limit 1." },
-          { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" }
-        ]
-      },
-      {
         id: "usa_sniper",
         name: "Sniper",
-        role: "Sniper Team",
-        pts: 125,
+        role: "Independent — Sniper Team",
+        pts: 120,
         stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "7+" },
         weapons: [
-          { name: "M24 SWS", dice: 2, hit: "3+", range: '48"', keywords: "RLD / ENC" },
+          { name: "M110A1 CSASS", dice: 2, hit: "3+", range: '48"', keywords: "RLD / ENC" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Concealment", "Minimum Range 8\"", "Coherency Range 2\""],
+        socketLimits: { SUPPORT: 1 },
         upgrades: [
           { socket: "SUPPORT", name: "Ghillie Suit", pts: 20, effect: "Cannot be targeted beyond 8\" unless fired this turn" },
           { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" }
         ],
-        maxPerList: 1,
-        independentOnly: true,
-        note: "PROVISIONAL"
+        independent: true,
+        maxPerList: 1
       },
       {
         id: "usa_spotter",
         name: "Spotter",
-        role: "Sniper Team",
+        role: "Independent — Sniper Team",
         pts: 85,
         stats: { MOV: '6"', MOR: 2, CEV: 3, DR: "7+" },
         weapons: [
@@ -200,36 +226,37 @@ const factions = {
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Overwatch Correction", "Acquire Target"],
+        socketLimits: { WEAPON: 1, SUPPORT: 1 },
         upgrades: [
-          { socket: "WEAPON", name: "XM7 Rifle", pts: 10, effect: "5D / 4+ / 36\" — replaces M4A1 Carbine" },
+          { socket: "WEAPON", name: "XM7 Rifle", pts: 10, effect: "5D / 4+ / 36\" — replaces M4A1" },
           { socket: "SUPPORT", name: "Laser Designator", pts: 8, effect: "Acquire Target grants +2 dice instead of +1" }
         ],
-        maxPerList: 1,
-        independentOnly: true,
-        note: "PROVISIONAL"
+        independent: true,
+        maxPerList: 1
       },
       {
-        id: "usa_javelin",
+        id: "usa_at_gunner",
         name: "Javelin Gunner",
-        role: "AT Team",
-        pts: 135,
+        role: "Independent — AT Team",
+        pts: 155,
         stats: { MOV: '6"', MOR: 3, CEV: 2, DR: "6+" },
         weapons: [
           { name: "FGM-148 Javelin", dice: 4, hit: "4+", range: '48"', keywords: "RLD / ENC / PEN 4 / Deploy" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Deploy", "Minimum Range 6\"", "Coherency Range 2\""],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
         upgrades: [
-          { socket: "WEAPON", name: "M3 MAAWS", pts: 0, effect: "4D / 5+ / 24\" / RLD / PEN 2 / EXPL 2 — free swap, no Deploy" },
+          { socket: "WEAPON", name: "M3E1 MAAWS", pts: 0, effect: "3D / 4+ / 24\" / RLD / PEN 2 — free swap, no Deploy" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
         ],
-        maxPerList: 1,
-        independentOnly: true
+        independent: true,
+        maxPerList: 1
       },
       {
-        id: "usa_atloader",
+        id: "usa_at_loader",
         name: "AT Loader",
-        role: "AT Team",
+        role: "Independent — AT Team",
         pts: 85,
         stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
         weapons: [
@@ -237,814 +264,1119 @@ const factions = {
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Assisted Reload"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
         upgrades: [
-          { socket: "WEAPON", name: "XM7 Rifle", pts: 10, effect: "5D / 4+ / 36\" — replaces M4A1 Carbine" },
+          { socket: "WEAPON", name: "XM7 Rifle", pts: 10, effect: "5D / 4+ / 36\" — replaces M4A1" },
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
         ],
-        maxPerList: 1,
-        independentOnly: true
+        independent: true,
+        maxPerList: 1
       }
     ]
   },
 
   "insurgents": {
     name: "Insurgents",
-    color: "#7c4a2a",
-    accent: "#dc9f6a",
+    color: "#8b4513",
+    accent: "#d4a017",
     units: [
       {
-        id: "ins_cl",
+        id: "ins_cell_leader",
         name: "Cell Leader",
         role: "Squad Leader",
-        pts: 100,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
+        pts: 60,
+        stats: { MOV: '6"', MOR: 3, CEV: 2, DR: "7+" },
         weapons: [
-          { name: "AK-47 Rifle", dice: 6, hit: "7+", range: '36"', keywords: "" },
-          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+          { name: "AKM", dice: 5, hit: "6+", range: '36"', keywords: "" }
         ],
         abilities: ["Squad Leader (3\")", "Rally", "Authority Override"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
         upgrades: [
-          { socket: "WEAPON", name: "Shotgun", pts: 8, effect: "6D / 7+ / 8\" / CQB — replaces AK-47" },
-          { socket: "WEAPON", name: "MP5", pts: 8, effect: "5D / 6+ / 12\" / CQB — replaces AK-47" },
-          { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
-          { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
-          { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
-          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
+          { socket: "WEAPON", name: "AK-12", pts: 8, effect: "6D / 6+ / 36\" — replaces AKM" },
+          { socket: "WEAPON", name: "AK-74", pts: 6, effect: "5D / 6+ / 36\" — replaces AKM" },
+          { socket: "EQUIPMENT", name: "RGD-5 Grenade", pts: 6, effect: "EXPL 1 / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "IED Trigger", pts: 35, effect: "Deploy IED anywhere within 24\". No LoS required. List limit 1." }
         ],
         required: true,
         maxPerList: 1
       },
       {
-        id: "ins_tl",
+        id: "ins_team_leader",
         name: "Team Leader",
         role: "Team Leader",
-        pts: 80,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "8+" },
+        pts: 50,
+        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "8+" },
         weapons: [
-          { name: "AK-47 Rifle", dice: 6, hit: "7+", range: '36"', keywords: "" },
-          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+          { name: "AKM", dice: 5, hit: "6+", range: '36"', keywords: "" }
         ],
         abilities: ["Lead From The Front", "Stress Transfer"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
         upgrades: [
-          { socket: "WEAPON", name: "Shotgun", pts: 8, effect: "6D / 7+ / 8\" / CQB — replaces AK-47" },
-          { socket: "WEAPON", name: "MP5", pts: 8, effect: "5D / 6+ / 12\" / CQB — replaces AK-47" },
-          { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
-          { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
-          { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
-          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
+          { socket: "WEAPON", name: "AK-12", pts: 8, effect: "6D / 6+ / 36\" — replaces AKM" },
+          { socket: "WEAPON", name: "AK-74", pts: 6, effect: "5D / 6+ / 36\" — replaces AKM" },
+          { socket: "EQUIPMENT", name: "RGD-5 Grenade", pts: 6, effect: "EXPL 1 / LOB / ONE-SHOT" }
         ]
       },
       {
         id: "ins_fighter",
         name: "Fighter",
         role: "Infantry",
-        pts: 60,
-        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "9+" },
-        weapons: [
-          { name: "AK-47 Rifle", dice: 6, hit: "7+", range: '36"', keywords: "" },
-          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
-        ],
-        abilities: ["Ambush Shock"],
-        upgrades: [
-          { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
-          { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
-          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
-        ]
-      },
-      {
-        id: "ins_mg",
-        name: "MG Weapons Fighter",
-        role: "Machine Gunner",
-        pts: 90,
+        pts: 40,
         stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "8+" },
         weapons: [
-          { name: "RPK", dice: 7, hit: "8+", range: '36"', keywords: "C-FIRE / ENC" },
-          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+          { name: "AKM", dice: 5, hit: "6+", range: '36"', keywords: "" }
         ],
-        abilities: ["Ambush Shock"],
+        abilities: [],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
         upgrades: [
-          { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
-          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
-          { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" },
-          { socket: "SUPPORT", name: "Assault Pack", pts: 15, effect: "C-FIRE generates +2 Stress instead of +1" }
+          { socket: "WEAPON", name: "AK-12", pts: 8, effect: "6D / 6+ / 36\" — replaces AKM" },
+          { socket: "WEAPON", name: "AK-74", pts: 6, effect: "5D / 6+ / 36\" — replaces AKM" },
+          { socket: "WEAPON", name: "PKM", pts: 25, effect: "8D / 6+ / 36\" / C-FIRE / ENC — replaces AKM" },
+          { socket: "EQUIPMENT", name: "RGD-5 Grenade", pts: 6, effect: "EXPL 1 / LOB / ONE-SHOT" }
         ]
       },
       {
         id: "ins_rpg",
-        name: "RPG Weapons Fighter",
-        role: "AT Specialist",
-        pts: 100,
-        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "8+" },
+        name: "RPG Operator",
+        role: "Specialist",
+        pts: 85,
+        stats: { MOV: '5"', MOR: 2, CEV: 2, DR: "8+" },
         weapons: [
-          { name: "AK-47 Rifle", dice: 6, hit: "7+", range: '36"', keywords: "" },
-          { name: "RPG-7 / PG-7V", dice: 4, hit: "6+", range: '36"', keywords: "EXPL 2 / RLD / ENC" },
-          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+          { name: "RPG-7", dice: 4, hit: "5+", range: '36"', keywords: "EXPL 2 / RLD / ENC" },
+          { name: "AKM", dice: 5, hit: "6+", range: '36"', keywords: "" }
         ],
-        abilities: ["Ambush Shock"],
+        abilities: [],
+        socketLimits: { EQUIPMENT: 1 },
         upgrades: [
-          { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
-          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
+          { socket: "EQUIPMENT", name: "RGD-5 Grenade", pts: 6, effect: "EXPL 1 / LOB / ONE-SHOT" }
         ]
       },
       {
-        id: "ins_cqb",
-        name: "Street Fighter",
-        role: "CQB Specialist",
+        id: "ins_svd",
+        name: "SVD Marksman",
+        role: "Specialist",
         pts: 75,
-        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "7+" },
+        stats: { MOV: '5"', MOR: 2, CEV: 2, DR: "8+" },
         weapons: [
-          { name: "AK-74U Rifle", dice: 6, hit: "8+", range: '24"', keywords: "CQB" },
-          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+          { name: "SVD Dragunov", dice: 3, hit: "4+", range: '42"', keywords: "" }
         ],
-        abilities: ["Aggressive Entry", "Urban Predator", "Ambush Shock"],
+        abilities: ["Steady Aim"],
+        socketLimits: { SUPPORT: 1 },
         upgrades: [
-          { socket: "WEAPON", name: "Shotgun", pts: 8, effect: "6D / 7+ / 8\" / CQB — replaces AK-74U" },
-          { socket: "WEAPON", name: "MP5", pts: 8, effect: "5D / 6+ / 12\" / CQB — replaces AK-74U" },
-          { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
-          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
-        ]
-      },
-      {
-        id: "ins_marksman",
-        name: "Marksman",
-        role: "Veteran Fighter",
-        pts: 75,
-        stats: { MOV: '5"', MOR: 2, CEV: 2, DR: "9+" },
-        weapons: [
-          { name: "SVD Dragunov", dice: 3, hit: "4+", range: '36"', keywords: "" },
-          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
-        ],
-        abilities: ["Steady Aim", "Ambush Shock"],
-        upgrades: [
-          { socket: "SUPPORT", name: "Rangefinder", pts: 15, effect: "+1 hit value on all Shoot actions. List limit 1." },
           { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" }
         ]
       },
       {
-        id: "ins_medic",
-        name: "Field Medic",
-        role: "Veteran Fighter",
-        pts: 80,
-        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "8+" },
+        id: "ins_bomber",
+        name: "Suicide Bomber",
+        role: "Specialist",
+        pts: 50,
+        stats: { MOV: '6"', MOR: 5, CEV: 1, DR: "8+" },
         weapons: [
-          { name: "AK-47 Rifle", dice: 6, hit: "7+", range: '36"', keywords: "" },
-          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+          { name: "Suicide Vest", dice: 6, hit: "5+", range: '1"', keywords: "EXPL 3 / SELF-DESTRUCT" }
         ],
-        abilities: ["Field Treatment", "Last Chance", "Ambush Shock"],
+        abilities: ["Fanatic", "Self-Destruct"],
+        socketLimits: {},
+        upgrades: []
+      }
+    ]
+  },
+
+  "vdv": {
+    name: "VDV (Russian Airborne)",
+    color: "#4a5a7c",
+    accent: "#7c8fbc",
+    units: [
+      {
+        id: "vdv_leytenant",
+        name: "Leytenant",
+        role: "Squad Leader",
+        pts: 100,
+        stats: { MOV: '6"', MOR: 4, CEV: 4, DR: "6+" },
+        weapons: [
+          { name: "AK-12", dice: 6, hit: "6+", range: '36"', keywords: "" },
+          { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+        ],
+        abilities: ["Squad Leader (3\")", "Rally (+2 Stress)", "Authority Override (+2 Stress)", "Command Imperative", "Command Collapse"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
         upgrades: [
-          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
+          { socket: "WEAPON", name: "AK-15", pts: 12, effect: "5D / 4+ / 36\" — replaces AK-12" },
+          { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
+          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed from play, remain at CEV 1 instead. ONE-USE." },
+          { socket: "EQUIPMENT", name: "SL Radio", pts: 25, effect: "May issue orders to friendly RTO regardless of distance and LoS. Requires RTO Radio." }
+        ],
+        required: true,
+        maxPerList: 1
+      },
+      {
+        id: "vdv_section_cdr",
+        name: "Section Commander",
+        role: "Team Leader",
+        pts: 85,
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
+        weapons: [
+          { name: "AK-12", dice: 6, hit: "6+", range: '36"', keywords: "" },
+          { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+        ],
+        abilities: ["Lead From The Front", "Stress Transfer"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
+        upgrades: [
+          { socket: "WEAPON", name: "AK-15", pts: 12, effect: "5D / 4+ / 36\" — replaces AK-12" },
+          { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
+          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed from play, remain at CEV 1 instead. ONE-USE." }
+        ]
+      },
+      {
+        id: "vdv_desantnik",
+        name: "Desantnik",
+        role: "Assault Trooper",
+        pts: 85,
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
+        weapons: [
+          { name: "AK-12", dice: 6, hit: "6+", range: '36"', keywords: "" },
+          { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+        ],
+        abilities: ["Assault Mobility"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
+        upgrades: [
+          { socket: "WEAPON", name: "AK-15", pts: 12, effect: "5D / 4+ / 36\" — replaces AK-12" },
+          { socket: "WEAPON", name: "AK-12K", pts: 12, effect: "6D / 6+ / 18\" / CQB — replaces AK-12. Desantnik and Shturmovnik only." },
+          { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed from play, remain at CEV 1 instead. ONE-USE." },
+          { socket: "EQUIPMENT", name: "RTO Radio", pts: 25, effect: "May issue orders as if Squad Leader to friendlies within 2\" and LoS. Requires SL Radio. List limit 1." }
+        ]
+      },
+      {
+        id: "vdv_pkm",
+        name: "PKM Operator",
+        role: "Specialist",
+        pts: 130,
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
+        weapons: [
+          { name: "PKM", dice: 8, hit: "6+", range: '36"', keywords: "C-FIRE" },
+          { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+        ],
+        abilities: ["Assault Mobility (no ENC on PKM)"],
+        socketLimits: { EQUIPMENT: 1, SUPPORT: 1 },
+        upgrades: [
+          { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed from play, remain at CEV 1 instead. ONE-USE." },
+          { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot actions if this model did not Move this activation" },
+          { socket: "SUPPORT", name: "Assault Pack", pts: 15, effect: "C-FIRE generates +2 Stress on target instead of +1" }
+        ]
+      },
+      {
+        id: "vdv_rpg",
+        name: "RPG Operator",
+        role: "Specialist",
+        pts: 115,
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
+        weapons: [
+          { name: "RPG-7D", dice: 4, hit: "5+", range: '36"', keywords: "EXPL 2 / RLD" },
+          { name: "AK-12", dice: 6, hit: "6+", range: '36"', keywords: "" }
+        ],
+        abilities: ["Assault Mobility (no ENC on RPG-7D)"],
+        socketLimits: { EQUIPMENT: 1 },
+        upgrades: [
+          { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed from play, remain at CEV 1 instead. ONE-USE." }
+        ]
+      },
+      {
+        id: "vdv_shturmovnik",
+        name: "Shturmovnik",
+        role: "CQB Specialist",
+        pts: 130,
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "5+" },
+        weapons: [
+          { name: "AK-12K", dice: 6, hit: "6+", range: '18"', keywords: "CQB" },
+          { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+        ],
+        abilities: ["Aggressive Entry", "Urban Predator", "Assault Mobility"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
+        upgrades: [
+          { socket: "WEAPON", name: "PP-19 Bizon", pts: 10, effect: "5D / 6+ / 12\" / CQB — replaces AK-12K" },
+          { socket: "WEAPON", name: "Saiga-12", pts: 15, effect: "6D / 6+ / 8\" / CQB — replaces AK-12K" },
+          { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
+          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed from play, remain at CEV 1 instead. ONE-USE." }
+        ]
+      },
+      {
+        id: "vdv_marksman",
+        name: "Marksman",
+        role: "Specialist",
+        pts: 105,
+        stats: { MOV: '5"', MOR: 3, CEV: 3, DR: "6+" },
+        weapons: [
+          { name: "VSS Vintorez", dice: 3, hit: "4+", range: '36"', keywords: "" },
+          { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+        ],
+        abilities: ["Steady Aim"],
+        socketLimits: { WEAPON: 1, SUPPORT: 1 },
+        upgrades: [
+          { socket: "WEAPON", name: "AS Val", pts: 12, effect: "4D / 4+ / 24\" / CQB — replaces VSS Vintorez" },
+          { socket: "SUPPORT", name: "Rangefinder", pts: 15, effect: "+1 hit value improvement on all Shoot actions. List limit 1." },
+          { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot actions if this model did not Move this activation" }
+        ]
+      },
+      {
+        id: "vdv_sanitar",
+        name: "Sanitár",
+        role: "Medic",
+        pts: 105,
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
+        weapons: [
+          { name: "AK-12", dice: 6, hit: "6+", range: '36"', keywords: "" },
+          { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+        ],
+        abilities: ["Field Treatment (+2 Stress)", "Last Chance"],
+        socketLimits: { EQUIPMENT: 1, SUPPORT: 1 },
+        upgrades: [
+          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed from play, remain at CEV 1 instead. ONE-USE." },
           { socket: "SUPPORT", name: "Advanced Aid Bag", pts: 15, effect: "Last Chance roll improved by 1" },
           { socket: "SUPPORT", name: "Trauma Kit", pts: 10, effect: "Field Treatment may target this model" }
         ]
       },
       {
-        id: "ins_sharpshooter",
-        name: "Sharpshooter",
-        role: "Sniper Team",
-        pts: 85,
-        stats: { MOV: '6"', MOR: 2, CEV: 1, DR: "8+" },
+        id: "vdv_sniper",
+        name: "Sniper",
+        role: "Independent — Sniper Team",
+        pts: 125,
+        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "7+" },
         weapons: [
-          { name: "Mosin-Nagant", dice: 2, hit: "4+", range: '48"', keywords: "RLD / ENC" },
-          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+          { name: "SV-98", dice: 2, hit: "3+", range: '48"', keywords: "RLD / ENC" },
+          { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Concealment", "Minimum Range 8\"", "Coherency Range 2\""],
+        socketLimits: { SUPPORT: 1 },
         upgrades: [
           { socket: "SUPPORT", name: "Ghillie Suit", pts: 20, effect: "Cannot be targeted beyond 8\" unless fired this turn" },
-          { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" }
+          { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot actions if this model did not Move this activation" }
         ],
-        maxPerList: 1,
-        independentOnly: true,
-        note: "PROVISIONAL"
+        independent: true,
+        maxPerList: 1
       },
       {
-        id: "ins_observer",
-        name: "Observer",
-        role: "Sniper Team",
-        pts: 50,
-        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "9+" },
+        id: "vdv_spotter",
+        name: "Spotter",
+        role: "Independent — Sniper Team",
+        pts: 85,
+        stats: { MOV: '6"', MOR: 2, CEV: 3, DR: "7+" },
         weapons: [
-          { name: "AK-47 Rifle", dice: 6, hit: "7+", range: '36"', keywords: "" },
-          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+          { name: "AK-12", dice: 6, hit: "6+", range: '36"', keywords: "" },
+          { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Overwatch Correction", "Acquire Target"],
+        socketLimits: { WEAPON: 1, SUPPORT: 1 },
         upgrades: [
+          { socket: "WEAPON", name: "AK-15", pts: 12, effect: "5D / 4+ / 36\" — replaces AK-12" },
           { socket: "SUPPORT", name: "Laser Designator", pts: 8, effect: "Acquire Target grants +2 dice instead of +1" }
         ],
-        maxPerList: 1,
-        independentOnly: true,
-        note: "PROVISIONAL"
+        independent: true,
+        maxPerList: 1
       },
       {
-        id: "ins_rpggunner",
-        name: "RPG Gunner",
-        role: "AT Team",
-        pts: 100,
-        stats: { MOV: '6"', MOR: 2, CEV: 1, DR: "8+" },
+        id: "vdv_kornet",
+        name: "Kornet Gunner",
+        role: "Independent — AT Team",
+        pts: 150,
+        stats: { MOV: '6"', MOR: 3, CEV: 2, DR: "6+" },
         weapons: [
-          { name: "RPG-7 / PG-7VR", dice: 4, hit: "6+", range: '36"', keywords: "RLD / ENC / PEN 3" },
-          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+          { name: "9M133 Kornet", dice: 4, hit: "4+", range: '48"', keywords: "RLD / ENC / PEN 4 / Deploy" },
+          { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
-        abilities: ["Minimum Range 6\"", "Coherency Range 2\""],
+        abilities: ["Deploy", "Minimum Range 6\"", "Coherency Range 2\""],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
         upgrades: [
-          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
+          { socket: "WEAPON", name: "RPG-29 Vampir", pts: 0, effect: "3D / 4+ / 24\" / RLD / PEN 2 — free swap, no Deploy required" },
+          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed from play, remain at CEV 1 instead. ONE-USE." }
         ],
-        maxPerList: 1,
-        independentOnly: true
+        independent: true,
+        maxPerList: 1
       },
       {
-        id: "ins_rpgloader",
-        name: "RPG Loader",
-        role: "AT Team",
-        pts: 50,
-        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "9+" },
+        id: "vdv_loader",
+        name: "AT Loader",
+        role: "Independent — AT Team",
+        pts: 85,
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
         weapons: [
-          { name: "AK-47 Rifle", dice: 6, hit: "7+", range: '36"', keywords: "" },
-          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+          { name: "AK-12", dice: 6, hit: "6+", range: '36"', keywords: "" },
+          { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Assisted Reload"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
         upgrades: [
+          { socket: "WEAPON", name: "AK-15", pts: 12, effect: "5D / 4+ / 36\" — replaces AK-12" },
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
-          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
+          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed from play, remain at CEV 1 instead. ONE-USE." }
         ],
-        maxPerList: 1,
-        independentOnly: true
+        independent: true,
+        maxPerList: 1
       }
     ]
   }
 };
 
 // ============================================
-// STATE
+// STATE MANAGEMENT
 // ============================================
 
-let selectedFaction = null;
-let totalPoints = 0;
+let currentFaction = null;
+let activeList = [];
+let fireteams = [];
+let nextFireteamId = 0;
 
-let currentList = {
-  squadLeader: null,
-  fireteams: [],
-  independent: [],
-  vehicles: []
-};
-
-const PHONETIC = ["ALPHA", "BRAVO", "CHARLIE", "DELTA", "ECHO", "FOXTROT", "GOLF", "HOTEL"];
-
-const SPECIALISTS = [
-  "usa_mg", "usa_gren", "usa_medic", "usa_cqb", "usa_marksman",
-  "ins_mg", "ins_rpg", "ins_cqb", "ins_marksman", "ins_medic"
+const fireteamNames = [
+  "Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot",
+  "Golf", "Hotel", "India", "Juliet", "Kilo", "Lima"
 ];
 
-const INDEPENDENT_UNITS = [
-  "usa_javelin", "usa_atloader", "usa_sniper", "usa_spotter",
-  "ins_sharpshooter", "ins_observer", "ins_rpggunner", "ins_rpgloader"
-];
-
-const SQUAD_LEADERS = ["usa_ssg", "ins_cl"];
-const TEAM_LEADERS = ["usa_sgt", "ins_tl"];
-
 // ============================================
-// INIT
+// UTILITY FUNCTIONS
 // ============================================
 
-document.addEventListener("DOMContentLoaded", function () {
-  setupFactionButtons();
-});
+function showErrorModal(message) {
+  // Create modal overlay
+  const overlay = document.createElement('div');
+  overlay.style.cssText = `
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+  `;
+
+  // Create modal box
+  const modal = document.createElement('div');
+  modal.style.cssText = `
+    background: #111418;
+    border: 2px solid #e74c3c;
+    padding: 30px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+  `;
+
+  // Create message text
+  const messageEl = document.createElement('p');
+  messageEl.style.cssText = `
+    color: #e74c3c;
+    font-size: 15px;
+    letter-spacing: 2px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+  `;
+  messageEl.textContent = message;
+
+  // Create close button
+  const closeBtn = document.createElement('button');
+  closeBtn.textContent = 'CLOSE';
+  closeBtn.style.cssText = `
+    background: #1a0808;
+    border: 1px solid #e74c3c;
+    color: #e74c3c;
+    padding: 10px 30px;
+    cursor: pointer;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 14px;
+    letter-spacing: 2px;
+  `;
+  closeBtn.onmouseover = () => {
+    closeBtn.style.background = '#e74c3c';
+    closeBtn.style.color = '#fff';
+  };
+  closeBtn.onmouseout = () => {
+    closeBtn.style.background = '#1a0808';
+    closeBtn.style.color = '#e74c3c';
+  };
+  closeBtn.onclick = () => document.body.removeChild(overlay);
+
+  modal.appendChild(messageEl);
+  modal.appendChild(closeBtn);
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+
+  // Close on overlay click
+  overlay.onclick = (e) => {
+    if (e.target === overlay) {
+      document.body.removeChild(overlay);
+    }
+  };
+}
+
+function calculateTotalPoints() {
+  return activeList.reduce((sum, entry) => sum + entry.totalPts, 0);
+}
+
+function getPointsColor(points) {
+  const percent = (points / POINTS_LIMIT) * 100;
+  if (percent >= 100) return "#e74c3c"; // red
+  if (percent >= 85) return "#e67e22";  // orange
+  return "#8fbc8f";                      // green
+}
+
+function updatePointsDisplay() {
+  const total = calculateTotalPoints();
+  const display = document.getElementById('points-display');
+  if (display) {
+    display.textContent = `${total} / ${POINTS_LIMIT} PTS`;
+    display.style.color = getPointsColor(total);
+  }
+}
+
+function getFireteamName(id) {
+  return fireteamNames[id % fireteamNames.length];
+}
 
 // ============================================
-// SETUP
+// VALIDATION
 // ============================================
 
-function setupFactionButtons() {
-  document.querySelectorAll(".faction-btn").forEach(function (button) {
-    button.addEventListener("click", function () {
-      selectFaction(button.getAttribute("data-faction"));
+function validateList() {
+  const errors = [];
+  const faction = factions[currentFaction];
+
+  // Check squad leader requirement
+  const hasSquadLeader = activeList.some(entry => entry.unit.required === true);
+  if (!hasSquadLeader) {
+    errors.push("MISSING REQUIRED SQUAD LEADER");
+  }
+
+  // Check fireteam minimum size
+  fireteams.forEach(ft => {
+    const members = activeList.filter(e => e.fireteamId === ft.id);
+    if (members.length < 2) {
+      errors.push(`FIRETEAM ${ft.name.toUpperCase()} REQUIRES MINIMUM 2 MODELS`);
+    }
+  });
+
+  // Check specialist limits per fireteam
+  fireteams.forEach(ft => {
+    const members = activeList.filter(e => e.fireteamId === ft.id);
+    const specialists = {};
+    
+    members.forEach(entry => {
+      if (entry.unit.role === "Specialist") {
+        const specType = entry.unit.name;
+        specialists[specType] = (specialists[specType] || 0) + 1;
+        if (specialists[specType] > 1) {
+          errors.push(`FIRETEAM ${ft.name.toUpperCase()}: MAX 1 ${specType.toUpperCase()} PER FIRETEAM`);
+        }
+      }
     });
   });
+
+  // Check points limit
+  const total = calculateTotalPoints();
+  if (total > POINTS_LIMIT) {
+    errors.push(`POINTS EXCEED LIMIT (${total} / ${POINTS_LIMIT})`);
+  }
+
+  return errors;
 }
 
-function selectFaction(factionKey) {
-  selectedFaction = factions[factionKey];
-  if (!selectedFaction) return;
-  currentList = { squadLeader: null, fireteams: [], independent: [], vehicles: [] };
-  totalPoints = 0;
-  renderUnitBrowser();
+function renderValidation() {
+  const container = document.getElementById('validation-summary');
+  if (!container) return;
+
+  const errors = validateList();
+  
+  if (errors.length === 0) {
+    container.innerHTML = '<div class="validation-valid">✓ LIST VALID — READY FOR DEPLOYMENT</div>';
+  } else {
+    const errorHTML = errors.map(err => `<div>${err}</div>`).join('');
+    container.innerHTML = `<div class="validation-invalid">${errorHTML}</div>`;
+  }
 }
 
 // ============================================
-// RENDER
+// UNIT BROWSER RENDERING
 // ============================================
 
 function renderUnitBrowser() {
-  const app = document.getElementById("app");
-  app.innerHTML = `
-    <div id="points-bar">
-      <span id="list-name">${selectedFaction.name}</span>
-      <span id="points-display">0 / ${POINTS_LIMIT} PTS</span>
-    </div>
-    <div id="unit-browser">
-      <div id="unit-list">
-        <div class="section-label">SELECT UNITS</div>
-        ${selectedFaction.units.map(function (unit) {
-          return `
-            <div class="unit-card" data-id="${unit.id}">
-              <div class="unit-card-role">${unit.role}</div>
-              <div class="unit-card-row">
-                <span class="unit-card-name">${unit.name}</span>
-                <span class="unit-card-pts">${unit.pts}pt</span>
-              </div>
-              ${unit.note ? `<div class="unit-note">⚠ ${unit.note}</div>` : ""}
-            </div>
-          `;
-        }).join("")}
+  const faction = factions[currentFaction];
+  const container = document.getElementById('unit-list');
+  
+  // Group units by role
+  const leaders = faction.units.filter(u => u.role === "Squad Leader" || u.role === "Team Leader");
+  const infantry = faction.units.filter(u => !u.role.includes("Leader") && !u.role.includes("Specialist") && !u.role.includes("Independent"));
+  const specialists = faction.units.filter(u => u.role === "Specialist");
+  const independent = faction.units.filter(u => u.independent === true);
+
+  let html = '<div class="section-label">LEADERS</div>';
+  leaders.forEach(unit => {
+    html += `
+      <div class="unit-card" onclick="openUnitModal('${unit.id}')">
+        <div class="unit-card-role">${unit.role}</div>
+        <div class="unit-card-row">
+          <div class="unit-card-name">${unit.name}</div>
+          <div class="unit-card-pts">${unit.pts}pts</div>
+        </div>
+        ${unit.required ? '<div class="unit-note">REQUIRED</div>' : ''}
+        ${unit.maxPerList ? '<div class="unit-note">MAX ' + unit.maxPerList + ' PER LIST</div>' : ''}
       </div>
-      <div id="active-list">
-        <div class="section-label">YOUR LIST</div>
-        <div id="list-entries">
-          <div class="empty-list">— NO UNITS ADDED —</div>
+    `;
+  });
+
+  if (infantry.length > 0) {
+    html += '<div class="section-label" style="margin-top:20px">INFANTRY</div>';
+    infantry.forEach(unit => {
+      html += `
+        <div class="unit-card" onclick="openUnitModal('${unit.id}')">
+          <div class="unit-card-role">${unit.role}</div>
+          <div class="unit-card-row">
+            <div class="unit-card-name">${unit.name}</div>
+            <div class="unit-card-pts">${unit.pts}pts</div>
+          </div>
+        </div>
+      `;
+    });
+  }
+
+  html += '<div class="section-label" style="margin-top:20px">SPECIALISTS</div>';
+  specialists.forEach(unit => {
+    html += `
+      <div class="unit-card" onclick="openUnitModal('${unit.id}')">
+        <div class="unit-card-role">${unit.role}</div>
+        <div class="unit-card-row">
+          <div class="unit-card-name">${unit.name}</div>
+          <div class="unit-card-pts">${unit.pts}pts</div>
         </div>
       </div>
-    </div>
-  `;
-  setupUnitCards();
-  updateListDisplay();
-}
-
-function setupUnitCards() {
-  document.querySelectorAll(".unit-card").forEach(function (card) {
-    card.addEventListener("click", function () {
-      showUnitModal(card.getAttribute("data-id"));
-    });
+    `;
   });
+
+  if (independent.length > 0) {
+    html += '<div class="section-label" style="margin-top:20px">INDEPENDENT UNITS</div>';
+    independent.forEach(unit => {
+      html += `
+        <div class="unit-card" onclick="openUnitModal('${unit.id}')">
+          <div class="unit-card-role">${unit.role}</div>
+          <div class="unit-card-row">
+            <div class="unit-card-name">${unit.name}</div>
+            <div class="unit-card-pts">${unit.pts}pts</div>
+          </div>
+          ${unit.maxPerList ? '<div class="unit-note">MAX ' + unit.maxPerList + ' PER LIST</div>' : ''}
+        </div>
+      `;
+    });
+  }
+
+  container.innerHTML = html;
 }
 
 // ============================================
-// ADD UNIT FLOW
+// ACTIVE LIST RENDERING
 // ============================================
 
-function addUnitWithUpgrades(unitId, selectedUpgrades) {
-  const unit = selectedFaction.units.find(function (u) { return u.id === unitId; });
-  if (!unit) return;
-
-  const upgPts = selectedUpgrades.reduce(function (sum, u) { return sum + u.pts; }, 0);
-
-  if (SQUAD_LEADERS.includes(unitId)) {
-    if (currentList.squadLeader) { showWarning("A Squad Leader is already in your list."); return; }
-    currentList.squadLeader = { uid: unitId + "_" + Date.now(), unit: unit, upgrades: selectedUpgrades, upgradePts: upgPts };
-    totalPoints += unit.pts + upgPts;
-
-  } else if (TEAM_LEADERS.includes(unitId)) {
-    if (currentList.fireteams.length >= PHONETIC.length) { showWarning("Maximum fireteams reached."); return; }
-    currentList.fireteams.push({
-      id: "fireteam_" + Date.now(),
-      name: PHONETIC[currentList.fireteams.length],
-      teamLeader: { uid: unitId + "_" + Date.now(), unit: unit, upgrades: selectedUpgrades, upgradePts: upgPts },
-      models: []
-    });
-    totalPoints += unit.pts + upgPts;
-
-  } else if (INDEPENDENT_UNITS.includes(unitId)) {
-    currentList.independent.push({ uid: unitId + "_" + Date.now(), unit: unit, upgrades: selectedUpgrades, upgradePts: upgPts });
-    totalPoints += unit.pts + upgPts;
-
-  } else {
-    if (currentList.fireteams.length === 0) { showWarning("Add a Team Leader first to create a Fireteam."); return; }
-    if (currentList.fireteams.length === 1) {
-      assignToFireteamWithUpgrades(unit, 0, selectedUpgrades, upgPts);
-      return;
-    }
-    showFireteamPickerWithUpgrades(unit, selectedUpgrades, upgPts);
+function renderActiveList() {
+  const container = document.getElementById('active-list');
+  
+  if (activeList.length === 0) {
+    container.innerHTML = '<div class="empty-list">NO UNITS ADDED YET</div><div id="validation-summary"></div>';
     return;
   }
 
-  updatePointsDisplay();
-  updateListDisplay();
-}
+  let html = '';
 
-function assignToFireteamWithUpgrades(unit, fireteamIndex, selectedUpgrades, upgPts) {
-  const fireteam = currentList.fireteams[fireteamIndex];
-  if (SPECIALISTS.includes(unit.id)) {
-    const alreadyHas = fireteam.models.some(function (m) { return m.unit.id === unit.id; });
-    if (alreadyHas) { showWarning("Fireteam " + fireteam.name + " already has a " + unit.name + "."); return; }
-  }
-  fireteam.models.push({ uid: unit.id + "_" + Date.now(), unit: unit, upgrades: selectedUpgrades, upgradePts: upgPts });
-  totalPoints += unit.pts + upgPts;
-  updatePointsDisplay();
-  updateListDisplay();
-}
-
-// ============================================
-// REMOVE UNIT
-// ============================================
-
-function removeUnit(uid, type, fireteamId) {
-  if (type === "squadLeader") {
-    totalPoints -= currentList.squadLeader.unit.pts + (currentList.squadLeader.upgradePts || 0);
-    currentList.squadLeader = null;
-
-  } else if (type === "teamLeader") {
-    const ft = currentList.fireteams.find(function (f) { return f.id === fireteamId; });
-    if (!ft) return;
-    totalPoints -= ft.teamLeader.unit.pts + (ft.teamLeader.upgradePts || 0);
-    ft.models.forEach(function (m) { totalPoints -= m.unit.pts + (m.upgradePts || 0); });
-    currentList.fireteams = currentList.fireteams.filter(function (f) { return f.id !== fireteamId; });
-    renameFireteams();
-
-  } else if (type === "model") {
-    const ft = currentList.fireteams.find(function (f) { return f.id === fireteamId; });
-    if (!ft) return;
-    const entry = ft.models.find(function (m) { return m.uid === uid; });
-    if (!entry) return;
-    totalPoints -= entry.unit.pts + (entry.upgradePts || 0);
-    ft.models = ft.models.filter(function (m) { return m.uid !== uid; });
-
-  } else if (type === "independent") {
-    const entry = currentList.independent.find(function (e) { return e.uid === uid; });
-    if (!entry) return;
-    totalPoints -= entry.unit.pts + (entry.upgradePts || 0);
-    currentList.independent = currentList.independent.filter(function (e) { return e.uid !== uid; });
-  }
-
-  updatePointsDisplay();
-  updateListDisplay();
-}
-
-function renameFireteams() {
-  currentList.fireteams.forEach(function (ft, index) { ft.name = PHONETIC[index]; });
-}
-
-// ============================================
-// DISPLAY
-// ============================================
-
-function updatePointsDisplay() {
-  const display = document.getElementById("points-display");
-  if (!display) return;
-  display.textContent = totalPoints + " / " + POINTS_LIMIT + " PTS";
-  if (totalPoints > POINTS_LIMIT) {
-    display.style.color = "#e74c3c";
-  } else if (totalPoints > POINTS_LIMIT * 0.85) {
-    display.style.color = "#e67e22";
-  } else {
-    display.style.color = selectedFaction.accent;
-  }
-}
-
-function updateListDisplay() {
-  const listEntries = document.getElementById("list-entries");
-  if (!listEntries) return;
-
-  let html = "";
-
-  // Squad Leader
-  if (currentList.squadLeader) {
-    const sl = currentList.squadLeader;
-    html += `
-      <div class="list-section-label">SQUAD LEADER</div>
-      <div class="list-entry" data-uid="${sl.uid}" data-type="squadLeader" data-fireteam="">
-        <div class="list-entry-info">
-          <span class="list-entry-role">${sl.unit.role}</span>
-          <span class="list-entry-name">${sl.unit.name}</span>
-          ${sl.upgrades && sl.upgrades.length > 0 ? `<span class="list-entry-upgrades">${sl.upgrades.map(function(u){return u.name;}).join(" · ")}</span>` : ""}
-        </div>
-        <div class="list-entry-right">
-          <span class="list-entry-pts">${sl.unit.pts + (sl.upgradePts || 0)}pt</span>
-          <button class="remove-btn" data-uid="${sl.uid}" data-type="squadLeader" data-fireteam="">✕</button>
-        </div>
-      </div>`;
-  } else {
-    html += `
-      <div class="list-section-label">SQUAD LEADER</div>
-      <div class="list-warning">⚠ REQUIRED — NO SQUAD LEADER</div>`;
+  // Squad Leader (always independent)
+  const squadLeader = activeList.find(e => e.unit.required === true);
+  if (squadLeader) {
+    html += '<div class="list-section-label">SQUAD LEADER</div>';
+    html += renderListEntry(squadLeader);
   }
 
   // Fireteams
-  if (currentList.fireteams.length === 0) {
-    html += `
-      <div class="list-section-label">FIRETEAMS</div>
-      <div class="empty-list">— ADD A TEAM LEADER TO CREATE A FIRETEAM —</div>`;
-  } else {
-    currentList.fireteams.forEach(function (fireteam) {
-      const tl = fireteam.teamLeader;
-      const isValid = fireteam.models.length >= 1;
-      html += `
-        <div class="list-section-label">
-          FIRETEAM ${fireteam.name}
-          ${!isValid ? '<span class="invalid-label">⚠ NEEDS 1+ MODEL</span>' : ""}
-        </div>
-        <div class="list-entry" data-uid="${tl.uid}" data-type="teamLeader" data-fireteam="${fireteam.id}">
-          <div class="list-entry-info">
-            <span class="list-entry-role">TEAM LEADER</span>
-            <span class="list-entry-name">${tl.unit.name}</span>
-            ${tl.upgrades && tl.upgrades.length > 0 ? `<span class="list-entry-upgrades">${tl.upgrades.map(function(u){return u.name;}).join(" · ")}</span>` : ""}
-          </div>
-          <div class="list-entry-right">
-            <span class="list-entry-pts">${tl.unit.pts + (tl.upgradePts || 0)}pt</span>
-            <button class="remove-btn" data-uid="${tl.uid}" data-type="teamLeader" data-fireteam="${fireteam.id}">✕</button>
-          </div>
-        </div>`;
-
-      fireteam.models.forEach(function (entry) {
-        html += `
-          <div class="list-entry" data-uid="${entry.uid}" data-type="model" data-fireteam="${fireteam.id}">
-            <div class="list-entry-info">
-              <span class="list-entry-role">${entry.unit.role}</span>
-              <span class="list-entry-name">${entry.unit.name}</span>
-              ${entry.upgrades && entry.upgrades.length > 0 ? `<span class="list-entry-upgrades">${entry.upgrades.map(function(u){return u.name;}).join(" · ")}</span>` : ""}
-            </div>
-            <div class="list-entry-right">
-              <span class="list-entry-pts">${entry.unit.pts + (entry.upgradePts || 0)}pt</span>
-              <button class="remove-btn" data-uid="${entry.uid}" data-type="model" data-fireteam="${fireteam.id}">✕</button>
-            </div>
-          </div>`;
+  fireteams.forEach(ft => {
+    const members = activeList.filter(e => e.fireteamId === ft.id);
+    if (members.length > 0) {
+      const ftPts = members.reduce((sum, m) => sum + m.totalPts, 0);
+      html += `<div class="list-section-label">FIRETEAM ${ft.name.toUpperCase()} <span>${ftPts}pts</span></div>`;
+      members.forEach(entry => {
+        html += renderListEntry(entry);
       });
-    });
-  }
-
-  // Independent
-  if (currentList.independent.length > 0) {
-    html += `<div class="list-section-label">INDEPENDENT</div>`;
-    currentList.independent.forEach(function (entry) {
-      html += `
-        <div class="list-entry" data-uid="${entry.uid}" data-type="independent" data-fireteam="">
-          <div class="list-entry-info">
-            <span class="list-entry-role">${entry.unit.role}</span>
-            <span class="list-entry-name">${entry.unit.name}</span>
-            ${entry.upgrades && entry.upgrades.length > 0 ? `<span class="list-entry-upgrades">${entry.upgrades.map(function(u){return u.name;}).join(" · ")}</span>` : ""}
-          </div>
-          <div class="list-entry-right">
-            <span class="list-entry-pts">${entry.unit.pts + (entry.upgradePts || 0)}pt</span>
-            <button class="remove-btn" data-uid="${entry.uid}" data-type="independent" data-fireteam="">✕</button>
-          </div>
-        </div>`;
-    });
-  }
-
-  // Vehicles
-  if (currentList.vehicles.length > 0) {
-    html += `<div class="list-section-label">VEHICLES</div>`;
-    currentList.vehicles.forEach(function (entry) {
-      html += `
-        <div class="list-entry" data-uid="${entry.uid}" data-type="vehicle" data-fireteam="">
-          <div class="list-entry-info">
-            <span class="list-entry-role">VEHICLE</span>
-            <span class="list-entry-name">${entry.unit.name}</span>
-          </div>
-          <div class="list-entry-right">
-            <span class="list-entry-pts">TBD</span>
-            <button class="remove-btn" data-uid="${entry.uid}" data-type="vehicle" data-fireteam="">✕</button>
-          </div>
-        </div>`;
-    });
-  }
-
-  html += buildValidationSummary();
-  listEntries.innerHTML = html;
-  setupRemoveButtons();
-  setupListEntryClicks();
-}
-
-function buildValidationSummary() {
-  const issues = [];
-  if (!currentList.squadLeader) issues.push("No Squad Leader");
-  currentList.fireteams.forEach(function (ft) {
-    if (ft.models.length < 1) issues.push("Fireteam " + ft.name + " needs at least 1 model");
-  });
-  if (totalPoints > POINTS_LIMIT) issues.push("Over points limit by " + (totalPoints - POINTS_LIMIT) + "pts");
-
-  if (issues.length === 0) {
-    if (currentList.squadLeader && currentList.fireteams.length > 0) {
-      return `<div class="validation-valid">✓ LIST VALID</div>`;
     }
-    return "";
+  });
+
+  // Independent units
+  const independentUnits = activeList.filter(e => e.unit.independent === true);
+  if (independentUnits.length > 0) {
+    html += '<div class="list-section-label">INDEPENDENT UNITS</div>';
+    independentUnits.forEach(entry => {
+      html += renderListEntry(entry);
+    });
   }
-  return `<div class="validation-invalid">${issues.map(function(i){return "<div>⚠ " + i + "</div>";}).join("")}</div>`;
+
+  html += '<div id="validation-summary"></div>';
+  container.innerHTML = html;
+  
+  renderValidation();
 }
 
-function setupRemoveButtons() {
-  document.querySelectorAll(".remove-btn").forEach(function (btn) {
-    btn.addEventListener("click", function (e) {
-      e.stopPropagation();
-      removeUnit(btn.getAttribute("data-uid"), btn.getAttribute("data-type"), btn.getAttribute("data-fireteam"));
-    });
-  });
-}
-
-function setupListEntryClicks() {
-  document.querySelectorAll(".list-entry").forEach(function (entry) {
-    entry.addEventListener("click", function (e) {
-      if (e.target.classList.contains("remove-btn")) return;
-      const uid = entry.getAttribute("data-uid");
-      const type = entry.getAttribute("data-type");
-      const fireteamId = entry.getAttribute("data-fireteam");
-      let listEntry = null;
-
-      if (type === "squadLeader") {
-        listEntry = currentList.squadLeader;
-      } else if (type === "teamLeader") {
-        const ft = currentList.fireteams.find(function (f) { return f.id === fireteamId; });
-        if (ft) listEntry = ft.teamLeader;
-      } else if (type === "model") {
-        const ft = currentList.fireteams.find(function (f) { return f.id === fireteamId; });
-        if (ft) listEntry = ft.models.find(function (m) { return m.uid === uid; });
-      } else if (type === "independent") {
-        listEntry = currentList.independent.find(function (e) { return e.uid === uid; });
-      }
-
-      if (listEntry) showUnitModalForListEntry(listEntry, type, fireteamId);
-    });
-  });
-}
-
-// ============================================
-// MODALS
-// ============================================
-
-function buildModalHTML(unit, selectedUpgrades, editMode) {
+function renderListEntry(entry) {
+  const upgradeText = entry.selectedUpgrades.map(u => u.name).join(', ');
+  
   return `
-    <div id="unit-modal">
-      <div id="modal-header">
-        <div>
-          <div class="modal-role">${unit.role}</div>
-          <div class="modal-name">${unit.name}</div>
-          ${unit.note ? `<div class="unit-note">⚠ ${unit.note}</div>` : ""}
-        </div>
-        <button id="modal-close">✕</button>
+    <div class="list-entry" onclick="editUnit(${entry.id})">
+      <div class="list-entry-info">
+        <div class="list-entry-role">${entry.unit.role}</div>
+        <div class="list-entry-name">${entry.unit.name}</div>
+        ${upgradeText ? `<div class="list-entry-upgrades">${upgradeText}</div>` : ''}
       </div>
-      <div id="modal-pts-display">${unit.pts + selectedUpgrades.reduce(function(s,u){return s+u.pts;},0)} PTS</div>
-      <div class="modal-section-label">STATS</div>
-      <div id="modal-stats">
-        ${Object.entries(unit.stats).map(function(s){
-          return `<div class="modal-stat"><div class="modal-stat-label">${s[0]}</div><div class="modal-stat-value">${s[1]}</div></div>`;
-        }).join("")}
+      <div class="list-entry-right">
+        <div class="list-entry-pts">${entry.totalPts}pts</div>
+        <button class="remove-btn" onclick="event.stopPropagation(); removeUnit(${entry.id})">✕</button>
+        <button class="remove-btn" onclick="event.stopPropagation(); cloneUnit(${entry.id})">⎘</button>
       </div>
-      <div class="modal-section-label">WEAPONS</div>
-      <table id="modal-weapons">
-        <thead><tr><th>WEAPON</th><th>DICE</th><th>HIT</th><th>RANGE</th><th>KEYWORDS</th></tr></thead>
-        <tbody>
-          ${unit.weapons.map(function(w){
-            return `<tr><td>${w.name}</td><td>${w.dice||"—"}</td><td>${w.hit}</td><td>${w.range}</td><td class="kw-cell">${w.keywords||"—"}</td></tr>`;
-          }).join("")}
-        </tbody>
-      </table>
-      <div class="modal-section-label">ABILITIES</div>
-      <div id="modal-abilities">
-        ${unit.abilities.map(function(a){return `<span class="ability-tag">${a}</span>`;}).join("")}
-      </div>
-      ${unit.upgrades && unit.upgrades.length > 0 ? `
-        <div class="modal-section-label">UPGRADES</div>
-        <div id="modal-upgrades">
-          ${["WEAPON","EQUIPMENT","SUPPORT"].map(function(socket){
-            const sockUpgs = unit.upgrades.filter(function(u){return u.socket===socket;});
-            if (!sockUpgs.length) return "";
-            return `
-              <div class="upgrade-socket-label">[${socket}]</div>
-              ${sockUpgs.map(function(upg){
-                const isSel = selectedUpgrades.some(function(s){return s.name===upg.name;});
-                return `
-                  <div class="upgrade-row${isSel?" selected":""}" data-name="${upg.name}" data-pts="${upg.pts}" data-socket="${socket}">
-                    <div class="upgrade-info">
-                      <span class="upgrade-name">${upg.name}</span>
-                      <span class="upgrade-effect">${upg.effect}</span>
-                    </div>
-                    <span class="upgrade-pts">${upg.pts>0?"+"+upg.pts+"pt":"FREE"}</span>
-                  </div>`;
-              }).join("")}`;
-          }).join("")}
-        </div>` : ""}
-      <button id="modal-add-btn" ${editMode?'class="edit-mode"':""}>
-        ${editMode ? "✓ UPDATE" : "+ ADD TO LIST"} — <span id="modal-add-pts">${unit.pts + selectedUpgrades.reduce(function(s,u){return s+u.pts;},0)}</span> PTS
-      </button>
-    </div>`;
+    </div>
+  `;
 }
 
-function setupModalEvents(overlay, unit, selectedUpgrades, onConfirm) {
-  document.getElementById("modal-close").addEventListener("click", function () { overlay.remove(); });
-  overlay.addEventListener("click", function (e) { if (e.target === overlay) overlay.remove(); });
+// ============================================
+// UNIT MODAL
+// ============================================
 
-  overlay.querySelectorAll(".upgrade-row").forEach(function (row) {
-    row.addEventListener("click", function () {
-      const name = row.getAttribute("data-name");
-      const pts = parseInt(row.getAttribute("data-pts"));
-      const socket = row.getAttribute("data-socket");
-      const isSel = row.classList.contains("selected");
+let currentModalUnitId = null;
+let currentModalMode = 'add'; // 'add' or 'edit'
+let currentEditingEntryId = null;
+let selectedUpgrades = [];
 
-      if (isSel) {
-        row.classList.remove("selected");
-        selectedUpgrades = selectedUpgrades.filter(function (u) { return u.name !== name; });
-      } else {
-        if (socket === "WEAPON") {
-          overlay.querySelectorAll(".upgrade-row[data-socket='WEAPON']").forEach(function (r) { r.classList.remove("selected"); });
-          selectedUpgrades = selectedUpgrades.filter(function (u) { return u.socket !== "WEAPON"; });
-        }
-        row.classList.add("selected");
-        selectedUpgrades.push({ name: name, pts: pts, socket: socket });
-      }
-
-      const upgPts = selectedUpgrades.reduce(function (s, u) { return s + u.pts; }, 0);
-      document.getElementById("modal-add-pts").textContent = unit.pts + upgPts;
-      document.getElementById("modal-pts-display").textContent = (unit.pts + upgPts) + " PTS";
-    });
-  });
-
-  document.getElementById("modal-add-btn").addEventListener("click", function () {
-    const upgPts = selectedUpgrades.reduce(function (s, u) { return s + u.pts; }, 0);
-    overlay.remove();
-    onConfirm(selectedUpgrades, upgPts);
-  });
-}
-
-function showUnitModal(unitId) {
-  const unit = selectedFaction.units.find(function (u) { return u.id === unitId; });
+function openUnitModal(unitId, editMode = false, entryId = null) {
+  const faction = factions[currentFaction];
+  const unit = faction.units.find(u => u.id === unitId);
   if (!unit) return;
 
-  const existing = document.getElementById("unit-modal-overlay");
-  if (existing) existing.remove();
+  currentModalUnitId = unitId;
+  currentModalMode = editMode ? 'edit' : 'add';
+  currentEditingEntryId = entryId;
+  selectedUpgrades = [];
 
-  let selectedUpgrades = [];
-  const overlay = document.createElement("div");
-  overlay.id = "unit-modal-overlay";
-  overlay.innerHTML = buildModalHTML(unit, selectedUpgrades, false);
-  document.body.appendChild(overlay);
+  // If editing, load current upgrades
+  if (editMode && entryId !== null) {
+    const entry = activeList.find(e => e.id === entryId);
+    if (entry) {
+      selectedUpgrades = [...entry.selectedUpgrades];
+    }
+  }
 
-  setupModalEvents(overlay, unit, selectedUpgrades, function (upgrades, upgPts) {
-    addUnitWithUpgrades(unitId, upgrades);
-  });
+  renderUnitModal(unit);
 }
 
-function showUnitModalForListEntry(entry, type, fireteamId) {
-  const unit = entry.unit;
-  const existing = document.getElementById("unit-modal-overlay");
-  if (existing) existing.remove();
+function renderUnitModal(unit) {
+  // Remove existing modal if present
+  const existing = document.getElementById('unit-modal-overlay');
+  if (existing) {
+    document.body.removeChild(existing);
+  }
 
-  let selectedUpgrades = entry.upgrades ? [...entry.upgrades] : [];
-  const overlay = document.createElement("div");
-  overlay.id = "unit-modal-overlay";
-  overlay.innerHTML = buildModalHTML(unit, selectedUpgrades, true);
+  const overlay = document.createElement('div');
+  overlay.id = 'unit-modal-overlay';
+
+  const modal = document.createElement('div');
+  modal.id = 'unit-modal';
+
+  // Header
+  const header = document.createElement('div');
+  header.id = 'modal-header';
+  header.innerHTML = `
+    <div>
+      <div class="modal-role">${unit.role}</div>
+      <div class="modal-name">${unit.name}</div>
+    </div>
+    <button id="modal-close">✕</button>
+  `;
+  modal.appendChild(header);
+
+  // Points display
+  const upgradePoints = selectedUpgrades.reduce((sum, u) => sum + u.pts, 0);
+  const totalPts = unit.pts + upgradePoints;
+  
+  const ptsDisplay = document.createElement('div');
+  ptsDisplay.id = 'modal-pts-display';
+  ptsDisplay.textContent = `${totalPts}pts`;
+  modal.appendChild(ptsDisplay);
+
+  // Stats
+  const statsLabel = document.createElement('div');
+  statsLabel.className = 'modal-section-label';
+  statsLabel.textContent = 'STATS';
+  modal.appendChild(statsLabel);
+
+  const stats = document.createElement('div');
+  stats.id = 'modal-stats';
+  stats.innerHTML = `
+    <div class="modal-stat">
+      <div class="modal-stat-label">MOVE</div>
+      <div class="modal-stat-value">${unit.stats.MOV}</div>
+    </div>
+    <div class="modal-stat">
+      <div class="modal-stat-label">MOR</div>
+      <div class="modal-stat-value">${unit.stats.MOR}</div>
+    </div>
+    <div class="modal-stat">
+      <div class="modal-stat-label">CEV</div>
+      <div class="modal-stat-value">${unit.stats.CEV}</div>
+    </div>
+    <div class="modal-stat">
+      <div class="modal-stat-label">DR</div>
+      <div class="modal-stat-value">${unit.stats.DR}</div>
+    </div>
+  `;
+  modal.appendChild(stats);
+
+  // Weapons
+  const weaponsLabel = document.createElement('div');
+  weaponsLabel.className = 'modal-section-label';
+  weaponsLabel.textContent = 'WEAPONS';
+  weaponsLabel.style.marginTop = '16px';
+  modal.appendChild(weaponsLabel);
+
+  const weaponsTable = document.createElement('table');
+  weaponsTable.id = 'modal-weapons';
+  weaponsTable.innerHTML = `
+    <thead>
+      <tr>
+        <th>NAME</th>
+        <th>DICE</th>
+        <th>HIT</th>
+        <th>RANGE</th>
+        <th>KW</th>
+      </tr>
+    </thead>
+    <tbody>
+      ${unit.weapons.map(w => `
+        <tr>
+          <td>${w.name}</td>
+          <td>${w.dice}D</td>
+          <td>${w.hit}</td>
+          <td>${w.range}</td>
+          <td class="kw-cell">${w.keywords || '—'}</td>
+        </tr>
+      `).join('')}
+    </tbody>
+  `;
+  modal.appendChild(weaponsTable);
+
+  // Abilities
+  if (unit.abilities && unit.abilities.length > 0) {
+    const abilitiesLabel = document.createElement('div');
+    abilitiesLabel.className = 'modal-section-label';
+    abilitiesLabel.textContent = 'ABILITIES';
+    abilitiesLabel.style.marginTop = '16px';
+    modal.appendChild(abilitiesLabel);
+
+    const abilities = document.createElement('div');
+    abilities.id = 'modal-abilities';
+    abilities.innerHTML = unit.abilities.map(a => `<div class="ability-tag">${a}</div>`).join('');
+    modal.appendChild(abilities);
+  }
+
+  // Upgrades
+  if (unit.upgrades && unit.upgrades.length > 0) {
+    renderUpgrades(modal, unit);
+  }
+
+  // Add/Update button
+  const addBtn = document.createElement('button');
+  addBtn.id = 'modal-add-btn';
+  addBtn.textContent = currentModalMode === 'edit' ? 'UPDATE UNIT' : 'ADD TO LIST';
+  if (currentModalMode === 'edit') {
+    addBtn.classList.add('edit-mode');
+  }
+  addBtn.onclick = () => {
+    if (currentModalMode === 'edit') {
+      updateExistingUnit();
+    } else {
+      addUnitToList();
+    }
+  };
+  modal.appendChild(addBtn);
+
+  // Close button handler
+  modal.querySelector('#modal-close').onclick = () => {
+    document.body.removeChild(overlay);
+  };
+
+  overlay.appendChild(modal);
   document.body.appendChild(overlay);
 
-  setupModalEvents(overlay, unit, selectedUpgrades, function (upgrades, upgPts) {
-    totalPoints -= entry.unit.pts + (entry.upgradePts || 0);
-    entry.upgrades = upgrades;
-    entry.upgradePts = upgPts;
-    totalPoints += entry.unit.pts + upgPts;
-    updatePointsDisplay();
-    updateListDisplay();
-  });
+  // Close on overlay click
+  overlay.onclick = (e) => {
+    if (e.target === overlay) {
+      document.body.removeChild(overlay);
+    }
+  };
 }
 
-// ============================================
-// PICKERS & WARNINGS
-// ============================================
+function renderUpgrades(modal, unit) {
+  const upgradesLabel = document.createElement('div');
+  upgradesLabel.className = 'modal-section-label';
+  upgradesLabel.textContent = 'UPGRADES';
+  upgradesLabel.style.marginTop = '16px';
+  
+  // Show socket limits if they exist
+  if (unit.socketLimits) {
+    const limitText = Object.entries(unit.socketLimits)
+      .map(([socket, limit]) => `${limit} ${socket}`)
+      .join(' / ');
+    upgradesLabel.innerHTML = `UPGRADES <span class="upgrade-socket-summary">${limitText}</span>`;
+  }
+  
+  modal.appendChild(upgradesLabel);
 
-function showFireteamPickerWithUpgrades(unit, selectedUpgrades, upgPts) {
-  const existing = document.getElementById("fireteam-picker");
-  if (existing) existing.remove();
+  // Group by socket
+  const bySocket = {};
+  unit.upgrades.forEach(upgrade => {
+    if (!bySocket[upgrade.socket]) {
+      bySocket[upgrade.socket] = [];
+    }
+    bySocket[upgrade.socket].push(upgrade);
+  });
 
-  const picker = document.createElement("div");
-  picker.id = "fireteam-picker";
-  picker.style.cssText = `
-    position:fixed; top:50%; left:50%; transform:translate(-50%,-50%);
-    background:#111418; border:2px solid #2a2e35; padding:20px; z-index:200; min-width:280px;`;
+  Object.keys(bySocket).forEach(socket => {
+    const socketLabel = document.createElement('div');
+    socketLabel.className = 'upgrade-socket-label';
+    socketLabel.textContent = `[${socket}]`;
+    modal.appendChild(socketLabel);
 
-  picker.innerHTML = `
-    <div style="font-size:11px;letter-spacing:3px;color:#d4a017;margin-bottom:12px;">ASSIGN TO FIRETEAM</div>
-    <div style="font-size:14px;color:#fff;margin-bottom:16px;">${unit.name}</div>
-    ${currentList.fireteams.map(function (ft, index) {
-      return `<button class="picker-btn" data-index="${index}"
-        style="display:block;width:100%;background:#0d0f12;border:1px solid #2a2e35;color:#c8cdd4;
-        padding:10px;margin-bottom:6px;cursor:pointer;font-family:'Share Tech Mono',monospace;
-        font-size:13px;letter-spacing:2px;text-align:left;">
-        FIRETEAM ${ft.name}</button>`;
-    }).join("")}
-    <button id="picker-cancel" style="display:block;width:100%;background:transparent;border:1px solid #333;
-      color:#555;padding:8px;margin-top:8px;cursor:pointer;font-family:'Share Tech Mono',monospace;
-      font-size:11px;letter-spacing:2px;">CANCEL</button>`;
+    bySocket[socket].forEach(upgrade => {
+      const isSelected = selectedUpgrades.some(u => u.socket === upgrade.socket && u.name === upgrade.name);
+      const socketCount = selectedUpgrades.filter(u => u.socket === socket).length;
+      const socketLimit = unit.socketLimits ? unit.socketLimits[socket] || 0 : 0;
+      const isDisabled = !isSelected && socketCount >= socketLimit;
 
-  document.body.appendChild(picker);
+      const row = document.createElement('div');
+      row.className = 'upgrade-row';
+      if (isSelected) row.classList.add('selected');
+      if (isDisabled) row.classList.add('disabled');
 
-  picker.querySelectorAll(".picker-btn").forEach(function (btn) {
-    btn.addEventListener("click", function () {
-      const index = parseInt(btn.getAttribute("data-index"));
-      picker.remove();
-      assignToFireteamWithUpgrades(unit, index, selectedUpgrades, upgPts);
+      row.innerHTML = `
+        <div class="upgrade-info">
+          <div class="upgrade-name">${isSelected ? '✓ ' : ''}${upgrade.name}</div>
+          <div class="upgrade-effect">${upgrade.effect}</div>
+        </div>
+        <div class="upgrade-pts">+${upgrade.pts}pts</div>
+      `;
+
+      if (!isDisabled || isSelected) {
+        row.onclick = () => toggleUpgrade(upgrade, unit);
+      }
+
+      modal.appendChild(row);
     });
   });
-
-  document.getElementById("picker-cancel").addEventListener("click", function () { picker.remove(); });
 }
 
-function showWarning(message) {
-  const existing = document.getElementById("warning-toast");
-  if (existing) existing.remove();
-  const toast = document.createElement("div");
-  toast.id = "warning-toast";
-  toast.textContent = message;
-  toast.style.cssText = `
-    position:fixed; bottom:20px; left:50%; transform:translateX(-50%);
-    background:#1a0808; border:1px solid #e74c3c; color:#e74c3c;
-    padding:10px 20px; font-family:'Share Tech Mono',monospace;
-    font-size:12px; letter-spacing:2px; z-index:300;`;
-  document.body.appendChild(toast);
-  setTimeout(function () { toast.remove(); }, 3000);
+function toggleUpgrade(upgrade, unit) {
+  const isSelected = selectedUpgrades.some(u => u.socket === upgrade.socket && u.name === upgrade.name);
+  
+  if (isSelected) {
+    // Remove upgrade
+    selectedUpgrades = selectedUpgrades.filter(u => !(u.socket === upgrade.socket && u.name === upgrade.name));
+  } else {
+    // Check socket limit
+    const socketCount = selectedUpgrades.filter(u => u.socket === upgrade.socket).length;
+    const socketLimit = unit.socketLimits ? unit.socketLimits[upgrade.socket] || 0 : 0;
+    
+    if (socketCount >= socketLimit) {
+      showErrorModal(`SOCKET LIMIT REACHED: MAX ${socketLimit} ${upgrade.socket} UPGRADE${socketLimit > 1 ? 'S' : ''}`);
+      return;
+    }
+    
+    selectedUpgrades.push(upgrade);
+  }
+
+  // Re-render modal with updated selection
+  renderUnitModal(unit);
 }
+
+// ============================================
+// ADD/EDIT/REMOVE UNIT FUNCTIONS
+// ============================================
+
+function addUnitToList() {
+  const faction = factions[currentFaction];
+  const unit = faction.units.find(u => u.id === currentModalUnitId);
+  if (!unit) return;
+
+  // Check max per list
+  if (unit.maxPerList) {
+    const count = activeList.filter(e => e.unit.id === unit.id).length;
+    if (count >= unit.maxPerList) {
+      showErrorModal(`MAX ${unit.maxPerList} ${unit.name.toUpperCase()} PER LIST`);
+      return;
+    }
+  }
+
+  const upgradePoints = selectedUpgrades.reduce((sum, u) => sum + u.pts, 0);
+  const totalPts = unit.pts + upgradePoints;
+
+  let fireteamId = null;
+
+  // Handle fireteam assignment
+  if (unit.role === "Team Leader") {
+    // Create new fireteam
+    const newFireteam = {
+      id: nextFireteamId++,
+      name: getFireteamName(nextFireteamId - 1)
+    };
+    fireteams.push(newFireteam);
+    fireteamId = newFireteam.id;
+  } else if (!unit.required && !unit.independent) {
+    // Regular unit needs to join a fireteam
+    if (fireteams.length === 0) {
+      showErrorModal("CREATE A FIRETEAM FIRST — ADD A TEAM LEADER");
+      return;
+    }
+    
+    // Auto-assign to first fireteam for now
+    // TODO: Let user choose fireteam
+    fireteamId = fireteams[0].id;
+  }
+
+  const entry = {
+    id: Date.now(),
+    unit: unit,
+    selectedUpgrades: [...selectedUpgrades],
+    totalPts: totalPts,
+    fireteamId: fireteamId
+  };
+
+  activeList.push(entry);
+  
+  // Close modal
+  const overlay = document.getElementById('unit-modal-overlay');
+  if (overlay) {
+    document.body.removeChild(overlay);
+  }
+
+  renderActiveList();
+  updatePointsDisplay();
+}
+
+function editUnit(entryId) {
+  const entry = activeList.find(e => e.id === entryId);
+  if (!entry) return;
+
+  openUnitModal(entry.unit.id, true, entryId);
+}
+
+function updateExistingUnit() {
+  const entry = activeList.find(e => e.id === currentEditingEntryId);
+  if (!entry) return;
+
+  const upgradePoints = selectedUpgrades.reduce((sum, u) => sum + u.pts, 0);
+  entry.selectedUpgrades = [...selectedUpgrades];
+  entry.totalPts = entry.unit.pts + upgradePoints;
+
+  // Close modal
+  const overlay = document.getElementById('unit-modal-overlay');
+  if (overlay) {
+    document.body.removeChild(overlay);
+  }
+
+  renderActiveList();
+  updatePointsDisplay();
+}
+
+function removeUnit(entryId) {
+  const entry = activeList.find(e => e.id === entryId);
+  if (!entry) return;
+
+  // If removing a Team Leader, remove the entire fireteam
+  if (entry.unit.role === "Team Leader" && entry.fireteamId !== null) {
+    activeList = activeList.filter(e => e.fireteamId !== entry.fireteamId);
+    fireteams = fireteams.filter(ft => ft.id !== entry.fireteamId);
+  } else {
+    activeList = activeList.filter(e => e.id !== entryId);
+  }
+
+  renderActiveList();
+  updatePointsDisplay();
+}
+
+function cloneUnit(entryId) {
+  const entry = activeList.find(e => e.id === entryId);
+  if (!entry) return;
+
+  // Check max per list
+  if (entry.unit.maxPerList) {
+    const count = activeList.filter(e => e.unit.id === entry.unit.id).length;
+    if (count >= entry.unit.maxPerList) {
+      showErrorModal(`MAX ${entry.unit.maxPerList} ${entry.unit.name.toUpperCase()} PER LIST`);
+      return;
+    }
+  }
+
+  const clonedEntry = {
+    id: Date.now(),
+    unit: entry.unit,
+    selectedUpgrades: [...entry.selectedUpgrades],
+    totalPts: entry.totalPts,
+    fireteamId: entry.fireteamId
+  };
+
+  activeList.push(clonedEntry);
+  
+  renderActiveList();
+  updatePointsDisplay();
+}
+
+// ============================================
+// FACTION SELECT
+// ============================================
+
+function selectFaction(factionKey) {
+  currentFaction = factionKey;
+  activeList = [];
+  fireteams = [];
+  nextFireteamId = 0;
+
+  const factionSelect = document.getElementById('faction-select');
+  factionSelect.style.display = 'none';
+
+  const app = document.getElementById('app');
+  app.innerHTML = `
+    <div id="points-bar">
+      <div id="list-name">${factions[factionKey].name.toUpperCase()} — LIST BUILDER</div>
+      <div id="points-display">0 / ${POINTS_LIMIT} PTS</div>
+    </div>
+    <div id="unit-browser">
+      <div id="unit-list"></div>
+      <div id="active-list"></div>
+    </div>
+  `;
+
+  renderUnitBrowser();
+  renderActiveList();
+  updatePointsDisplay();
+}
+
+// ============================================
+// INITIALIZATION
+// ============================================
+
+document.addEventListener('DOMContentLoaded', () => {
+  const factionBtns = document.querySelectorAll('.faction-btn');
+  
+  factionBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const faction = btn.dataset.faction;
+      selectFaction(faction);
+    });
+  });
+});
