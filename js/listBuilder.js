@@ -130,7 +130,7 @@ const factions = {
         stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
         weapons: [
           { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
-          { name: "M320 Grenade Launcher", dice: 3, hit: "5+", range: '24"', keywords: "EXPL 1 / RLD / UBW" },
+          { name: "M320 Grenade Launcher", dice: 3, hit: "5+", range: '24"', keywords: "EXPL 1 / RLD / LOB" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Fireteam Cohesion", "Coordinated Fire"],
@@ -286,7 +286,23 @@ const factions = {
         abilities: [""],
         socketLimits: { EQUIPMENT: 1},
         upgrades: [
-          { socket: "EQUIPMENT", name: "Javalin Anti-Tank Guided Missle", pts: 20, effect: "EXPL 1 / PEN 3" },
+          { socket: "EQUIPMENT", name: "Javalin Anti-Tank Guided Missle", pts: 20, effect: "4D / 4+ / 36\" / EXPL 1 / PEN 3" },
+        ],
+        independent: true,
+      },
+      {
+        id: "usa_stryker",
+        name: "Stryker M1126",
+        role: "Vehicles",
+        pts: 200,
+        stats: { MOV: '7"', MOR: 4, CEV: 4, Passengers: 6, Armor: F3/S2/R1, DR: "6+" },
+        weapons: [
+          { name: "M2 .50 Cal", dice: 7, hit: "5+", range: '36"', keywords: "C-Fire" },
+        ],
+        abilities: [""],
+        socketLimits: { WEAPON: 1},
+        upgrades: [
+          { socket: "WEAPON", name: "40 mm Mk 19 Grenade Launcher", pts: 45, effect: "EXPL 2" },
         ],
         independent: true,
       }
@@ -1539,12 +1555,12 @@ function renderUnitBrowser() {
   const faction = factions[currentFaction];
   const container = document.getElementById('unit-list');
   
-  // Group units by role
-  const leaders = faction.units.filter(u => u.role === "Squad Leader" || u.role === "Team Leader");
-  const infantry = faction.units.filter(u => !u.role.includes("Leader") && !u.role.includes("Specialist") && !u.role.includes("Independent"));
+  // Group units by role — explicit filters prevent new roles bleeding into wrong sections
+  const leaders     = faction.units.filter(u => u.role === "Squad Leader" || u.role === "Team Leader");
+  const infantry    = faction.units.filter(u => u.role === "Infantry" || u.role === "Rifleman" || u.role === "Gunner");
   const specialists = faction.units.filter(u => u.role === "Specialist");
-  const independent = faction.units.filter(u => u.independent === true);
-  const vehicles = faction.units.filter(u => u.role === "Vehicles");
+  const vehicles    = faction.units.filter(u => u.role === "Vehicle" || u.role === "Vehicles");
+  const independent = faction.units.filter(u => u.independent === true && u.role !== "Vehicle" && u.role !== "Vehicles");
 
   let html = '<div class="section-label">LEADERS</div>';
   leaders.forEach(unit => {
@@ -1605,6 +1621,24 @@ function renderUnitBrowser() {
     });
   }
 
+  if (vehicles.length > 0) {
+    html += '<div class="section-label" style="margin-top:20px">VEHICLES</div>';
+    vehicles.forEach(unit => {
+      html += `
+        <div class="unit-card" onclick="openUnitModal('${unit.id}')">
+          <div class="unit-card-role">${unit.role}</div>
+          <div class="unit-card-row">
+            <div class="unit-card-name">${unit.name}</div>
+            <div class="unit-card-pts">${unit.pts}pts</div>
+          </div>
+          ${unit.stats.Armor !== undefined ? '<div class="unit-note">ARMOR ' + unit.stats.Armor + '</div>' : ''}
+          ${unit.stats.Passengers !== undefined ? '<div class="unit-note">PASSENGERS ' + unit.stats.Passengers + '</div>' : ''}
+          ${unit.maxPerList ? '<div class="unit-note">MAX ' + unit.maxPerList + ' PER LIST</div>' : ''}
+        </div>
+      `;
+    });
+  }
+
   container.innerHTML = html;
 }
 
@@ -1641,11 +1675,20 @@ function renderActiveList() {
     }
   });
 
-  // Independent units
-  const independentUnits = activeList.filter(e => e.unit.independent === true);
+  // Independent units (non-vehicle)
+  const independentUnits = activeList.filter(e => e.unit.independent === true && e.unit.role !== "Vehicle" && e.unit.role !== "Vehicles");
   if (independentUnits.length > 0) {
     html += '<div class="list-section-label">INDEPENDENT UNITS</div>';
     independentUnits.forEach(entry => {
+      html += renderListEntry(entry);
+    });
+  }
+
+  // Vehicles
+  const vehicleUnits = activeList.filter(e => e.unit.role === "Vehicle" || e.unit.role === "Vehicles");
+  if (vehicleUnits.length > 0) {
+    html += '<div class="list-section-label">VEHICLES</div>';
+    vehicleUnits.forEach(entry => {
       html += renderListEntry(entry);
     });
   }
