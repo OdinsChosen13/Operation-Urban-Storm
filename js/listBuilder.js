@@ -640,6 +640,474 @@ const fireteamNames = [
 ];
 
 // ============================================
+// SAVE / LOAD — localStorage
+// ============================================
+
+const STORAGE_KEY = 'ous_saved_lists';
+
+function getSavedLists() {
+  try {
+    return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+  } catch (e) {
+    return {};
+  }
+}
+
+function saveCurrentList(name) {
+  if (!name || !currentFaction || activeList.length === 0) return false;
+  const saved = getSavedLists();
+  saved[name] = {
+    faction: currentFaction,
+    activeList: activeList,
+    fireteams: fireteams,
+    nextFireteamId: nextFireteamId,
+    savedAt: new Date().toISOString()
+  };
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+  return true;
+}
+
+function loadSavedList(name) {
+  const saved = getSavedLists();
+  const data = saved[name];
+  if (!data) return false;
+  currentFaction = data.faction;
+  activeList = data.activeList;
+  fireteams = data.fireteams;
+  nextFireteamId = data.nextFireteamId;
+  return true;
+}
+
+function deleteSavedList(name) {
+  const saved = getSavedLists();
+  delete saved[name];
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+}
+
+function showSaveModal() {
+  const overlay = document.createElement('div');
+  overlay.className = 'ous-overlay';
+
+  const modal = document.createElement('div');
+  modal.className = 'ous-modal';
+
+  const title = document.createElement('div');
+  title.className = 'ous-modal-title';
+  title.textContent = 'SAVE LIST';
+  modal.appendChild(title);
+
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.placeholder = 'ENTER LIST NAME...';
+  input.className = 'ous-text-input';
+  input.maxLength = 40;
+  modal.appendChild(input);
+
+  // Show existing saves
+  const saved = getSavedLists();
+  const existingNames = Object.keys(saved);
+  if (existingNames.length > 0) {
+    const existingLabel = document.createElement('div');
+    existingLabel.className = 'ous-modal-sub';
+    existingLabel.textContent = 'SAVED LISTS (click to overwrite):';
+    modal.appendChild(existingLabel);
+
+    existingNames.forEach(name => {
+      const row = document.createElement('div');
+      row.className = 'ous-saved-row';
+      const d = new Date(saved[name].savedAt);
+      const dateStr = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+      row.innerHTML = `<span>${name}</span><span class="ous-saved-meta">${saved[name].faction.toUpperCase()} — ${dateStr}</span>`;
+      row.onclick = () => { input.value = name; };
+      modal.appendChild(row);
+    });
+  }
+
+  const btnRow = document.createElement('div');
+  btnRow.className = 'ous-btn-row';
+
+  const saveBtn = document.createElement('button');
+  saveBtn.className = 'ous-btn-confirm';
+  saveBtn.textContent = 'SAVE';
+  saveBtn.onclick = () => {
+    const name = input.value.trim().toUpperCase();
+    if (!name) { input.style.borderColor = '#e74c3c'; return; }
+    if (saveCurrentList(name)) {
+      document.body.removeChild(overlay);
+      showToast('LIST SAVED: ' + name);
+    }
+  };
+
+  const cancelBtn = document.createElement('button');
+  cancelBtn.className = 'ous-btn-cancel';
+  cancelBtn.textContent = 'CANCEL';
+  cancelBtn.onclick = () => document.body.removeChild(overlay);
+
+  btnRow.appendChild(saveBtn);
+  btnRow.appendChild(cancelBtn);
+  modal.appendChild(btnRow);
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+
+  overlay.onclick = (e) => { if (e.target === overlay) document.body.removeChild(overlay); };
+  setTimeout(() => input.focus(), 50);
+}
+
+function showLoadModal() {
+  const saved = getSavedLists();
+  const names = Object.keys(saved);
+
+  const overlay = document.createElement('div');
+  overlay.className = 'ous-overlay';
+
+  const modal = document.createElement('div');
+  modal.className = 'ous-modal';
+
+  const title = document.createElement('div');
+  title.className = 'ous-modal-title';
+  title.textContent = 'LOAD LIST';
+  modal.appendChild(title);
+
+  if (names.length === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'ous-modal-sub';
+    empty.textContent = 'NO SAVED LISTS FOUND.';
+    modal.appendChild(empty);
+  } else {
+    names.forEach(name => {
+      const row = document.createElement('div');
+      row.className = 'ous-saved-row';
+      const d = new Date(saved[name].savedAt);
+      const dateStr = d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+      const pts = saved[name].activeList.reduce((s, e) => s + e.totalPts, 0);
+      row.innerHTML = `
+        <div class="ous-saved-info">
+          <span class="ous-saved-name">${name}</span>
+          <span class="ous-saved-meta">${factions[saved[name].faction]?.name || saved[name].faction} — ${pts}pts — ${dateStr}</span>
+        </div>
+        <button class="ous-delete-btn" title="Delete">✕</button>
+      `;
+
+      row.querySelector('.ous-delete-btn').onclick = (e) => {
+        e.stopPropagation();
+        deleteSavedList(name);
+        document.body.removeChild(overlay);
+        showLoadModal();
+      };
+
+      row.onclick = (e) => {
+        if (e.target.classList.contains('ous-delete-btn')) return;
+        if (loadSavedList(name)) {
+          document.body.removeChild(overlay);
+          // Re-render in the correct faction context
+          const factionSelect = document.getElementById('faction-select');
+          if (factionSelect) factionSelect.style.display = 'none';
+
+          const app = document.getElementById('app');
+          app.innerHTML = `
+            <div id="points-bar">
+              <div id="list-name">${factions[currentFaction].name.toUpperCase()} — LIST BUILDER</div>
+              <div id="points-display">0 / ${POINTS_LIMIT} PTS</div>
+            </div>
+            <div id="unit-browser">
+              <div id="unit-list"></div>
+              <div id="active-list"></div>
+            </div>
+          `;
+          renderActionBar();
+          renderUnitBrowser();
+          renderActiveList();
+          updatePointsDisplay();
+          showToast('LIST LOADED: ' + name);
+        }
+      };
+
+      modal.appendChild(row);
+    });
+  }
+
+  const cancelBtn = document.createElement('button');
+  cancelBtn.className = 'ous-btn-cancel';
+  cancelBtn.style.marginTop = '16px';
+  cancelBtn.textContent = 'CLOSE';
+  cancelBtn.onclick = () => document.body.removeChild(overlay);
+  modal.appendChild(cancelBtn);
+
+  overlay.appendChild(modal);
+  document.body.appendChild(overlay);
+  overlay.onclick = (e) => { if (e.target === overlay) document.body.removeChild(overlay); };
+}
+
+function showToast(message) {
+  const existing = document.getElementById('ous-toast');
+  if (existing) existing.remove();
+  const toast = document.createElement('div');
+  toast.id = 'ous-toast';
+  toast.textContent = message;
+  document.body.appendChild(toast);
+  setTimeout(() => toast.classList.add('visible'), 10);
+  setTimeout(() => {
+    toast.classList.remove('visible');
+    setTimeout(() => toast.remove(), 400);
+  }, 2200);
+}
+
+// ============================================
+// PRINT / EXPORT
+// ============================================
+
+function exportList() {
+  if (activeList.length === 0) {
+    showErrorModal('NO UNITS IN LIST — NOTHING TO EXPORT');
+    return;
+  }
+
+  const errors = validateList();
+  const faction = factions[currentFaction];
+  const total = calculateTotalPoints();
+
+  const win = window.open('', '_blank');
+  if (!win) {
+    showErrorModal('POPUP BLOCKED — ALLOW POPUPS FOR THIS SITE');
+    return;
+  }
+
+  const factionColor = faction.color;
+  const accentColor = faction.accent;
+
+  // Build unit card HTML for each entry
+  let cardsHTML = '';
+
+  // Squad Leader first, then fireteams, then independents
+  const squadLeader = activeList.find(e => e.unit.required === true);
+  const fireteamEntries = fireteams.map(ft => ({
+    ft,
+    members: activeList.filter(e => e.fireteamId === ft.id)
+  }));
+  const independentEntries = activeList.filter(e => e.unit.independent === true);
+
+  const orderedEntries = [
+    ...(squadLeader ? [squadLeader] : []),
+    ...fireteamEntries.flatMap(({ members }) => members),
+    ...independentEntries
+  ];
+
+  orderedEntries.forEach(entry => {
+    const u = entry.unit;
+    const upgradeNames = entry.selectedUpgrades.map(upg => upg.name).join(', ');
+
+    const weaponsRows = u.weapons.map(w => `
+      <tr>
+        <td>${w.name}</td>
+        <td>${w.dice}D</td>
+        <td>${w.hit}</td>
+        <td>${w.range}</td>
+        <td class="kw">${w.keywords || '—'}</td>
+      </tr>
+    `).join('');
+
+    const abilitiesHTML = (u.abilities && u.abilities.length > 0)
+      ? u.abilities.map(a => `<span class="ability">${a}</span>`).join('')
+      : '<span class="ability-none">—</span>';
+
+    const upgradesHTML = upgradeNames
+      ? `<div class="upgrades-row"><span class="upgrades-label">UPGRADES:</span> ${upgradeNames}</div>`
+      : '';
+
+    cardsHTML += `
+      <div class="unit-card">
+        <div class="card-header">
+          <div>
+            <div class="card-role">${u.role}</div>
+            <div class="card-name">${u.name}</div>
+          </div>
+          <div class="card-pts">${entry.totalPts}pts</div>
+        </div>
+        <div class="stats-row">
+          <div class="stat"><div class="stat-label">MOV</div><div class="stat-val">${u.stats.MOV}</div></div>
+          <div class="stat"><div class="stat-label">MOR</div><div class="stat-val">${u.stats.MOR}</div></div>
+          <div class="stat"><div class="stat-label">CEV</div><div class="stat-val">${u.stats.CEV}</div></div>
+          <div class="stat"><div class="stat-label">DR</div><div class="stat-val">${u.stats.DR}</div></div>
+        </div>
+        <table class="weapons-table">
+          <thead><tr><th>WEAPON</th><th>DICE</th><th>HIT</th><th>RNG</th><th>KW</th></tr></thead>
+          <tbody>${weaponsRows}</tbody>
+        </table>
+        <div class="abilities-row">${abilitiesHTML}</div>
+        ${upgradesHTML}
+      </div>
+    `;
+  });
+
+  const validationBlock = errors.length > 0
+    ? `<div class="print-warning">⚠ ${errors.join(' / ')}</div>`
+    : `<div class="print-valid">✓ LIST VALID — READY FOR DEPLOYMENT</div>`;
+
+  const html = `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>OUS — ${faction.name.toUpperCase()} LIST</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Share Tech Mono', monospace;
+      background: #fff;
+      color: #111;
+      padding: 16px;
+    }
+    .print-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 3px solid ${factionColor};
+      padding-bottom: 8px;
+      margin-bottom: 16px;
+    }
+    .print-title { font-size: 22px; font-weight: bold; letter-spacing: 4px; color: ${factionColor}; }
+    .print-meta { font-size: 12px; color: #555; letter-spacing: 2px; text-align: right; }
+    .print-pts { font-size: 18px; font-weight: bold; color: #111; }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .unit-card {
+      border: 2px solid ${factionColor};
+      padding: 10px 12px;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 8px;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 6px;
+    }
+    .card-role { font-size: 9px; letter-spacing: 3px; color: ${factionColor}; text-transform: uppercase; margin-bottom: 2px; }
+    .card-name { font-size: 16px; font-weight: bold; letter-spacing: 1px; }
+    .card-pts { font-size: 16px; font-weight: bold; color: ${factionColor}; white-space: nowrap; }
+    .stats-row {
+      display: flex;
+      gap: 0;
+      border: 1px solid #ddd;
+      margin-bottom: 8px;
+    }
+    .stat {
+      flex: 1;
+      text-align: center;
+      padding: 4px 2px;
+      border-right: 1px solid #ddd;
+    }
+    .stat:last-child { border-right: none; }
+    .stat-label { font-size: 8px; color: #888; letter-spacing: 2px; margin-bottom: 2px; }
+    .stat-val { font-size: 14px; font-weight: bold; }
+    .weapons-table { width: 100%; border-collapse: collapse; font-size: 10px; margin-bottom: 8px; }
+    .weapons-table th {
+      text-align: left;
+      font-size: 8px;
+      letter-spacing: 2px;
+      color: #888;
+      border-bottom: 1px solid #ddd;
+      padding: 2px 4px;
+      font-weight: normal;
+    }
+    .weapons-table td { padding: 3px 4px; border-bottom: 1px solid #f0f0f0; }
+    .kw { color: ${factionColor}; font-size: 9px; }
+    .abilities-row { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
+    .ability {
+      font-size: 9px;
+      padding: 2px 6px;
+      background: #f0f4f0;
+      border: 1px solid ${factionColor};
+      color: #333;
+      letter-spacing: 1px;
+    }
+    .ability-none { font-size: 9px; color: #aaa; }
+    .upgrades-row { font-size: 9px; color: #555; letter-spacing: 1px; border-top: 1px solid #eee; padding-top: 4px; }
+    .upgrades-label { color: ${factionColor}; font-weight: bold; }
+    .print-footer {
+      margin-top: 16px;
+      border-top: 1px solid #ddd;
+      padding-top: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      letter-spacing: 2px;
+    }
+    .print-valid { color: #2a7a3a; }
+    .print-warning { color: #c0392b; }
+    @media print {
+      body { padding: 10px; }
+      .no-print { display: none; }
+      .cards-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <div class="print-header">
+    <div>
+      <div class="print-title">OPERATION URBAN STORM</div>
+      <div class="print-meta">${faction.name.toUpperCase()} — V${GAME_VERSION}</div>
+    </div>
+    <div class="print-meta" style="text-align:right">
+      <div class="print-pts">${total} / ${POINTS_LIMIT} PTS</div>
+      <div>${activeList.length} MODELS</div>
+    </div>
+  </div>
+  <button class="no-print" onclick="window.print()" style="
+    font-family: 'Share Tech Mono', monospace;
+    background: ${factionColor};
+    color: #fff;
+    border: none;
+    padding: 10px 24px;
+    font-size: 13px;
+    letter-spacing: 3px;
+    cursor: pointer;
+    margin-bottom: 16px;
+  ">⎙ PRINT / SAVE AS PDF</button>
+  <div class="cards-grid">
+    ${cardsHTML}
+  </div>
+  <div class="print-footer">
+    ${validationBlock}
+    <span>OPERATION URBAN STORM V${GAME_VERSION} — odinschosen13.github.io/Operation-Urban-Storm</span>
+  </div>
+</body>
+</html>`;
+
+  win.document.write(html);
+  win.document.close();
+}
+
+// ============================================
+// ACTION BAR (Save / Load / Export buttons)
+// ============================================
+
+function renderActionBar() {
+  const pointsBar = document.getElementById('points-bar');
+  if (!pointsBar) return;
+
+  // Remove existing action bar if present
+  const existing = document.getElementById('action-bar');
+  if (existing) existing.remove();
+
+  const bar = document.createElement('div');
+  bar.id = 'action-bar';
+  bar.innerHTML = `
+    <button class="action-btn save-btn" onclick="showSaveModal()">💾 SAVE</button>
+    <button class="action-btn load-btn" onclick="showLoadModal()">📂 LOAD</button>
+    <button class="action-btn export-btn" onclick="exportList()">⎙ EXPORT</button>
+  `;
+
+  pointsBar.insertAdjacentElement('afterend', bar);
+}
+
+// ============================================
 // UTILITY FUNCTIONS
 // ============================================
 
@@ -1517,6 +1985,7 @@ function selectFaction(factionKey) {
     </div>
   `;
 
+  renderActionBar();
   renderUnitBrowser();
   renderActiveList();
   updatePointsDisplay();
