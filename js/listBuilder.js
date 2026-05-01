@@ -155,7 +155,7 @@ const factions = {
         abilities: ["Fireteam Cohesion", "Coordinated Fire", "Steady Aim"],
         socketLimits: { SUPPORT: 1 },
         upgrades: [
-          { socket: "SUPPORT", name: "Suppressor", pts: 15, effect: "Only generates 1 Stress when hitting. List limit 1." },
+          { socket: "SUPPORT", name: "Range Finder", pts: 15, effect: "+1 hit value improvement on all Shoot actions. List limit 1." },
           { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" }
         ]
       },
@@ -284,103 +284,202 @@ const factions = {
     units: [
       {
         id: "ins_cell_leader",
-        name: "Cell Leader",
+        name: "Cell Leader - Squad Leader",
         role: "Squad Leader",
-        pts: 60,
-        stats: { MOV: '6"', MOR: 3, CEV: 2, DR: "7+" },
+        pts: 110,
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
         weapons: [
-          { name: "AKM", dice: 5, hit: "6+", range: '36"', keywords: "" }
+          { name: "AK-47", dice:6, hit: "7+", range: '36"', keywords: "" },
+          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
         ],
-        abilities: ["Squad Leader (3\")", "Rally", "Authority Override"],
+        abilities: ["Squad Leader (3\")", "Rally", "Authority Override", "Ambush Shock"],
         socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
         upgrades: [
-          { socket: "WEAPON", name: "AK-12", pts: 8, effect: "6D / 6+ / 36\" — replaces AKM" },
-          { socket: "WEAPON", name: "AK-74", pts: 6, effect: "5D / 6+ / 36\" — replaces AKM" },
-          { socket: "EQUIPMENT", name: "RGD-5 Grenade", pts: 6, effect: "EXPL 1 / LOB / ONE-SHOT" },
-          { socket: "EQUIPMENT", name: "IED Trigger", pts: 35, effect: "Deploy IED anywhere within 24\". No LoS required. List limit 1." }
+          { socket: "WEAPON", name: "AK-12", pts: 8, effect: "6D / 6+ / 36\" — replaces AK-47" },
+          { socket: "WEAPON", name: "Shotgun", pts: 8, effect: "7D / 7+ / 8\" / CQB — replaces AK-47" },
+          { socket: "WEAPON", name: "MP5", pts: 8, effect: "5D / 6+ / 12\" / CQB — replaces AK-47" },
+          { socket: "EQUIPMENT", name: "RGD-5 Grenade", pts: 6, effect: "3D / 6+ / 8\" / EXPL 1 / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
+          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
+          { socket: "EQUIPMENT", name: "SL Radio", pts: 25, effect: "Issue orders to RTO regardless of distance/LoS." }
         ],
         required: true,
         maxPerList: 1
       },
       {
         id: "ins_team_leader",
-        name: "Team Leader",
+        name: "Team Leader - Team Leader",
         role: "Team Leader",
-        pts: 50,
-        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "8+" },
+        pts: 95,
+        stats: { MOV: '6"', MOR: 3, CEV: 2, DR: "7+" },
         weapons: [
-          { name: "AKM", dice: 5, hit: "6+", range: '36"', keywords: "" }
+          { name: "AK-47", dice:6, hit: "7+", range: '36"', keywords: "" },
+          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
         ],
-        abilities: ["Lead From The Front", "Stress Transfer"],
-        socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
+        abilities: ["Lead From The Front", "Stress Transfer", "Ambush Shock"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1, SUPPORT: 1 },
         upgrades: [
-          { socket: "WEAPON", name: "AK-12", pts: 8, effect: "6D / 6+ / 36\" — replaces AKM" },
-          { socket: "WEAPON", name: "AK-74", pts: 6, effect: "5D / 6+ / 36\" — replaces AKM" },
-          { socket: "EQUIPMENT", name: "RGD-5 Grenade", pts: 6, effect: "EXPL 1 / LOB / ONE-SHOT" }
+          { socket: "WEAPON", name: "AK-12", pts: 8, effect: "6D / 6+ / 36\" — replaces AK-47" },
+          { socket: "WEAPON", name: "Shotgun", pts: 8, effect: "7D / 7+ / 8\" / CQB — replaces AK-47" },
+          { socket: "WEAPON", name: "MP5", pts: 8, effect: "5D / 6+ / 12\" / CQB — replaces AK-47" },
+          { socket: "EQUIPMENT", name: "RGD-5 Grenade", pts: 6, effect: "3D / 6+ / 8\" / EXPL 1 / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
+          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
         ]
       },
       {
         id: "ins_fighter",
         name: "Fighter",
         role: "Infantry",
-        pts: 40,
-        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "8+" },
+        pts: 50,
+        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "9+" },
         weapons: [
-          { name: "AKM", dice: 5, hit: "6+", range: '36"', keywords: "" }
+          { name: "AK-47", dice:6, hit: "7+", range: '36"', keywords: "" },
+          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
         ],
-        abilities: [],
+        abilities: ["Ambush Shock"],
         socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
         upgrades: [
-          { socket: "WEAPON", name: "AK-12", pts: 8, effect: "6D / 6+ / 36\" — replaces AKM" },
-          { socket: "WEAPON", name: "AK-74", pts: 6, effect: "5D / 6+ / 36\" — replaces AKM" },
-          { socket: "WEAPON", name: "PKM", pts: 25, effect: "8D / 6+ / 36\" / C-FIRE / ENC — replaces AKM" },
-          { socket: "EQUIPMENT", name: "RGD-5 Grenade", pts: 6, effect: "EXPL 1 / LOB / ONE-SHOT" }
+          { socket: "EQUIPMENT", name: "RGD-5 Grenade", pts: 6, effect: "3D / 6+ / 8\" / EXPL 1 / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
+          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
+          { socket: "EQUIPMENT", name: "SL Radio", pts: 25, effect: "Issue orders to RTO regardless of distance/LoS." }
+        ]
+      },
+      {
+        id: "ins_vet_fighter",
+        name: "Street Fighter - Veteran Fighter",
+        role: "Infantry",
+        pts: 85,
+        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "7+" },
+        weapons: [
+          { name: "AK-74U", dice: 6, hit: "6+", range: '24"', keywords: "CQB" },
+          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+        ],
+        abilities: ["Aggressive Entry", "Urban Predator(Passive)", "Ambush Shock"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
+        upgrades: [
+          { socket: "WEAPON", name: "Shotgun", pts: 8, effect: "7D / 7+ / 8\" / CQB — replaces AK-47" },
+          { socket: "WEAPON", name: "MP5", pts: 8, effect: "5D / 6+ / 12\" / CQB — replaces AK-47" },
+          { socket: "EQUIPMENT", name: "RGD-5 Grenade", pts: 6, effect: "3D / 6+ / 8\" / EXPL 1 / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
+          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
+        ]
+      },
+      {
+        id: "ins_mg",
+        name: "RPK Operator - Weapons Fighter",
+        role: "Specialist",
+        pts: 105,
+        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "8+" },
+        weapons: [
+          { name: "RPK Machine Gun", dice: 7, hit: "8+", range: '36"', keywords: "ENC / C-Fire" },
+          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+        ],
+        abilities: ["Ambush Shock"],
+        socketLimits: { EQUIPMENT: 1 },
+        upgrades: [
+          { socket: "EQUIPMENT", name: "RGD-5 Grenade", pts: 6, effect: "3D / 6+ / 8\" / EXPL 1 / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
+          { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" },
+          { socket: "SUPPORT", name: "Assault Pack", pts: 15, effect: "C-FIRE generates +2 Stress instead of +1" }
         ]
       },
       {
         id: "ins_rpg",
-        name: "RPG Operator",
+        name: "RPG Operator - Weapons Fighter",
         role: "Specialist",
-        pts: 85,
+        pts: 95,
         stats: { MOV: '5"', MOR: 2, CEV: 2, DR: "8+" },
         weapons: [
           { name: "RPG-7", dice: 4, hit: "5+", range: '36"', keywords: "EXPL 2 / RLD / ENC" },
           { name: "AKM", dice: 5, hit: "6+", range: '36"', keywords: "" }
         ],
-        abilities: [],
+        abilities: ["Ambush Shock"],
         socketLimits: { EQUIPMENT: 1 },
         upgrades: [
-          { socket: "EQUIPMENT", name: "RGD-5 Grenade", pts: 6, effect: "EXPL 1 / LOB / ONE-SHOT" }
+          { socket: "EQUIPMENT", name: "RGD-5 Grenade", pts: 6, effect: "3D / 6+ / 8\" / EXPL 1 / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
         ]
       },
       {
         id: "ins_svd",
-        name: "SVD Marksman",
+        name: "SVD Marksman - Veteran Fighter",
         role: "Specialist",
-        pts: 75,
-        stats: { MOV: '5"', MOR: 2, CEV: 2, DR: "8+" },
+        pts: 85,
+        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "9+" },
         weapons: [
-          { name: "SVD Dragunov", dice: 3, hit: "4+", range: '42"', keywords: "" }
+          { name: "SVD Dragunov", dice: 3, hit: "4+", range: '36"', keywords: "" },
+          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
         ],
-        abilities: ["Steady Aim"],
+        abilities: ["Steady Aim", "Ambush Shock"],
         socketLimits: { SUPPORT: 1 },
         upgrades: [
+          { socket: "SUPPORT", name: "Range Finder", pts: 15, effect: "+1 hit value improvement on all Shoot actions. List limit 1." },
           { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" }
         ]
       },
       {
-        id: "ins_bomber",
-        name: "Suicide Bomber",
+        id: "ins_medic",
+        name: "Field Medic - Veteran Fighter",
         role: "Specialist",
-        pts: 50,
-        stats: { MOV: '6"', MOR: 5, CEV: 1, DR: "8+" },
+        pts: 90,
+        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "8+" },
         weapons: [
-          { name: "Suicide Vest", dice: 6, hit: "5+", range: '1"', keywords: "EXPL 3 / SELF-DESTRUCT" }
+          { name: "AK-47", dice:6, hit: "7+", range: '36"', keywords: "" },
+          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
         ],
-        abilities: ["Fanatic", "Self-Destruct"],
-        socketLimits: {},
-        upgrades: []
+        abilities: ["Field Treatment(1 ACtion)", "Last Chance", "Ambush Shock"],
+        socketLimits: { EQUIPMENT:1, SUPPORT: 1 },
+        upgrades: [
+          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
+          { socket: "SUPPORT", name: "Advanced Aid Bag", pts: 15, effect: "Last Chance roll improved by 1" },
+          { socket: "SUPPORT", name: "Trauma Kit", pts: 10, effect: "Field Treatment may target this model" }
+        ]
+      },
+      {
+        id: "ins_at_gunner",
+        name: "RPG Gunner Anti-Tank - Weapons Fighter ",
+        role: "Independent — AT Team",
+        pts: 100,
+        stats: { MOV: '6"', MOR: 2, CEV: 1, DR: "8+" },
+        weapons: [
+          { name: "PG-7VR", dice: 4, hit: "6+", range: '36"', keywords: "RLD / ENC / PEN 3" },
+          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+        ],
+        abilities: ["Minimum Range 6\"", "Coherency Range 2\"", "Ambush Shock"],
+        socketLimits: {EQUIPMENT: 1 },
+        upgrades: [
+          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
+        ],
+        independent: true,
+        maxPerList: 1
+      },
+      {
+        id: "ins_at_loader",
+        name: "AT Loader",
+        role: "Independent — AT Team",
+        pts: 85,
+        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "9+" },
+        weapons: [
+          { name: "AK-47", dice:6, hit: "7+", range: '36"', keywords: "" },
+          { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+        ],
+        abilities: ["Assisted Reload", "Ambush Shock"],
+        socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
+        upgrades: [
+          { socket: "WEAPON", name: "XM7 Rifle", pts: 10, effect: "5D / 4+ / 36\" — replaces M4A1" },
+          { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
+        ],
+        independent: true,
+        maxPerList: 1
       }
+      
     ]
   },
 
@@ -493,7 +592,7 @@ const factions = {
       {
         id: "vdv_shturmovnik",
         name: "Shturmovnik",
-        role: "CQB Specialist",
+        role: "Specialist",
         pts: 130,
         stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "5+" },
         weapons: [
@@ -530,7 +629,7 @@ const factions = {
       {
         id: "vdv_sanitar",
         name: "Sanitár",
-        role: "Medic",
+        role: "Specialist",
         pts: 105,
         stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
         weapons: [
@@ -604,7 +703,7 @@ const factions = {
       },
       {
         id: "vdv_loader",
-        name: "AT Loader",
+        name: "Kornet Loader",
         role: "Independent — AT Team",
         pts: 85,
         stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
