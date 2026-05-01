@@ -31,6 +31,7 @@ const factions = {
         abilities: ["Squad Leader (3\")", "Rally", "Authority Override", "Fireteam Cohesion", "Coordinated Fire"],
         socketLimits: { WEAPON: 1, EQUIPMENT: 1, SUPPORT: 1 },
         upgrades: [
+          { socket: "WEAPON", name: "XM7 Rifle", pts: 10, effect: "5D / 4+ / 36\" — replaces M4A1 Carbine" },
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
@@ -862,6 +863,78 @@ function showToast(message) {
 // PRINT / EXPORT
 // ============================================
 
+// Parse a weapon upgrade effect string into a structured weapon object.
+// Effect format examples:
+//   "5D / 4+ / 36\" — replaces M4A1 Carbine"
+//   "6D / 6+ / 8\" / CQB — replaces M4A1"
+//   "4D / 4+ / 24\" / CQB — replaces VSS Vintorez"
+function parseWeaponUpgrade(upgradeName, effectStr) {
+  // Split on ' — replaces ' to get stats part and replaced weapon name
+  const dashIdx = effectStr.indexOf(' \u2014 replaces ');
+  const statsPart = dashIdx !== -1 ? effectStr.slice(0, dashIdx) : effectStr;
+  const replacesName = dashIdx !== -1 ? effectStr.slice(dashIdx + ' \u2014 replaces '.length).trim() : null;
+
+  // Parse "XD / hit+ / range" / optional keywords
+  // Segments split by ' / '
+  const segments = statsPart.split(' / ').map(s => s.trim());
+  const diceMatch = segments[0] && segments[0].match(/^(\d+)D$/i);
+  const hitMatch  = segments[1] && segments[1].match(/^(\d+)\+$/);
+  const range     = segments[2] || null;
+  // Any remaining segments after the first three are keywords
+  const kwSegs    = segments.slice(3);
+
+  if (!diceMatch || !hitMatch || !range) return null; // not a weapon stat line
+
+  return {
+    name: upgradeName,
+    dice: parseInt(diceMatch[1]),
+    hit: segments[1],
+    range: range,
+    keywords: kwSegs.join(' / '),
+    replacesName: replacesName
+  };
+}
+
+// Build the final resolved weapon list for a unit given its selected upgrades.
+// Weapon-slot upgrades replace their named target; non-weapon upgrades are ignored here.
+function resolveWeapons(unit, selectedUpgrades) {
+  // Start with a copy of base weapons
+  let weapons = unit.weapons.map(w => ({ ...w, replaced: false }));
+
+  selectedUpgrades.forEach(upg => {
+    if (upg.socket !== 'WEAPON') return;
+    const parsed = parseWeaponUpgrade(upg.name, upg.effect);
+    if (!parsed) return;
+
+    if (parsed.replacesName) {
+      // Find the weapon to replace — match by name substring (handles "replaces M4A1" matching "M4A1 Carbine")
+      const idx = weapons.findIndex(w =>
+        !w.replaced &&
+        (w.name === parsed.replacesName ||
+         w.name.toLowerCase().includes(parsed.replacesName.toLowerCase()) ||
+         parsed.replacesName.toLowerCase().includes(w.name.toLowerCase()))
+      );
+      if (idx !== -1) {
+        weapons[idx] = { ...parsed, replaced: false };
+        return;
+      }
+    }
+    // Fallback: append
+    weapons.push({ ...parsed, replaced: false });
+  });
+
+  return weapons;
+}
+
+// Build the non-weapon upgrade list for display (equipment, support, etc.)
+function resolveEquipmentUpgrades(selectedUpgrades) {
+  return selectedUpgrades.filter(upg => {
+    if (upg.socket !== 'WEAPON') return true;
+    const parsed = parseWeaponUpgrade(upg.name, upg.effect);
+    return !parsed; // keep WEAPON upgrades that aren't parseable as weapon stats (edge cases)
+  });
+}
+
 function exportList() {
   if (activeList.length === 0) {
     showErrorModal('NO UNITS IN LIST — NOTHING TO EXPORT');
@@ -879,12 +952,8 @@ function exportList() {
   }
 
   const factionColor = faction.color;
-  const accentColor = faction.accent;
 
-  // Build unit card HTML for each entry
-  let cardsHTML = '';
-
-  // Squad Leader first, then fireteams, then independents
+  // Order: Squad Leader → Fireteams → Independents
   const squadLeader = activeList.find(e => e.unit.required === true);
   const fireteamEntries = fireteams.map(ft => ({
     ft,
@@ -894,15 +963,36 @@ function exportList() {
 
   const orderedEntries = [
     ...(squadLeader ? [squadLeader] : []),
-    ...fireteamEntries.flatMap(({ members }) => members),
+    ...fireteamEntries.flatMap(({ ft, members }) => members),
     ...independentEntries
   ];
 
+  // Build section labels map so we can inject headers
+  const sectionBreaks = {};
+  if (squadLeader) sectionBreaks[squadLeader.id] = 'SQUAD LEADER';
+  fireteamEntries.forEach(({ ft, members }) => {
+    if (members.length > 0) {
+      const ftPts = members.reduce((s, m) => s + m.totalPts, 0);
+      sectionBreaks[members[0].id] = `FIRETEAM ${ft.name.toUpperCase()} — ${ftPts}pts`;
+    }
+  });
+  if (independentEntries.length > 0) sectionBreaks[independentEntries[0].id] = 'INDEPENDENT UNITS';
+
+  let cardsHTML = '';
+
   orderedEntries.forEach(entry => {
     const u = entry.unit;
-    const upgradeNames = entry.selectedUpgrades.map(upg => upg.name).join(', ');
 
-    const weaponsRows = u.weapons.map(w => `
+    // Inject section header before this card if needed
+    if (sectionBreaks[entry.id]) {
+      cardsHTML += `<div class="section-divider">${sectionBreaks[entry.id]}</div>`;
+    }
+
+    // Resolve final weapon loadout
+    const finalWeapons = resolveWeapons(u, entry.selectedUpgrades);
+    const equipmentUpgrades = resolveEquipmentUpgrades(entry.selectedUpgrades);
+
+    const weaponsRows = finalWeapons.map(w => `
       <tr>
         <td>${w.name}</td>
         <td>${w.dice}D</td>
@@ -914,10 +1004,15 @@ function exportList() {
 
     const abilitiesHTML = (u.abilities && u.abilities.length > 0)
       ? u.abilities.map(a => `<span class="ability">${a}</span>`).join('')
-      : '<span class="ability-none">—</span>';
+      : '';
 
-    const upgradesHTML = upgradeNames
-      ? `<div class="upgrades-row"><span class="upgrades-label">UPGRADES:</span> ${upgradeNames}</div>`
+    const equipHTML = equipmentUpgrades.length > 0
+      ? `<div class="equip-section">
+           <div class="equip-label">EQUIPMENT &amp; SUPPORT</div>
+           ${equipmentUpgrades.map(upg =>
+             `<div class="equip-row"><span class="equip-name">${upg.name}</span><span class="equip-effect">${upg.effect}</span></div>`
+           ).join('')}
+         </div>`
       : '';
 
     cardsHTML += `
@@ -936,11 +1031,11 @@ function exportList() {
           <div class="stat"><div class="stat-label">DR</div><div class="stat-val">${u.stats.DR}</div></div>
         </div>
         <table class="weapons-table">
-          <thead><tr><th>WEAPON</th><th>DICE</th><th>HIT</th><th>RNG</th><th>KW</th></tr></thead>
+          <thead><tr><th>WEAPON</th><th>DICE</th><th>HIT</th><th>RANGE</th><th>KEYWORDS</th></tr></thead>
           <tbody>${weaponsRows}</tbody>
         </table>
-        <div class="abilities-row">${abilitiesHTML}</div>
-        ${upgradesHTML}
+        ${abilitiesHTML ? `<div class="abilities-row">${abilitiesHTML}</div>` : ''}
+        ${equipHTML}
       </div>
     `;
   });
@@ -961,27 +1056,36 @@ function exportList() {
       font-family: 'Share Tech Mono', monospace;
       background: #fff;
       color: #111;
-      padding: 16px;
+      padding: 20px 28px;
+      max-width: 820px;
+      margin: 0 auto;
     }
     .print-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
       border-bottom: 3px solid ${factionColor};
-      padding-bottom: 8px;
-      margin-bottom: 16px;
+      padding-bottom: 10px;
+      margin-bottom: 6px;
     }
-    .print-title { font-size: 22px; font-weight: bold; letter-spacing: 4px; color: ${factionColor}; }
-    .print-meta { font-size: 12px; color: #555; letter-spacing: 2px; text-align: right; }
-    .print-pts { font-size: 18px; font-weight: bold; color: #111; }
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 12px;
+    .print-title { font-size: 24px; font-weight: bold; letter-spacing: 4px; color: ${factionColor}; }
+    .print-sub { font-size: 12px; color: #555; letter-spacing: 2px; margin-top: 3px; }
+    .print-pts { font-size: 20px; font-weight: bold; color: #111; text-align: right; }
+    .print-models { font-size: 11px; color: #555; letter-spacing: 2px; text-align: right; margin-top: 3px; }
+    .section-divider {
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: ${factionColor};
+      text-transform: uppercase;
+      border-bottom: 1px solid ${factionColor};
+      padding: 10px 0 4px 0;
+      margin: 14px 0 10px 0;
     }
+    .section-divider:first-child { margin-top: 10px; }
     .unit-card {
       border: 2px solid ${factionColor};
-      padding: 10px 12px;
+      padding: 14px 16px;
+      margin-bottom: 10px;
       page-break-inside: avoid;
       break-inside: avoid;
     }
@@ -989,54 +1093,90 @@ function exportList() {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      margin-bottom: 8px;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 6px;
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 8px;
     }
-    .card-role { font-size: 9px; letter-spacing: 3px; color: ${factionColor}; text-transform: uppercase; margin-bottom: 2px; }
-    .card-name { font-size: 16px; font-weight: bold; letter-spacing: 1px; }
-    .card-pts { font-size: 16px; font-weight: bold; color: ${factionColor}; white-space: nowrap; }
+    .card-role {
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: ${factionColor};
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+    .card-name { font-size: 20px; font-weight: bold; letter-spacing: 1px; }
+    .card-pts { font-size: 20px; font-weight: bold; color: ${factionColor}; white-space: nowrap; }
     .stats-row {
       display: flex;
-      gap: 0;
       border: 1px solid #ddd;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
     .stat {
       flex: 1;
       text-align: center;
-      padding: 4px 2px;
+      padding: 6px 4px;
       border-right: 1px solid #ddd;
     }
     .stat:last-child { border-right: none; }
-    .stat-label { font-size: 8px; color: #888; letter-spacing: 2px; margin-bottom: 2px; }
-    .stat-val { font-size: 14px; font-weight: bold; }
-    .weapons-table { width: 100%; border-collapse: collapse; font-size: 10px; margin-bottom: 8px; }
+    .stat-label { font-size: 9px; color: #999; letter-spacing: 2px; margin-bottom: 3px; }
+    .stat-val { font-size: 17px; font-weight: bold; }
+    .weapons-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-bottom: 10px;
+    }
     .weapons-table th {
       text-align: left;
-      font-size: 8px;
+      font-size: 9px;
       letter-spacing: 2px;
       color: #888;
       border-bottom: 1px solid #ddd;
-      padding: 2px 4px;
+      padding: 3px 6px;
       font-weight: normal;
     }
-    .weapons-table td { padding: 3px 4px; border-bottom: 1px solid #f0f0f0; }
-    .kw { color: ${factionColor}; font-size: 9px; }
-    .abilities-row { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 6px; }
+    .weapons-table td {
+      padding: 5px 6px;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 12px;
+    }
+    .kw { color: ${factionColor}; }
+    .abilities-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 8px;
+    }
     .ability {
-      font-size: 9px;
-      padding: 2px 6px;
-      background: #f0f4f0;
+      font-size: 10px;
+      padding: 3px 8px;
+      background: #f4f4f4;
       border: 1px solid ${factionColor};
-      color: #333;
+      color: #222;
       letter-spacing: 1px;
     }
-    .ability-none { font-size: 9px; color: #aaa; }
-    .upgrades-row { font-size: 9px; color: #555; letter-spacing: 1px; border-top: 1px solid #eee; padding-top: 4px; }
-    .upgrades-label { color: ${factionColor}; font-weight: bold; }
+    .equip-section {
+      border-top: 1px solid #eee;
+      padding-top: 8px;
+      margin-top: 4px;
+    }
+    .equip-label {
+      font-size: 9px;
+      letter-spacing: 3px;
+      color: #999;
+      margin-bottom: 5px;
+    }
+    .equip-row {
+      display: flex;
+      gap: 10px;
+      font-size: 11px;
+      margin-bottom: 3px;
+      align-items: baseline;
+    }
+    .equip-name { color: #111; font-weight: bold; white-space: nowrap; }
+    .equip-effect { color: #555; }
     .print-footer {
-      margin-top: 16px;
+      margin-top: 20px;
       border-top: 1px solid #ddd;
       padding-top: 10px;
       display: flex;
@@ -1047,10 +1187,21 @@ function exportList() {
     }
     .print-valid { color: #2a7a3a; }
     .print-warning { color: #c0392b; }
+    .no-print {
+      font-family: 'Share Tech Mono', monospace;
+      background: ${factionColor};
+      color: #fff;
+      border: none;
+      padding: 10px 24px;
+      font-size: 13px;
+      letter-spacing: 3px;
+      cursor: pointer;
+      margin-bottom: 18px;
+      display: block;
+    }
     @media print {
-      body { padding: 10px; }
-      .no-print { display: none; }
-      .cards-grid { grid-template-columns: repeat(2, 1fr); }
+      body { padding: 12px; }
+      .no-print { display: none !important; }
     }
   </style>
 </head>
@@ -1058,30 +1209,18 @@ function exportList() {
   <div class="print-header">
     <div>
       <div class="print-title">OPERATION URBAN STORM</div>
-      <div class="print-meta">${faction.name.toUpperCase()} — V${GAME_VERSION}</div>
+      <div class="print-sub">${faction.name.toUpperCase()} — V${GAME_VERSION}</div>
     </div>
-    <div class="print-meta" style="text-align:right">
+    <div>
       <div class="print-pts">${total} / ${POINTS_LIMIT} PTS</div>
-      <div>${activeList.length} MODELS</div>
+      <div class="print-models">${activeList.length} MODELS</div>
     </div>
   </div>
-  <button class="no-print" onclick="window.print()" style="
-    font-family: 'Share Tech Mono', monospace;
-    background: ${factionColor};
-    color: #fff;
-    border: none;
-    padding: 10px 24px;
-    font-size: 13px;
-    letter-spacing: 3px;
-    cursor: pointer;
-    margin-bottom: 16px;
-  ">⎙ PRINT / SAVE AS PDF</button>
-  <div class="cards-grid">
-    ${cardsHTML}
-  </div>
+  <button class="no-print" onclick="window.print()">⎙ PRINT / SAVE AS PDF</button>
+  ${cardsHTML}
   <div class="print-footer">
     ${validationBlock}
-    <span>OPERATION URBAN STORM V${GAME_VERSION} — odinschosen13.github.io/Operation-Urban-Storm</span>
+    <span>odinschosen13.github.io/Operation-Urban-Storm</span>
   </div>
 </body>
 </html>`;
