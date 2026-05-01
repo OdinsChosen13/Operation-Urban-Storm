@@ -807,14 +807,20 @@ function showLoadModal() {
           app.innerHTML = `
             <div id="points-bar">
               <div id="list-name">${factions[currentFaction].name.toUpperCase()} — LIST BUILDER</div>
-              <div id="points-display">0 / ${POINTS_LIMIT} PTS</div>
+              <div id="points-bar-right">
+                <div id="points-display">0 / ${POINTS_LIMIT} PTS</div>
+                <div id="action-buttons">
+                  <button class="action-btn save-btn" onclick="showSaveModal()">💾 SAVE</button>
+                  <button class="action-btn load-btn" onclick="showLoadModal()">📂 LOAD</button>
+                  <button class="action-btn export-btn" onclick="exportList()">⎙ EXPORT</button>
+                </div>
+              </div>
             </div>
             <div id="unit-browser">
               <div id="unit-list"></div>
               <div id="active-list"></div>
             </div>
           `;
-          renderActionBar();
           renderUnitBrowser();
           renderActiveList();
           updatePointsDisplay();
@@ -1977,7 +1983,14 @@ function selectFaction(factionKey) {
   app.innerHTML = `
     <div id="points-bar">
       <div id="list-name">${factions[factionKey].name.toUpperCase()} — LIST BUILDER</div>
-      <div id="points-display">0 / ${POINTS_LIMIT} PTS</div>
+      <div id="points-bar-right">
+        <div id="points-display">0 / ${POINTS_LIMIT} PTS</div>
+        <div id="action-buttons">
+          <button class="action-btn save-btn" onclick="showSaveModal()">💾 SAVE</button>
+          <button class="action-btn load-btn" onclick="showLoadModal()">📂 LOAD</button>
+          <button class="action-btn export-btn" onclick="exportList()">⎙ EXPORT</button>
+        </div>
+      </div>
     </div>
     <div id="unit-browser">
       <div id="unit-list"></div>
@@ -1985,7 +1998,6 @@ function selectFaction(factionKey) {
     </div>
   `;
 
-  renderActionBar();
   renderUnitBrowser();
   renderActiveList();
   updatePointsDisplay();
