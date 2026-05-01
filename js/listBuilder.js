@@ -273,6 +273,22 @@ const factions = {
         ],
         independent: true,
         maxPerList: 1
+      },
+      {
+        id: "usa_JLTV",
+        name: "Joint Light Tactical Vehicle (JLVT)",
+        role: "Vehicles",
+        pts: 120,
+        stats: { MOV: '8"', MOR: 3, CEV: 3, Passengers: 4, Armor: 1, DR: "6+" },
+        weapons: [
+          { name: "M2 .50 Cal", dice: 7, hit: "5+", range: '36"', keywords: "C-Fire" },
+        ],
+        abilities: [""],
+        socketLimits: { EQUIPMENT: 1},
+        upgrades: [
+          { socket: "EQUIPMENT", name: "Javalin Anti-Tank Guided Missle", pts: 20, effect: "EXPL 1 / PEN 3" },
+        ],
+        independent: true,
       }
     ]
   },
@@ -1528,6 +1544,7 @@ function renderUnitBrowser() {
   const infantry = faction.units.filter(u => !u.role.includes("Leader") && !u.role.includes("Specialist") && !u.role.includes("Independent"));
   const specialists = faction.units.filter(u => u.role === "Specialist");
   const independent = faction.units.filter(u => u.independent === true);
+  const vehicles = faction.units.filter(u => u.role === "Vehicles");
 
   let html = '<div class="section-label">LEADERS</div>';
   leaders.forEach(unit => {
