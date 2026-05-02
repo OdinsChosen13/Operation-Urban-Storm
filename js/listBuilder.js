@@ -295,7 +295,7 @@ const factions = {
         name: "Stryker M1126",
         role: "Vehicles",
         pts: 200,
-        stats: { MOV: '6"', MOR: 4, CEV: 4, Passengers: 6, Armor: F3/S2/R1, DR: "6+" },
+        stats: { MOV: '6"', MOR: 4, CEV: 4, Passengers: 6, Armor: "F3/S2/R1", DR: "6+" },
         weapons: [
           { name: "M2 .50 Cal", dice: 6, hit: "5+", range: '36"', keywords: "C-Fire" },
         ],
@@ -311,7 +311,7 @@ const factions = {
         name: "M2 Bradley",
         role: "Vehicles",
         pts: 500,
-        stats: { MOV: '4"', MOR: 5, CEV: 5, Passengers: 6, Armor: F4/S3/R2, DR: "6+" },
+        stats: { MOV: '4"', MOR: 5, CEV: 5, Passengers: 6, Armor: "F4/S3/R2", DR: "6+" },
         weapons: [
           { name: "25 mm M242 Bushmaster chain gun", dice: 8, hit: "5+", range: '36"', keywords: "C-Fire / EXPL 1" },
         ],
@@ -526,6 +526,23 @@ const factions = {
         ],
         independent: true,
         maxPerList: 1
+      },
+      {
+        id: "ins_technical",
+        name: "Technical",
+        role: "Vehicles",
+        pts: 110,
+        stats: { MOV: '8"', MOR: 3, CEV: 3, Passengers: 4, Armor: 1, DR: "8+" },
+        weapons: [
+          { name: "DShK 1938 Machine Gun", dice: 8, hit: "7+", range: '36"', keywords: "C-Fire" },
+        ],
+        abilities: [""],
+        socketLimits: { WEAPON: 1},
+        upgrades: [
+          { socket: "WEAPON", name: "ZPU Heavy Machine Gun", pts: 60, effect: "10D / 8+ / 36\"" },
+          { socket: "WEAPON", name: "SPG-9 Recoiless rifle", pts: 50, effect: "4D / 6+ / 36\" / PEN 2" },
+          ],
+        independent: true,
       }
       
     ]
