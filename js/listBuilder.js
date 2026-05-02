@@ -281,7 +281,7 @@ const factions = {
         pts: 120,
         stats: { MOV: '8"', MOR: 3, CEV: 3, Passengers: 4, Armor: 1, DR: "6+" },
         weapons: [
-          { name: "M2 .50 Cal", dice: 7, hit: "5+", range: '36"', keywords: "C-Fire" },
+          { name: "M2 .50 Cal", dice: 6, hit: "5+", range: '36"', keywords: "C-Fire" },
         ],
         abilities: [""],
         socketLimits: { EQUIPMENT: 1},
@@ -295,14 +295,30 @@ const factions = {
         name: "Stryker M1126",
         role: "Vehicles",
         pts: 200,
-        stats: { MOV: '7"', MOR: 4, CEV: 4, Passengers: 6, Armor: F3/S2/R1, DR: "6+" },
+        stats: { MOV: '6"', MOR: 4, CEV: 4, Passengers: 6, Armor: F3/S2/R1, DR: "6+" },
         weapons: [
-          { name: "M2 .50 Cal", dice: 7, hit: "5+", range: '36"', keywords: "C-Fire" },
+          { name: "M2 .50 Cal", dice: 6, hit: "5+", range: '36"', keywords: "C-Fire" },
         ],
         abilities: [""],
         socketLimits: { WEAPON: 1},
         upgrades: [
-          { socket: "WEAPON", name: "40 mm Mk 19 Grenade Launcher", pts: 45, effect: "EXPL 2" },
+          { socket: "WEAPON", name: "40 mm Mk 19 Grenade Launcher", pts: 45, effect: "5D / 4+ / 36\" / EXPL 2" },
+        ],
+        independent: true,
+      },
+      {
+        id: "usa_bradley",
+        name: "M2 Bradley",
+        role: "Vehicles",
+        pts: 500,
+        stats: { MOV: '4"', MOR: 5, CEV: 5, Passengers: 6, Armor: F4/S3/R2, DR: "6+" },
+        weapons: [
+          { name: "25 mm M242 Bushmaster chain gun", dice: 8, hit: "5+", range: '36"', keywords: "C-Fire / EXPL 1" },
+        ],
+        abilities: [""],
+        socketLimits: { WEAPON: 1},
+        upgrades: [
+          { socket: "EQUIPMENT", name: "BGM-71 TOW anti-tank missile", pts: 60, effect: "2D / 4+ / 36\" / PEN 4" },
         ],
         independent: true,
       }
