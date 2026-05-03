@@ -520,7 +520,6 @@ const factions = {
         abilities: ["Assisted Reload", "Ambush Shock"],
         socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
         upgrades: [
-          { socket: "WEAPON", name: "XM7 Rifle", pts: 10, effect: "5D / 4+ / 36\" — replaces M4A1" },
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
         ],
@@ -539,12 +538,29 @@ const factions = {
         abilities: [""],
         socketLimits: { WEAPON: 1},
         upgrades: [
-          { socket: "WEAPON", name: "ZPU Heavy Machine Gun", pts: 60, effect: "10D / 8+ / 36\"" },
-          { socket: "WEAPON", name: "SPG-9 Recoiless rifle", pts: 50, effect: "4D / 6+ / 36\" / PEN 2" },
+          { socket: "WEAPON", name: "ZPU Heavy Machine Gun", pts: 60, effect: "10D / 8+ / 36\" — replaces DShK 1938 Machine Gun" },
+          { socket: "WEAPON", name: "SPG-9 Recoiless rifle", pts: 50, effect: "4D / 6+ / 36\" / PEN 2 — replaces DShK 1938 Machine Gun" },
+          ],
+        independent: true,
+      },
+      {
+        id: "ins__heavy_technical",
+        name: "Heavy_Technical",
+        role: "Vehicles",
+        pts: 150,
+        stats: { MOV: '8"', MOR: 3, CEV: 3, Passengers: 2, Armor: "F2/S1/R1", DR: "8+" },
+        weapons: [
+          { name: "Kornet Anti-Tank Guided Missile", dice: 4, hit: "5+", range: '36"', keywords: "RLD / ENC / PEN 4" },
+        ],
+        abilities: [""],
+        socketLimits: { WEAPON: 1},
+        upgrades: [
+          { socket: "WEAPON", name: "ZPU Heavy Machine Gun", pts: 60, effect: "10D / 8+ / 36\" — replaces Kornet Anti-Tank Guided Missile" },
+          { socket: "WEAPON", name: "SPG-9 Recoiless rifle", pts: 50, effect: "4D / 6+ / 36\" / PEN 2 — replaces Kornet Anti-Tank Guided Missile" },
+          { socket: "WEAPON", name: "DShK 1938 Machine Gun", pts: 50, effect: "8D / 7+ / 36\" / C-Fire0 — replaces Kornet Anti-Tank Guided Missile" },
           ],
         independent: true,
       }
-      
     ]
   },
 
@@ -754,7 +770,7 @@ const factions = {
         pts: 150,
         stats: { MOV: '6"', MOR: 3, CEV: 2, DR: "6+" },
         weapons: [
-          { name: "9M133 Kornet", dice: 4, hit: "4+", range: '48"', keywords: "RLD / ENC / PEN 4 / Deploy" },
+          { name: "9M133 Kornet", dice: 4, hit: "4+", range: '36"', keywords: "RLD / ENC / PEN 4 / Deploy" },
           { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Deploy", "Minimum Range 6\"", "Coherency Range 2\""],
