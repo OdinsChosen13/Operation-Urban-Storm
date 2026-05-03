@@ -544,7 +544,7 @@ const factions = {
         independent: true,
       },
       {
-        id: "ins__heavy_technical",
+        id: "ins_heavy_technical",
         name: "Heavy_Technical",
         role: "Vehicles",
         pts: 150,
@@ -557,7 +557,7 @@ const factions = {
         upgrades: [
           { socket: "WEAPON", name: "ZPU Heavy Machine Gun", pts: 60, effect: "10D / 8+ / 36\" — replaces Kornet Anti-Tank Guided Missile" },
           { socket: "WEAPON", name: "SPG-9 Recoiless rifle", pts: 50, effect: "4D / 6+ / 36\" / PEN 2 — replaces Kornet Anti-Tank Guided Missile" },
-          { socket: "WEAPON", name: "DShK 1938 Machine Gun", pts: 50, effect: "8D / 7+ / 36\" / C-Fire0 — replaces Kornet Anti-Tank Guided Missile" },
+          { socket: "WEAPON", name: "DShK 1938 Machine Gun", pts: 50, effect: "8D / 7+ / 36\" / C-Fire — replaces Kornet Anti-Tank Guided Missile" },
           ],
         independent: true,
       }
