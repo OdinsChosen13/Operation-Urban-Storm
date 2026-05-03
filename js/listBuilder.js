@@ -155,7 +155,7 @@ const factions = {
         abilities: ["Fireteam Cohesion", "Coordinated Fire", "Steady Aim"],
         socketLimits: { SUPPORT: 1 },
         upgrades: [
-          { socket: "SUPPORT", name: "Range Finder", pts: 15, effect: "+1 hit value improvement on all Shoot actions. List limit 1." },
+          { socket: "SUPPORT", name: "Range Finder", pts: 15, effect: "+1 hit value improvement on all Shoot actions this model takes. List limit 1." },
           { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" }
         ]
       },
@@ -467,7 +467,7 @@ const factions = {
         abilities: ["Steady Aim", "Ambush Shock"],
         socketLimits: { SUPPORT: 1 },
         upgrades: [
-          { socket: "SUPPORT", name: "Range Finder", pts: 15, effect: "+1 hit value improvement on all Shoot actions. List limit 1." },
+          { socket: "SUPPORT", name: "Range Finder", pts: 15, effect: "+1 hit value improvement on all Shoot actions this model takes. List limit 1." },
           { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" }
         ]
       },
@@ -703,7 +703,7 @@ const factions = {
         socketLimits: { WEAPON: 1, SUPPORT: 1 },
         upgrades: [
           { socket: "WEAPON", name: "AS Val", pts: 12, effect: "4D / 4+ / 24\" / CQB — replaces VSS Vintorez" },
-          { socket: "SUPPORT", name: "Rangefinder", pts: 15, effect: "+1 hit value improvement on all Shoot actions. List limit 1." },
+          { socket: "SUPPORT", name: "Rangefinder", pts: 15, effect: "+1 hit value improvement on all Shoot actions this model takes. List limit 1." },
           { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot actions if this model did not Move this activation" }
         ]
       },
@@ -801,7 +801,23 @@ const factions = {
         ],
         independent: true,
         maxPerList: 1
-      }
+      },
+      {
+        id: "vdv_UAZ",
+        name: "UAZ-469",
+        role: "Vehicles",
+        pts: 130,
+        stats: { MOV: '8"', MOR: 3, CEV: 3, Passengers: 4, Armor: 1, DR: "6+" },
+        weapons: [
+          { name: "M2 .50 Cal", dice: 6, hit: "5+", range: '36"', keywords: "C-Fire" },
+        ],
+        abilities: [""],
+        socketLimits: { EQUIPMENT: 1},
+        upgrades: [
+          { socket: "EQUIPMENT", name: "Javalin Anti-Tank Guided Missle", pts: 20, effect: "4D / 4+ / 36\" / EXPL 1 / PEN 3" },
+        ],
+        independent: true,
+      },
     ]
   }
 };
