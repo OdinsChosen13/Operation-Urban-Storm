@@ -68,7 +68,7 @@ const factions = {
         name: "Private First Class",
         role: "Rifleman",
         pts: 90,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
         weapons: [
           { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
@@ -90,7 +90,7 @@ const factions = {
         name: "Machine Gunner",
         role: "Specialist",
         pts: 110,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
         weapons: [
           { name: "M249 SAW", dice: 7, hit: "6+", range: '36"', keywords: "C-FIRE / ENC" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
@@ -109,7 +109,7 @@ const factions = {
         name: "AT Specialist",
         role: "Specialist",
         pts: 105,
-        stats: { MOV: '5"', MOR: 3, CEV: 3, DR: "6+" },
+        stats: { MOV: '5"', MOR: 3, CEV: 3, DR: "7+" },
         weapons: [
           { name: "M3 MAAWS", dice: 4, hit: "4+", range: '36"', keywords: "EXPL 2 / RLD / ENC" },
           { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" }
@@ -127,7 +127,7 @@ const factions = {
         name: "Grenadier",
         role: "Specialist",
         pts: 100,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
         weapons: [
           { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
           { name: "M320 Grenade Launcher", dice: 3, hit: "5+", range: '24"', keywords: "EXPL 1 / RLD / LOB" },
@@ -147,7 +147,7 @@ const factions = {
         name: "Designated Marksman",
         role: "Specialist",
         pts: 100,
-        stats: { MOV: '5"', MOR: 3, CEV: 3, DR: "6+" },
+        stats: { MOV: '5"', MOR: 3, CEV: 3, DR: "7+" },
         weapons: [
           { name: "M110A1 CSASS", dice: 3, hit: "4+", range: '42"', keywords: "" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
@@ -164,7 +164,7 @@ const factions = {
         name: "Breacher",
         role: "Specialist",
         pts: 120,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "5+" },
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
         weapons: [
           { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '24"', keywords: "CQB" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
@@ -183,7 +183,7 @@ const factions = {
         name: "Combat Medic",
         role: "Specialist",
         pts: 100,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
         weapons: [
           { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
@@ -202,7 +202,7 @@ const factions = {
         name: "Sniper",
         role: "Independent — Sniper Team",
         pts: 120,
-        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "7+" },
+        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "8+" },
         weapons: [
           { name: "M110A1 CSASS", dice: 2, hit: "3+", range: '48"', keywords: "RLD / ENC" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
@@ -221,7 +221,7 @@ const factions = {
         name: "Spotter",
         role: "Independent — Sniper Team",
         pts: 85,
-        stats: { MOV: '6"', MOR: 2, CEV: 3, DR: "7+" },
+        stats: { MOV: '6"', MOR: 2, CEV: 3, DR: "8+" },
         weapons: [
           { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
@@ -240,7 +240,7 @@ const factions = {
         name: "Javelin Gunner",
         role: "Independent — AT Team",
         pts: 155,
-        stats: { MOV: '6"', MOR: 3, CEV: 2, DR: "6+" },
+        stats: { MOV: '6"', MOR: 3, CEV: 2, DR: "7+" },
         weapons: [
           { name: "FGM-148 Javelin", dice: 4, hit: "4+", range: '48"', keywords: "RLD / ENC / PEN 4 / Deploy" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
@@ -259,7 +259,7 @@ const factions = {
         name: "AT Loader",
         role: "Independent — AT Team",
         pts: 85,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
         weapons: [
           { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
