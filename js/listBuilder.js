@@ -410,8 +410,8 @@ const factions = {
         abilities: ["Aggressive Entry", "Urban Predator(Passive)", "Ambush Shock"],
         socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
         upgrades: [
-          { socket: "WEAPON", name: "Shotgun", pts: 8, effect: "7D / 7+ / 8\" / CQB — replaces AK-47" },
-          { socket: "WEAPON", name: "MP5", pts: 8, effect: "5D / 6+ / 12\" / CQB — replaces AK-47" },
+          { socket: "WEAPON", name: "Shotgun", pts: 8, effect: "7D / 7+ / 8\" / CQB — replaces AK-74U" },
+          { socket: "WEAPON", name: "MP5", pts: 8, effect: "5D / 6+ / 12\" / CQB — replaces AK-74U" },
           { socket: "EQUIPMENT", name: "RGD-5 Grenade", pts: 6, effect: "3D / 6+ / 8\" / EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
@@ -597,7 +597,7 @@ const factions = {
         name: "Section Commander",
         role: "Team Leader",
         pts: 85,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
         weapons: [
           { name: "AK-12", dice: 6, hit: "6+", range: '36"', keywords: "" },
           { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
@@ -617,7 +617,7 @@ const factions = {
         name: "Desantnik",
         role: "Assault Trooper",
         pts: 85,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
+        stats: { MOV: '6"', MOR: 3, CEV: 2, DR: "7+" },
         weapons: [
           { name: "AK-12", dice: 6, hit: "6+", range: '36"', keywords: "" },
           { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
@@ -638,7 +638,7 @@ const factions = {
         name: "PKM Operator",
         role: "Specialist",
         pts: 130,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
         weapons: [
           { name: "PKM", dice: 8, hit: "6+", range: '36"', keywords: "C-FIRE" },
           { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
@@ -657,7 +657,7 @@ const factions = {
         name: "RPG Operator",
         role: "Specialist",
         pts: 115,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
         weapons: [
           { name: "RPG-7D", dice: 4, hit: "5+", range: '36"', keywords: "EXPL 2 / RLD" },
           { name: "AK-12", dice: 6, hit: "6+", range: '36"', keywords: "" }
@@ -675,7 +675,7 @@ const factions = {
         name: "Shturmovnik",
         role: "Specialist",
         pts: 130,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "5+" },
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
         weapons: [
           { name: "AK-12K", dice: 6, hit: "6+", range: '18"', keywords: "CQB" },
           { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
@@ -694,7 +694,7 @@ const factions = {
         name: "Marksman",
         role: "Specialist",
         pts: 105,
-        stats: { MOV: '5"', MOR: 3, CEV: 3, DR: "6+" },
+        stats: { MOV: '5"', MOR: 3, CEV: 3, DR: "7+" },
         weapons: [
           { name: "VSS Vintorez", dice: 3, hit: "4+", range: '36"', keywords: "" },
           { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
@@ -712,7 +712,7 @@ const factions = {
         name: "Sanitár",
         role: "Specialist",
         pts: 105,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
         weapons: [
           { name: "AK-12", dice: 6, hit: "6+", range: '36"', keywords: "" },
           { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
@@ -730,7 +730,7 @@ const factions = {
         name: "Sniper",
         role: "Independent — Sniper Team",
         pts: 125,
-        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "7+" },
+        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "8+" },
         weapons: [
           { name: "SV-98", dice: 2, hit: "3+", range: '48"', keywords: "RLD / ENC" },
           { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
@@ -749,7 +749,7 @@ const factions = {
         name: "Spotter",
         role: "Independent — Sniper Team",
         pts: 85,
-        stats: { MOV: '6"', MOR: 2, CEV: 3, DR: "7+" },
+        stats: { MOV: '6"', MOR: 2, CEV: 3, DR: "8+" },
         weapons: [
           { name: "AK-12", dice: 6, hit: "6+", range: '36"', keywords: "" },
           { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
@@ -768,7 +768,7 @@ const factions = {
         name: "Kornet Gunner",
         role: "Independent — AT Team",
         pts: 150,
-        stats: { MOV: '6"', MOR: 3, CEV: 2, DR: "6+" },
+        stats: { MOV: '6"', MOR: 3, CEV: 2, DR: "7+" },
         weapons: [
           { name: "9M133 Kornet", dice: 4, hit: "4+", range: '36"', keywords: "RLD / ENC / PEN 4 / Deploy" },
           { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
@@ -787,7 +787,7 @@ const factions = {
         name: "Kornet Loader",
         role: "Independent — AT Team",
         pts: 85,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
         weapons: [
           { name: "AK-12", dice: 6, hit: "6+", range: '36"', keywords: "" },
           { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
