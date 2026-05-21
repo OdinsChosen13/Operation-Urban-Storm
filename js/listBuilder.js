@@ -808,7 +808,7 @@ const factions = {
         role: "Vehicles",
         pts: 130,
         stats: { MOV: '9"', MOR: 3, CEV: 2, Passengers: 4, Armor: 1, DR: "6+" },
-        weapons: [
+        weapons: [ "None"
         ],
         abilities: [""],
         socketLimits: {},
