@@ -807,15 +807,46 @@ const factions = {
         name: "UAZ-469",
         role: "Vehicles",
         pts: 130,
-        stats: { MOV: '8"', MOR: 3, CEV: 3, Passengers: 4, Armor: 1, DR: "6+" },
+        stats: { MOV: '9"', MOR: 3, CEV: 2, Passengers: 4, Armor: 1, DR: "6+" },
         weapons: [
-          { name: "M2 .50 Cal", dice: 6, hit: "5+", range: '36"', keywords: "C-Fire" },
         ],
         abilities: [""],
-        socketLimits: { EQUIPMENT: 1},
+        socketLimits: {},
         upgrades: [
-          { socket: "EQUIPMENT", name: "Javalin Anti-Tank Guided Missle", pts: 20, effect: "4D / 4+ / 36\" / EXPL 1 / PEN 3" },
         ],
+        independent: true,
+      },
+      {
+        id: "vdv_BTR-82A",
+        name: "BTR-82A",
+        role: "Vehicles",
+        pts: 200,
+        stats: { MOV: '6"', MOR: 4, CEV: 4, Passengers: 7, Armor: "F3/S2/R1", DR: "6+" },
+        weapons: [
+          { name: "14.5 mm KPVT Machine Gun", dice: 7, hit: "6+", range: '36"', keywords: "C-Fire" },
+        ],
+        abilities: [""],
+        socketLimits: { WEAPON: 1},
+        upgrades: [
+          { socket: "WEAPON", name: "30 mm 2A72 Auto Cannon", pts: 50, effect: "7D / 5+ / 36\" / EXPL 1 / PEN 1 — replaces 14.5 mm KPVT Machine Gun"},
+        ],
+        independent: true,
+      },
+      {
+        id: "vdv_BMD-4",
+        name: "BMD-4",
+        role: "Vehicles",
+        pts: 500,
+        stats: { MOV: '5"', MOR: 5, CEV: 5, Passengers: 7, Armor: "F4/S3/R1", DR: "6+" },
+        weapons: [
+          { name: "100 mm 2A70 cannon", dice: 2, hit: "6+", range: '36"', keywords: "EXPL 3 / PEN 3" },
+          { name: "30 mm 2A72 Auto Cannon", dice: 7, hit: "6+", range: '36"', keywords: "EXPL 1 / C-Fire" },
+          { name: "9M113 Konkurs ATGM", dice: 7, hit: "6+", range: '36"', keywords: "PEN 4" },
+        ],
+        abilities: [""],
+        socketLimits: {},
+        upgrades: [
+          ],
         independent: true,
       },
     ]
