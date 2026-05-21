@@ -617,7 +617,7 @@ const factions = {
         name: "Desantnik",
         role: "Assault Trooper",
         pts: 85,
-        stats: { MOV: '6"', MOR: 3, CEV: 2, DR: "7+" },
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
         weapons: [
           { name: "AK-12", dice: 6, hit: "6+", range: '36"', keywords: "" },
           { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
@@ -806,7 +806,7 @@ const factions = {
         id: "vdv_UAZ",
         name: "UAZ-469",
         role: "Vehicles",
-        pts: 130,
+        pts: 100,
         stats: { MOV: '9"', MOR: 3, CEV: 2, Passengers: 4, Armor: 1, DR: "6+" },
         weapons: [ "None"
         ],
