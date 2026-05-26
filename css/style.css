@@ -1,7 +1,7 @@
 /* Import a military-style font from Google */
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Share+Tech+Mono&display=swap');
 
-/* CSS Variables - think of these as global settings */
+/* CSS Variables */
 :root {
   --bg-dark: #0d0f12;
   --bg-mid: #111418;
@@ -15,7 +15,6 @@
   --warning: #f39c12;
 }
 
-/* Reset default browser styling */
 * {
   margin: 0;
   padding: 0;
@@ -267,44 +266,35 @@ header p {
   border-bottom: 2px solid var(--border);
 }
 
-/* Single full-width card */
-.doc-card-single {
-  background-color: #1a1e24;
-  border-left: 4px solid var(--accent);
-  padding: 32px;
-  margin-bottom: 24px;
-}
-
-.doc-card-single h3 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 22px;
-  letter-spacing: 2px;
-  color: #ffffff;
-  margin-bottom: 12px;
-}
-
-.doc-card-single p {
-  color: var(--text);
-  font-size: 14px;
-  line-height: 1.8;
-  margin-bottom: 20px;
-}
-
-/* Two cards side-by-side wrapper */
-.doc-pair {
+/* 3-column grid for doc cards */
+.doc-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-  margin-bottom: 24px;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
-.doc-card-half {
+/* Individual card */
+.doc-card {
   background-color: #1a1e24;
   border-left: 4px solid var(--accent);
   padding: 28px;
 }
 
-.doc-card-half h3 {
+.doc-card.coming-soon {
+  opacity: 0.55;
+  border-left-color: #555;
+}
+
+/* Inner layout: content on top, button pinned to bottom */
+.doc-card-inner {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  gap: 20px;
+}
+
+.doc-card h3 {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 20px;
   letter-spacing: 2px;
@@ -312,25 +302,52 @@ header p {
   margin-bottom: 8px;
 }
 
-.doc-card-half .doctrine-tag {
+.doc-card .doctrine-tag {
   color: #d4a017;
   font-size: 11px;
   letter-spacing: 1px;
-  margin-bottom: 14px;
+  margin-bottom: 12px;
   display: block;
   text-transform: uppercase;
 }
 
-.doc-card-half p {
+.doc-card p {
   color: var(--text);
   font-size: 13px;
   line-height: 1.7;
-  margin-bottom: 20px;
 }
 
-.doc-card-half.coming-soon {
-  opacity: 0.6;
-  border-left-color: #555;
+/* Full-width single card with inline layout */
+.doc-card-single {
+  background-color: #1a1e24;
+  border-left: 4px solid var(--accent);
+  padding: 32px;
+  margin-bottom: 0;
+}
+
+.doc-card-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+
+.doc-card-body h3 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 22px;
+  letter-spacing: 2px;
+  color: #ffffff;
+  margin-bottom: 8px;
+}
+
+.doc-card-body p {
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.doc-card-body .btn-view {
+  flex-shrink: 0;
 }
 
 /* Buttons */
@@ -388,15 +405,15 @@ footer p {
   letter-spacing: 2px;
 }
 
-/* ==================== LEGACY STYLES (List Builder) ==================== */
+/* ==================== LIST BUILDER ==================== */
 
-main {
+main.list-builder-main {
   display: flex;
   justify-content: center;
   padding: 60px 20px;
 }
 
-main a {
+main.list-builder-main a {
   border: 2px solid var(--accent);
   color: var(--accent);
   padding: 16px 40px;
@@ -406,7 +423,7 @@ main a {
   letter-spacing: 4px;
 }
 
-main a:hover {
+main.list-builder-main a:hover {
   background-color: var(--accent);
   color: var(--bg-dark);
 }
@@ -425,6 +442,18 @@ main a:hover {
 }
 
 /* ==================== RESPONSIVE ==================== */
+
+@media (max-width: 900px) {
+  .doc-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .doc-card-body {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
 
 @media (max-width: 768px) {
   .nav-container {
@@ -447,9 +476,10 @@ main a:hover {
     max-width: 300px;
     text-align: center;
   }
+}
 
-  /* Rules page mobile - stack cards */
-  .doc-pair {
+@media (max-width: 600px) {
+  .doc-grid {
     grid-template-columns: 1fr;
   }
 }
