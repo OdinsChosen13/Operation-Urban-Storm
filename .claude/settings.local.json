@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python -c ' *)",
+      "Bash(py --version)",
+      "Bash(py3 --version)",
+      "Bash(node -e \"const fs=require\\('fs'\\); console.log\\(fs.statSync\\('C:/Users/User/Downloads/Operation Urban Storm V1 6 0.docx.pdf'\\).size\\)\")",
+      "Bash(node -e ' *)",
+      "Bash(cd /tmp)",
+      "Bash(npm install *)",
+      "Read(//tmp/pdftools/**)",
+      "Read(//c/tmp/pdftools/**)",
+      "PowerShell($env:TEMP)",
+      "Read(//mnt/c/Users/User/AppData/Local/Temp/pdftools/**)",
+      "Bash(npm config *)"
+    ]
+  }
+}
