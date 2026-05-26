@@ -1,0 +1,45 @@
+# OUS Documentation Folder
+
+This folder contains all official PDF documents for Operation Urban Storm.
+
+## Required Files for V1.6.0
+
+Place the following PDFs in this folder:
+
+### Core Rulebook
+- `Operation_Urban_Storm_V1_6_0.pdf`
+
+### Faction Doctrines
+- `US_Army_Faction_Doctrine_V1_6_0.pdf`
+- `VDV_Faction_Doctrine_V1_6_0.pdf`
+- `Insurgent_Faction_Doctrine_V1_6_0.pdf`
+
+### Supplemental Rules
+- `OUS_Vehicle_Roster_V1_6_0.pdf`
+
+### Changelog
+- `OUS_Changelog_V1_5_0_to_V1_6_0.pdf`
+
+## Folder Structure
+
+```
+docs/
+├── Operation_Urban_Storm_V1_6_0.pdf
+├── US_Army_Faction_Doctrine_V1_6_0.pdf
+├── VDV_Faction_Doctrine_V1_6_0.pdf
+├── Insurgent_Faction_Doctrine_V1_6_0.pdf
+├── OUS_Vehicle_Roster_V1_6_0.pdf
+└── OUS_Changelog_V1_5_0_to_V1_6_0.pdf
+```
+
+## Future Additions
+
+When 2v2 rules are finalized:
+- `OUS_2v2_Team_Battle_Rules.pdf`
+
+## Version Control
+
+When releasing a new version:
+1. Add new PDFs with version number in filename
+2. Update links in `rules.html`
+3. Archive old versions in `docs/archive/` subfolder
