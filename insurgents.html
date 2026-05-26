@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Insurgents Doctrine — Operation Urban Storm</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/doc.css">
+</head>
+<body>
+
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">OPERATION URBAN STORM</div>
+      <div class="nav-links">
+        <a href="index.html">HOME</a>
+        <a href="rules.html" class="active">RULES</a>
+        <a href="listBuilder.html">LIST BUILDER</a>
+        <a href="#" class="disabled">STORE</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="doc-main">
+
+    <div class="doc-page-header faction-header insurgents">
+      <a href="rules.html" class="back-link">← BACK TO RULES</a>
+      <div class="faction-eyebrow">FACTION DOCTRINE</div>
+      <h1>INSURGENTS</h1>
+      <div class="doctrine-subtitle">Pressure & Fragmentation</div>
+      <div class="version-badge">V1.6.0 — DRAFT</div>
+    </div>
+
+    <nav class="doc-toc">
+      <h2>CONTENTS</h2>
+      <ol>
+        <li><a href="#overview">Faction Overview</a></li>
+        <li><a href="#traits">Faction Traits</a></li>
+        <li><a href="#listbuilding">List Building</a></li>
+        <li><a href="#ordercards">Order Card Structure</a></li>
+        <li><a href="#roster">Unit Roster</a></li>
+      </ol>
+    </nav>
+
+    <section class="doc-section" id="overview">
+      <h2>FACTION OVERVIEW</h2>
+      <div class="rule-block faction-overview-block">
+        <p>Insurgent Forces are irregular fighters who overwhelm enemies through numbers, stress, and uncertainty. They force collapse through pressure, tempo disruption, and area denial. <strong>Their cheapness is their weapon.</strong></p>
+      </div>
+    </section>
+
+    <section class="doc-section" id="traits">
+      <h2>FACTION TRAITS</h2>
+
+      <div class="rule-block trait-block">
+        <div class="trait-number">1</div>
+        <div class="trait-body">
+          <h3>Asymmetric Force Ratio</h3>
+          <p>Insurgent models are among the cheapest in the game. Insurgents are expected to outnumber opponents on the battlefield. Losing individual models is acceptable. Losing tempo is not.</p>
+        </div>
+      </div>
+
+      <div class="rule-block trait-block">
+        <div class="trait-number">2</div>
+        <div class="trait-body">
+          <h3>Fragile Discipline</h3>
+          <p>Low Morale means stress thresholds are reached quickly. Insurgent models are prime targets for Stress Exploitation. Leaders are limited and expendable.</p>
+        </div>
+      </div>
+
+      <div class="rule-block trait-block">
+        <div class="trait-number">3</div>
+        <div class="trait-body">
+          <h3>Tempo Saturation</h3>
+          <p>Large Insurgent forces contribute more Order Cards to the shared deck, creating activation unpredictability. More models means more cards. Use this unpredictability as a tool.</p>
+        </div>
+      </div>
+
+      <div class="rule-block trait-block">
+        <div class="trait-number">4</div>
+        <div class="trait-body">
+          <h3>Ambush Shock</h3>
+          <p>When an Insurgent Model performs an Ambush Action and makes a Shoot attack: if at least one Hit is rolled (before Saves), the target Model gains <strong>+1 additional Stress</strong>. Applied even if no damage is inflicted. Does not stack per Hit.</p>
+        </div>
+      </div>
+
+      <div class="rule-block trait-block">
+        <div class="trait-number">5</div>
+        <div class="trait-body">
+          <h3>IED Network</h3>
+          <div class="sub-heading">SETUP</div>
+          <p>At the end of Game Setup, the Insurgent player places 2 IED tokens and 2 Blank tokens face-down (4 tokens total). Each token must be:</p>
+          <ul class="rule-list">
+            <li>At least 3" from the Attacker's Deployment Zone</li>
+            <li>At least 6" from any other token</li>
+          </ul>
+          <div class="sub-heading">DETONATING AN IED</div>
+          <p>Insurgent Model uses <strong>Detonate IED Special Action (1 Action)</strong>. Not a Shoot action. May Shoot in the same activation.</p>
+          <ul class="rule-list">
+            <li>Model must be within 24" of the target. No LoS required.</li>
+            <li>Flip the token: Blank = removed, no effect. IED = detonates.</li>
+            <li>Resolve as a standard attack following Section 6.1. Targets roll their Defense Roll as normal.</li>
+            <li><strong>Attack:</strong> 4 dice hitting on 5+, Explosive (3"). Cover ignored.</li>
+            <li>Each affected Model gains +1 additional Stress Counter.</li>
+            <li>Each token is one-shot only.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="doc-section" id="listbuilding">
+      <h2>LIST BUILDING</h2>
+      <div class="rule-block">
+        <ul class="rule-list">
+          <li>1000 points or fewer.</li>
+          <li>Fire Teams, each led by one Team Leader.</li>
+          <li>Fire Teams must include at least two Models.</li>
+          <li>Fire Teams may only have one specialist of each type.</li>
+          <li>One <strong>Cell Leader (Squad Leader)</strong> required.</li>
+          <li>One Sniper Team and one AT Team may be included per list.</li>
+        </ul>
+
+        <div class="sub-heading">UPGRADE TIER STRUCTURE</div>
+        <div class="table-wrap">
+          <table class="rule-table">
+            <thead><tr><th>Tier</th><th>Units</th><th>Restrictions</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Tier 1</strong></td><td>Fighter, Observer, RPG Loader</td><td>Fixed weapon. One equipment slot only.</td></tr>
+              <tr><td><strong>Tier 2</strong></td><td>Veteran specialists</td><td>Some weapon options. More equipment access.</td></tr>
+              <tr><td><strong>Tier 3</strong></td><td>Cell Leader, Team Leader</td><td>Widest weapon variety. Most equipment access.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section class="doc-section" id="ordercards">
+      <h2>ORDER CARD STRUCTURE</h2>
+      <div class="table-wrap">
+        <table class="rule-table">
+          <thead>
+            <tr><th>Order Card</th><th>Units Using This Card</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Cell Leader</strong></td><td>Squad Leader</td></tr>
+            <tr><td><strong>Team Leader</strong></td><td>Team Leader</td></tr>
+            <tr><td><strong>Veteran Fighter</strong></td><td>Street Fighter, Marksman, Field Medic, Sharpshooter</td></tr>
+            <tr><td><strong>Weapons Fighter</strong></td><td>Machine Gunner, AT Specialist, RPG Gunner (AT Team)</td></tr>
+            <tr><td><strong>Fighter</strong></td><td>Standard Fighter, Observer, RPG Loader</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Operation Urban Storm. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

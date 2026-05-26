@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Core Rulebook — Operation Urban Storm</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/doc.css">
+</head>
+<body>
+
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">OPERATION URBAN STORM</div>
+      <div class="nav-links">
+        <a href="index.html">HOME</a>
+        <a href="rules.html" class="active">RULES</a>
+        <a href="listBuilder.html">LIST BUILDER</a>
+        <a href="#" class="disabled">STORE</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="doc-main">
+
+    <div class="doc-page-header">
+      <a href="rules.html" class="back-link">← BACK TO RULES</a>
+      <h1>CORE RULEBOOK</h1>
+      <div class="version-badge">V1.6.0 — DRAFT</div>
+      <p>Complete rules for Operation Urban Storm. Faction rosters and unit profiles are in the Faction Doctrine documents.</p>
+    </div>
+
+    <!-- TOC -->
+    <nav class="doc-toc">
+      <h2>CONTENTS</h2>
+      <ol>
+        <li><a href="#overview">Overview & Basic Concepts</a></li>
+        <li><a href="#terrain">Terrain Guide</a></li>
+        <li><a href="#gameplay">Gameplay</a></li>
+        <li><a href="#mechanics">Game Mechanics</a></li>
+        <li><a href="#stress">Stress & Morale</a></li>
+        <li><a href="#attacks">Attacks</a></li>
+        <li><a href="#leadership">Leadership</a></li>
+        <li><a href="#listbuilding">List Building & Faction Rules</a></li>
+        <li><a href="#vehicles">Vehicles</a></li>
+        <li><a href="#specialists">Specialists</a></li>
+        <li><a href="#objectives">Objective Tokens</a></li>
+        <li><a href="#battlecards">Battle Card System</a></li>
+        <li><a href="#keywords">Keyword Glossary</a></li>
+        <li><a href="#quickref">Quick Reference</a></li>
+      </ol>
+    </nav>
+
+    <!-- SECTION 1 -->
+    <section class="doc-section" id="overview">
+      <h2><span class="section-num">1</span> OVERVIEW & BASIC CONCEPTS</h2>
+
+      <div class="rule-block">
+        <h3>1.1 Overview</h3>
+        <p>Operation Urban Storm is a tabletop wargame simulating intense close-quarters combat. Players command Fire Teams maneuvering for objectives across dense urban environments. Victory requires managing psychological pressure as much as physical danger.</p>
+        <p>Played on a <strong>3'×3' Battlefield</strong>. Players control Fire Teams of Models with different abilities, battling over objectives. Each player has one Squad Leader in command.</p>
+      </div>
+
+      <div class="rule-block">
+        <h3>1.2 Basic Concepts</h3>
+        <ul class="rule-list">
+          <li>All measurements are in <strong>Inches (")</strong>. Measure from the closest point on bases.</li>
+          <li>Measure anything at any time.</li>
+          <li><strong>Within Range:</strong> distance between closest points of two bases is equal to or less than the stated range.</li>
+          <li>Uses <strong>D10</strong>. For D5: roll D10, then 1–2=1, 3–4=2, 5–6=3, 7–8=4, 9–10=5.</li>
+        </ul>
+      </div>
+
+      <div class="rule-block">
+        <h3>1.3 Components</h3>
+        <ul class="rule-list">
+          <li>Rulebook</li>
+          <li>Game board (3'×3')</li>
+          <li>Terrain pieces</li>
+          <li>Models, Loadout Cards, and Order Tokens</li>
+          <li>10-sided dice (D10)</li>
+          <li>Appropriate Tokens</li>
+          <li>Battle Deck (3 Objective Cards, 3 Deployment Cards) per player</li>
+          <li>Active Player Card</li>
+        </ul>
+      </div>
+
+      <div class="rule-block">
+        <h3>1.4 Game Setup</h3>
+        <div class="sub-heading">PRE-GAME — BUILD YOUR BATTLE DECK</div>
+        <p>Before arriving at the table, each player builds their Battle Deck of 6 cards:</p>
+        <ul class="rule-list">
+          <li>3 Objective Cards — no duplicates within your deck</li>
+          <li>3 Deployment Cards — no duplicates within your deck</li>
+        </ul>
+        <p>Both players may include the same card in their respective decks. There is no restriction on card overlap between players.</p>
+        <div class="sub-heading">SETUP STEPS</div>
+        <ol class="rule-list">
+          <li>Set up battlefield. Approx 40% Heavy Cover, 30% Light Cover, plus impassable obstacles.</li>
+          <li>Determine cover and terrain types with opponent.</li>
+          <li>Compare point values. Lowest = Attacker. Higher = Defender.</li>
+          <li>The attacker chooses the table side. The defender takes the opposite side.</li>
+          <li>BATTLE DECK DRAFT — repeat for Objective and Deployment cards in that order. See Section 1.5.</li>
+          <li>Set up faction-specific abilities (IEDs, etc.).</li>
+          <li>Place objective markers and mark zones per active Objective and Deployment.</li>
+          <li>Deploy Models per active Deployment Card, alternating two at a time, Defender first.</li>
+          <li>Gather all Order Tokens and Loadout Cards.</li>
+        </ol>
+      </div>
+
+      <div class="rule-block">
+        <h3>1.5 Battle Deck Draft</h3>
+        <p>The Battle Deck Draft is performed once for each card type — Objective and Deployment — in that order. The same process applies each time:</p>
+        <div class="sub-heading">DRAFT PROCESS — REPEATED FOR EACH CARD TYPE</div>
+        <ol class="rule-list">
+          <li><strong>Step 1</strong> — Both players reveal their 3 cards for this category face up.</li>
+          <li><strong>Step 2</strong> — The Defender chooses whose deck of 3 becomes the active pool.</li>
+          <li><strong>Step 3</strong> — The Attacker selects 2 cards from that pool and presents them to the Defender.</li>
+          <li><strong>Step 4</strong> — The Defender chooses 1 of those 2 cards. That card is now active.</li>
+          <li><strong>Step 5</strong> — Set all other cards aside. They are not used this game.</li>
+        </ol>
+        <div class="rule-note">The Defender choosing the pool is a strategic decision — you may draw from your own deck or your opponent's. The Attacker controls the final narrowing by choosing which 2 of 3 to present.</div>
+      </div>
+    </section>
+
+    <!-- SECTION 2 -->
+    <section class="doc-section" id="terrain">
+      <h2><span class="section-num">2</span> TERRAIN GUIDE</h2>
+      <div class="rule-block">
+        <p>Create an urban environment: approx <strong>40% Heavy Cover</strong>, <strong>30% Light Cover</strong>, plus obscuring and impassable obstacles.</p>
+      </div>
+      <div class="rule-block">
+        <h3>2.1 Impassable Obstacles</h3>
+        <p>No Infantry Model or Vehicle may move through or end movement within impassable terrain. Examples: walls, trenches, barbed wire, large wreckage. Players agree before the game which features are impassable.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 3 -->
+    <section class="doc-section" id="gameplay">
+      <h2><span class="section-num">3</span> GAMEPLAY</h2>
+
+      <div class="rule-block">
+        <h3>3.1 Turn Structure</h3>
+        <p>Each Turn: <strong>(1) Give Orders Phase</strong>, <strong>(2) Model Activation Phase</strong>, <strong>(3) Cleanup Phase</strong>. The game lasts <strong>5 Turns</strong>.</p>
+
+        <h4>3.1.1 Initiative</h4>
+        <p><strong>Turn 1:</strong> The Defender goes first. The Defender issues Orders first during the Give Orders Phase and takes the first activation during the Model Activation Phase.</p>
+        <p><strong>Turn 2+:</strong> At the start of each Turn, both players count the number of friendly Models that have one or more Stress Counters. The player with the lower total goes first for both phases that Turn. If tied, the player who held initiative the previous Turn retains it.</p>
+
+        <h4>3.1.2 Order Cards & Activation Tokens</h4>
+        <p>Every Model has exactly one dedicated Order Token. One token per Model, regardless of type. A Model is destroyed when its CEV reaches 0.</p>
+
+        <h4>3.1.3 Give Orders Phase</h4>
+        <p>The player with initiative issues Orders first. Squad Leader may issue Orders to any friendly Model within 3" and Line of Sight.</p>
+        <div class="sub-heading">ISSUING AN ORDER</div>
+        <ul class="rule-list">
+          <li>Remove the matching Order Token from the stack or bag and place it next to the Ordered model.</li>
+          <li>Issuing an Order never causes immediate activation.</li>
+        </ul>
+        <div class="sub-heading">ACTIVATION RESTRICTION</div>
+        <p>No rule, ability, or effect may cause a Model to activate outside the Model Activation Phase unless it explicitly states otherwise.</p>
+        <p>After all Orders are issued, shuffle remaining Order Tokens into a shared Order Stack or place them into a bag to blind pull.</p>
+
+        <h4>3.1.4 Active Player Tracking</h4>
+        <p>With a shared Order Deck, it can be easy to lose track of whose turn it is to draw. The Active Player card should be flipped to the player whose turn it is to draw from the Order Deck.</p>
+
+        <h4>3.1.5 Model Activation Phase</h4>
+        <p>The player with initiative takes the first activation. Players then alternate. On your activation: activate a Model with a face-up Activation Token, <strong>OR</strong> draw the top card from the Order Deck.</p>
+
+        <h4>3.1.6 Drawing an Order Card</h4>
+        <p>The Token indicates a Model type. The owning player chooses one eligible Model of that type and activates it immediately. Place and flip the Activation Token face-down after activation. A Model is eligible if it matches the type, is on the battlefield, is not destroyed, and has not already activated. If all Models of a drawn type are ineligible, discard and redraw.</p>
+      </div>
+
+      <div class="rule-block">
+        <h3>3.2 Cleanup Phase</h3>
+        <ul class="rule-list">
+          <li>Remove all Activation Tokens and return Order tokens to owners' pools.</li>
+          <li>Remove all temporary tokens including Marked Tokens.</li>
+          <li>Stress Counters and Wound Tokens remain.</li>
+        </ul>
+      </div>
+
+      <div class="rule-block">
+        <h3>3.3 Achieving Victory</h3>
+        <p>Victory goes to the player with the highest Victory Points at game end. Victory Points are earned through the active Objective Card. In the event of a tie, the player with the most models alive wins. If still tied, the result is a draw.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 4 -->
+    <section class="doc-section" id="mechanics">
+      <h2><span class="section-num">4</span> GAME MECHANICS</h2>
+
+      <div class="rule-block">
+        <h3>4.1 Line of Sight</h3>
+        <p><strong>True Line of Sight.</strong> Crouch behind your Model and look from behind its head. If any part of the defending Model is visible (excluding base), Line of Sight exists. If a Model is 50%+ obscured by terrain, it has cover.</p>
+      </div>
+
+      <div class="rule-block">
+        <h3>4.2 Determining Cover</h3>
+        <p>A Model 50%+ obscured from the attacker's perspective is granted cover.</p>
+        <div class="stat-row">
+          <div class="stat-cell"><span class="stat-label">Light Cover</span><span class="stat-value">Remove 1 hit after the attack roll.</span></div>
+          <div class="stat-cell"><span class="stat-label">Heavy Cover</span><span class="stat-value">Remove 2 hits after the attack roll.</span></div>
+        </div>
+      </div>
+
+      <div class="rule-block">
+        <h3>4.3 Actions</h3>
+        <p>A Model may perform <strong>two actions</strong> per activation. Each action type may only be taken once per activation, except Move which may be taken twice.</p>
+        <div class="rule-note">If Stress &gt;= Morale: only one action this activation. If Stress &gt;= 2× Morale: Excessive Stress rule applies instead.</div>
+
+        <h4>Objective Action (OBJACT)</h4>
+        <p>Perform an Objective action as defined by the active Objective Card. Only one OBJACT per activation.</p>
+
+        <h4>Shoot</h4>
+        <p>Make a Shoot action using one of the Model's weapons.</p>
+
+        <h4>Move — Infantry</h4>
+        <p>Move up to the Model's Move value. Partial moves allowed. Infantry may Move twice in the same activation.</p>
+
+        <h4>Move — Vehicles</h4>
+        <p>Measure vehicle movement from the approximate center of the hull. The tape may bend to represent turning. The vehicle body cannot overlap impassable terrain or buildings at any point along the path. Vehicles may Move twice per activation. Reverse movement is measured from the approximate center of the rear hull at half Move value, rounded down. A vehicle may not move forward and reverse in the same activation.</p>
+
+        <h4>Window Entry</h4>
+        <p>A model may move through a window as part of a Move action. Traversing a window costs <strong>3"</strong> of movement. The model must have at least 3" of remaining movement at the point of traversal. While traversing, the model is considered to be in the open with no cover.</p>
+
+        <h4>Legal Position</h4>
+        <p>A Model's position is legal if all of the following are true:</p>
+        <ul class="rule-list">
+          <li>The Model is fully within the battlefield boundary</li>
+          <li>The Model is not overlapping impassable terrain</li>
+          <li>The Model is not overlapping any other Model's base at the end of movement</li>
+          <li>When on an elevated surface, the Model's base is fully on the platform with no overhang</li>
+        </ul>
+        <p>Models may move through friendly Infantry Models during movement but may not end movement overlapping any Model's base. Models may not move through friendly or enemy Vehicles.</p>
+
+        <h4>Climbing</h4>
+        <p>To climb a ladder, the Model must begin its activation within 1" of the ladder. The full vertical distance must be covered in a single Move action. The Model must end in a legal position at the top. If the Model's Move value is insufficient to reach the top, the climb cannot be attempted. Elevators do not cost movement.</p>
+
+        <h4>Engaged Models</h4>
+        <p>Models within <strong>1"</strong> of an enemy are Engaged. Engaged Models may only Shoot with <strong>CQB keyword</strong> weapons.</p>
+
+        <h4>Sight-In</h4>
+        <p>Remain stationary for a deliberate shot. May re-roll up to 2 dice when Shooting this activation.</p>
+
+        <h4>Hit-the-Dirt</h4>
+        <p>Immediately drop prone and gain Light Cover until end of Turn. Hit-the-Dirt is the only action the Model may perform this activation. Remove D5 Stress Counters.</p>
+
+        <h4>Ambush</h4>
+        <p>Declared once per Turn per Model. When an enemy Model declares an action, the ambushing Model may react at the beginning or end of that action: Move, Shoot, Hit-the-Dirt, or a Special Action that explicitly states it may be used during Ambush. A Model may not use Ambush if it has already performed a Shoot action this activation.</p>
+        <div class="rule-note">'Beginning of the action' occurs after the enemy declares the action and its target, but before any movement or dice are rolled.</div>
+
+        <h4>Ambush Chain</h4>
+        <p>When an Ambush reaction triggers another Ambush reaction, an Ambush Chain begins. Only one Ambush may be declared and fully resolved at a time. After each Ambush resolves, the opposing player may declare one eligible Ambush reaction. Players alternate until one side declines or has no eligible models. A side that declines is permanently out of the chain. The chain ends and the original action resumes.</p>
+
+        <h4>Breach</h4>
+        <p>A coordinated or solo forced entry into a building or room through a doorway. Breach may only be declared if at least one enemy Model is visible inside the building or room upon completing the Move.</p>
+
+        <div class="sub-heading">DECLARING A BREACH</div>
+        <p>The active Model declares Breach and nominates any participating Models within 1" that meet one of the following conditions:</p>
+        <ul class="rule-list">
+          <li>Is the Model initiating the Breach</li>
+          <li>Has a face-up Activation token</li>
+          <li>Has an Ambush token declared</li>
+        </ul>
+        <p>Participating Models consume their Activation or Ambush token upon joining. A Model may Breach alone. Models whose Order Card has not yet been drawn may not join a Breach as attackers.</p>
+
+        <div class="sub-heading">MOVEMENT</div>
+        <p>All breaching Models move simultaneously through a doorway from outside to inside. Window entry is not permitted for a Breach.</p>
+
+        <div class="sub-heading">WEAPON SELECTION</div>
+        <p>Before Target Declaration, each breaching Model declares which weapon they are using. Defending Models that have not yet activated or have Ambush declared may also select their weapon. Already activated defenders must use their primary weapon. All weapon choices are locked before any dice are rolled.</p>
+
+        <div class="sub-heading">TARGET DECLARATION</div>
+        <ol class="rule-list">
+          <li>Breaching player assigns a single target for each breaching Model. Multiple breaching Models may target the same defender.</li>
+          <li>Defending player then assigns a single target for each defending Model, after seeing the breaching assignments.</li>
+        </ol>
+
+        <div class="sub-heading">BREACH MODIFIERS</div>
+        <div class="table-wrap">
+          <table class="rule-table">
+            <thead><tr><th>Condition</th><th>Effect</th></tr></thead>
+            <tbody>
+              <tr><td>Breaching — CQB Weapon</td><td>+1 die, hit value improved by 1 (e.g. 6+→5+)</td></tr>
+              <tr><td>Breaching — Non-CQB Weapon</td><td>-1 die, hit value worsened by 1 (e.g. 6+→7+)</td></tr>
+              <tr><td>Defending — CQB Weapon</td><td>+1 die, hit value improved by 1</td></tr>
+              <tr><td>Defending — Non-CQB Weapon</td><td>-1 die, hit value worsened by 1</td></tr>
+              <tr><td>Defending — Ambush Declared</td><td>+additional hit value improved by 1 (stacks)</td></tr>
+              <tr><td>Defending — Already Activated</td><td>Additional -1 die, hit value worsened by 1, must use primary weapon (stacks)</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sub-heading">ATTACK RESOLUTION</div>
+        <p>Attacks are grouped by target pairing in the order the breaching player declared targets. Within each group:</p>
+        <ol class="rule-list">
+          <li>Breaching Models shoot — roll dice pool with modifiers. Resolve hits, assign Stress, apply Cover, resolve Defense Rolls normally.</li>
+          <li>Defending Models shoot — roll dice pool with modifiers. Resolve hits, assign Stress, apply Cover, resolve Defense Rolls normally.</li>
+          <li>Remove casualties — all Models that reached CEV 0 are removed simultaneously before moving to the next group.</li>
+        </ol>
+        <p>Breach continues until all defending Models are eliminated, all breaching Models are eliminated, or both sides are mutually wiped within the same group. A mutual wipe is a valid outcome.</p>
+
+        <h4>Embark / Disembark</h4>
+        <p><strong>Embark:</strong> Spend one action to enter a friendly Vehicle within 1". <strong>Disembark:</strong> Spend one action to exit, placing the Model within 1" in a legal position. May not do both in the same activation.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 5 -->
+    <section class="doc-section" id="stress">
+      <h2><span class="section-num">5</span> STRESS & MORALE</h2>
+      <p class="section-intro">Stress is the primary suppression mechanic in Operation Urban Storm. It represents the psychological and physical burden of sustained combat. Models accumulate Stress from being targeted, taking hits, and from Leadership ability costs.</p>
+
+      <div class="rule-block">
+        <h3>5.1 Stress Threshold Check</h3>
+        <p>A Model's Stress thresholds are evaluated <strong>once, at the start of its activation</strong>, before any actions are taken. Stress gained mid-activation does not apply restrictions until the start of that Model's next activation.</p>
+      </div>
+
+      <div class="rule-block">
+        <h3>5.2 Stress Counters</h3>
+        <p>After a Model is targeted by an Attack:</p>
+        <ul class="rule-list">
+          <li><strong>1 Stress Counter</strong> for being targeted, regardless of damage.</li>
+          <li><strong>Additional Stress Counters</strong> equal to the number of hits scored after the attack roll and before cover removes hits.</li>
+        </ul>
+        <div class="rule-note">Cover reduces hits that proceed to Defense rolls but does not reduce Stress generated by hits.</div>
+      </div>
+
+      <div class="rule-block">
+        <h3>5.3 Morale Check & Stress Removal</h3>
+        <div class="sub-heading">STRESS COUNTER REMOVAL</div>
+        <p>When a Model activates, roll one D10 for each Stress Counter. On a <strong>7, 8, 9, or 10</strong>: remove one Stress Counter.</p>
+
+        <div class="table-wrap">
+          <table class="rule-table">
+            <thead><tr><th>Stress Level</th><th>Effect</th></tr></thead>
+            <tbody>
+              <tr><td>Stress &gt;= Morale</td><td>1 action only this activation</td></tr>
+              <tr><td>Stress &gt;= 2× Morale</td><td>Excessive Stress — see below</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sub-heading">EXCESSIVE STRESS</div>
+        <p>After Stress removal, if Stress Counters equal or exceed twice the Model's Morale value, the Model must immediately take Hit-the-Dirt and its activation ends. This supersedes the reduced-action rule.</p>
+      </div>
+
+      <div class="rule-block">
+        <h3>5.4 Stress Exploitation</h3>
+        <p>When an enemy Model declares an action, the opposing player may immediately declare Exploitation before any movement is measured or dice are rolled. Once the action begins to resolve, the window to declare Exploitation has passed. Stress Counters are spent as currency for tiered effects. Once per Model per activation. No LoS required. Spent Stress Counters are removed.</p>
+
+        <div class="table-wrap">
+          <table class="rule-table">
+            <thead><tr><th>Stress Spent</th><th>Effect</th></tr></thead>
+            <tbody>
+              <tr><td>2</td><td>Target loses 1 attack die on their next Shoot action this activation</td></tr>
+              <tr><td>3</td><td>Target's Move value is halved for their next activation</td></tr>
+              <tr><td>4</td><td>Target's cover is reduced by 1 until end of Turn (minimum 0). Light Cover is negated. Heavy Cover becomes Light Cover.</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="sub-heading">TEAM LEADER INTERCEPTION</div>
+        <p>When Exploitation is declared against a Fireteam Model within 2" of its TL, the TL may intercept. Stress transfers to TL instead. Exploitation effect negated.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 6 -->
+    <section class="doc-section" id="attacks">
+      <h2><span class="section-num">6</span> ATTACKS</h2>
+      <p class="section-intro">An Attack is any action, ability, weapon, or effect that targets a Model or point and resolves hit and/or damage effects.</p>
+
+      <div class="rule-block">
+        <h3>6.1 Shoot Action Sequence</h3>
+        <div class="table-wrap">
+          <table class="rule-table">
+            <thead><tr><th>Step</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td>6.1.1</td><td>Determine Line of Sight — check visibility from attacker to defender</td></tr>
+              <tr><td>6.1.2</td><td>Determine Cover — if 50%+ obscured, note cover level. Cover does NOT reduce dice pool.</td></tr>
+              <tr><td>6.1.3</td><td>Attack Roll — roll full dice pool from Loadout Card</td></tr>
+              <tr><td>6.1.4</td><td>Hits — count dice equal to or greater than the weapon's Hit value</td></tr>
+              <tr><td>6.1.5</td><td>Assign Stress — defender gains 1 Stress for being targeted + Stress equal to total hits. Applied BEFORE cover.</td></tr>
+              <tr><td>6.1.6</td><td>Apply Cover — Light Cover removes 1 hit. Heavy Cover removes 2 hits. Minimum 0.</td></tr>
+              <tr><td>6.1.7</td><td>Defense Roll — for each remaining hit, roll one die vs DR. Equal to or greater than DR: negated. Lower: wound.</td></tr>
+              <tr><td>6.1.8</td><td>Wound Allocation — each wound reduces CEV by 1. CEV 0: Model killed and removed.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7 -->
+    <section class="doc-section" id="leadership">
+      <h2><span class="section-num">7</span> LEADERSHIP</h2>
+      <p class="section-intro">Leadership does not remove Stress for free. Leadership abilities redistribute, delay, concentrate, or push through Stress at a cost. A Model may only benefit from one Leadership ability per activation.</p>
+
+      <div class="rule-block">
+        <h3>7.1 Team Leaders</h3>
+        <p>Team Leaders affect only their Fireteam. <strong>Command Range: 2" base-to-base.</strong></p>
+
+        <h4>Passive — Aggression</h4>
+        <p>All friendly Fireteam Models within 2" of the TL gain +1 attack die on Shoot actions. Always active. Lost when TL is removed from play.</p>
+
+        <h4>Active — Lead From The Front <span class="ability-tag">Once per Turn</span></h4>
+        <p>Select one friendly Fireteam Model within 2" and LoS with Stress >= Morale value. That Model may perform two actions this activation regardless of Stress Counters. Stress Counters remain. The TL gains +1 Stress. Cannot target the TL itself. Lost if TL is forced to Hit-the-Dirt this turn.</p>
+
+        <h4>Stress Transfer</h4>
+        <p>When an enemy declares Stress Exploitation on a friendly Fireteam Model within 2": the TL may intercept. Stress counters transfer to the TL instead. The Exploitation effect is negated.</p>
+        <ul class="rule-list">
+          <li>TL does not remove Stress — they absorb and concentrate it.</li>
+          <li>TL cannot override Hit-the-Dirt.</li>
+          <li>TL does not affect Models outside their Fireteam.</li>
+        </ul>
+      </div>
+
+      <div class="rule-block">
+        <h3>7.2 Squad Leaders</h3>
+        <p><strong>Command Range: 3" base-to-base.</strong></p>
+
+        <h4>Orders Require Line of Sight</h4>
+        <p>Squad Leader may issue Orders to any friendly Model within 3" and LoS. Orders remain free. Issuing an Order never causes immediate activation.</p>
+
+        <h4>Active — Rally <span class="ability-tag">Costs One Action</span></h4>
+        <p>Roll a D5. The result is a pool of Stress counters to distribute freely across any friendly Models within 3" and LoS. Cannot target the SL itself. SL gains +1 Stress regardless of roll result.</p>
+
+        <h4>Authority Override <span class="ability-tag">Once per Turn</span></h4>
+        <p>When a friendly Model within Command Range would be forced to Hit-the-Dirt due to Excessive Stress: that Model may activate normally this Turn. The Squad Leader gains the Stress that would have triggered the forced Hit-the-Dirt. Lost if Squad Leader is killed.</p>
+      </div>
+
+      <div class="rule-block">
+        <h3>7.3 Vehicle Command & Control</h3>
+        <p>Vehicles do not benefit from Squad Leader or Team Leader abilities unless explicitly stated.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 8 -->
+    <section class="doc-section" id="listbuilding">
+      <h2><span class="section-num">8</span> LIST BUILDING & FACTION RULES</h2>
+
+      <div class="rule-block">
+        <h3>8.1 List Building</h3>
+        <ul class="rule-list">
+          <li>Each player creates a list totaling <strong>1000 points or less</strong>.</li>
+          <li>Lists composed of Fire Teams. No limit on number of Fire Teams.</li>
+          <li>Independent Units (Sniper Teams, AT Teams) are purchased as part of the list but are not assigned to a Fireteam.</li>
+        </ul>
+      </div>
+
+      <div class="rule-block">
+        <h3>8.2 Fire Team Composition</h3>
+        <ul class="rule-list">
+          <li>Each Fire Team must include exactly one Team Leader.</li>
+          <li>Fire Teams must include at least two Models.</li>
+          <li>Fire Teams have no maximum size unless restricted by faction, doctrine, or mission rules.</li>
+          <li>Fire Teams may only have one specialist of each type.</li>
+        </ul>
+      </div>
+
+      <div class="rule-block">
+        <h3>8.3 Independent Units</h3>
+        <p>Independent Units operate outside Fireteam structure. They still fall within Squad Leader command range for Orders.</p>
+        <ul class="rule-list">
+          <li>Each Independent Unit type is limited to one per list unless stated otherwise in the faction doctrine.</li>
+          <li>Independent Units have their own Order Cards and Activation Tokens and activate normally.</li>
+          <li>Independent Units consisting of two models (Sniper Teams, AT Teams) have separate Order Cards and Activation Tokens per model.</li>
+        </ul>
+        <div class="sub-heading">CURRENT INDEPENDENT UNIT TYPES</div>
+        <ul class="rule-list">
+          <li>Sniper Team (one per list, all factions)</li>
+          <li>AT Team (one per list, all factions)</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SECTION 9 -->
+    <section class="doc-section" id="vehicles">
+      <h2><span class="section-num">9</span> VEHICLES</h2>
+      <p class="section-intro">Vehicles are Models but not Fire Teams. May not perform OBJACT or score Objectives unless stated by mission. Vehicle crews are abstracted into the vehicle Model.</p>
+
+      <div class="rule-block">
+        <ul class="rule-list">
+          <li>Vehicles have two actions per activation: Move, Shoot, Special Actions.</li>
+          <li>Move: one action, move up to Move value per vehicle movement rules (Section 4.3).</li>
+          <li>Vehicles determine LoS from hull. 360-degree firing arc unless stated otherwise. One Shoot action per activation.</li>
+        </ul>
+      </div>
+
+      <div class="rule-block">
+        <h3>9.1 Vehicle Damage & Stress</h3>
+        <p>Vehicles have Armor Rating, Morale, and CEV. <strong>PEN &lt; Armor:</strong> hit does not resolve. <strong>PEN &gt;= Armor:</strong> hit resolves normally. Vehicles gain 1 Stress Counter each time targeted.</p>
+      </div>
+
+      <div class="rule-block">
+        <h3>9.2 Disabled Vehicles</h3>
+        <p>Vehicles do not perform Hit-the-Dirt. If Stress &gt;= 2× Morale: Vehicle becomes <strong>Disabled</strong>. Cannot Move, cannot OBJACT, may Shoot with 1 fewer die.</p>
+      </div>
+
+      <div class="rule-block">
+        <h3>9.3 Vehicle Recovery</h3>
+        <p>At start of activation, Disabled Vehicle rolls 1D10. On <strong>8, 9, or 10</strong>: remove all Stress Counters, no longer Disabled.</p>
+      </div>
+
+      <div class="rule-block">
+        <h3>9.4 Vehicle Destruction</h3>
+        <p>CEV 0: destroyed, remains as impassable wreckage. <strong>Explosion Check:</strong> 1D10. On 6+: explodes. Roll 1D10 per embarked Model, on 7+: suffers a hit. All embarked Models placed after destruction gain 2 Stress Counters.</p>
+      </div>
+
+      <div class="rule-block">
+        <h3>9.5 Arc Armor</h3>
+        <p>Some vehicles have directional armor represented by three values: <strong>F / S / R</strong> (Front / Side / Rear).</p>
+        <div class="sub-heading">CROSSHAIR METHOD</div>
+        <p>Draw an imaginary line along the length of the vehicle from front to rear, and a second line through its widest point from side to side. These two lines divide the vehicle into four quadrants.</p>
+        <ul class="rule-list">
+          <li>Attacker in the front quadrant — use Front Armor</li>
+          <li>Attacker in either side quadrant — use Side Armor</li>
+          <li>Attacker in the rear quadrant — use Rear Armor</li>
+        </ul>
+        <div class="rule-note">If the attacker is positioned exactly on a dividing line, the attacker chooses which arc applies.</div>
+      </div>
+    </section>
+
+    <!-- SECTION 10 -->
+    <section class="doc-section" id="specialists">
+      <h2><span class="section-num">10</span> SPECIALISTS</h2>
+
+      <div class="rule-block">
+        <h3>10.1 Anti-Tank (AT) Specialists</h3>
+        <p>AT weapons built into Specialist's Model Card. One AT shot per activation. AT vs Vehicles: target gains 2 Stress regardless of resolution. Compare PEN to Armor to determine resolution. AT vs Infantry: resolves normally.</p>
+      </div>
+
+      <div class="rule-block">
+        <h3>10.2 AT Teams</h3>
+        <p>AT Teams are Independent Units consisting of a Gunner and a Loader. See Section 8.3 for Independent Unit rules. See relevant Faction Doctrine for full AT Team unit profiles.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 11 -->
+    <section class="doc-section" id="objectives">
+      <h2><span class="section-num">11</span> — <span class="section-num">12</span> UNIT ROSTERS & OBJECTIVE TOKENS</h2>
+
+      <div class="rule-block">
+        <h3>Unit Rosters & Equipment</h3>
+        <p>Unit stats, points costs, weapon profiles, and equipment rules are not contained in this rulebook.</p>
+        <ul class="rule-list">
+          <li>Unit stats and points — see the OUS Unit Card Master document (authoritative)</li>
+          <li>Faction rosters, special rules, and upgrade options — see the relevant Faction Doctrine document</li>
+        </ul>
+      </div>
+
+      <div class="rule-block">
+        <h3>12.1 Dropped Token Rule</h3>
+        <p>If a model drops a token for any reason — including being destroyed while escorting, voluntarily passing and failing, or any other effect — the token is placed in base contact with that model before the model moves or is removed from the board.</p>
+        <p>A dropped token may be picked up by either player on a subsequent activation unless the active Objective Card states otherwise.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 13 -->
+    <section class="doc-section" id="battlecards">
+      <h2><span class="section-num">13</span> BATTLE CARD SYSTEM</h2>
+
+      <div class="rule-block">
+        <p>The Battle Card System replaces the legacy objective selection process from previous versions. All game setup decisions are made through the Battle Deck Draft (Section 1.5). Three card types exist. Each card type has its own library of 4 cards in the core set. Players build a Battle Deck of 3 cards per type before each game.</p>
+
+        <div class="card-type-block">
+          <span class="card-type-label">OBJECTIVE CARD</span>
+          <p>Defines what both players are fighting over. Rules, tokens, and VP conditions.</p>
+        </div>
+        <div class="card-type-block">
+          <span class="card-type-label">DEPLOYMENT CARD</span>
+          <p>Defines where both players set up. Diagram on reverse side.</p>
+        </div>
+
+        <div class="rule-note">Full Objective and Deployment card text unchanged from V1.5.0. See V1.5.0 rulebook for complete card rules.</div>
+      </div>
+    </section>
+
+    <!-- SECTION: KEYWORDS -->
+    <section class="doc-section" id="keywords">
+      <h2>KEYWORD GLOSSARY</h2>
+      <p class="section-intro">All keyword definitions live here. Faction Doctrine documents reference keywords by name only.</p>
+
+      <div class="keyword-grid">
+
+        <div class="keyword-block">
+          <h4>Assisted Reload</h4>
+          <p>If the Loader model has not yet activated this turn and is within 2" of the paired Gunner, the Gunner's RLD keyword costs no action. The Loader has one fewer action during its own activation this turn. If the Loader is killed, the Gunner must spend 1 Action to reload as normal.</p>
+        </div>
+
+        <div class="keyword-block">
+          <h4>Combat Effectiveness Value (CEV)</h4>
+          <p>Number of Wounds a Model can take before being killed and removed.</p>
+        </div>
+
+        <div class="keyword-block">
+          <h4>Close Quarters Combat (CQB)</h4>
+          <p>+1 die while Engaged (within 1"). Engaged Models may only Shoot with CQB keyword weapons.</p>
+        </div>
+
+        <div class="keyword-block">
+          <h4>Concealment</h4>
+          <p>This model treats Light Cover as Heavy Cover. Heavy Cover reduces hits by 3 instead of 2. Applies to the model with this keyword only.</p>
+        </div>
+
+        <div class="keyword-block">
+          <h4>Covering Fire (C-Fire)</h4>
+          <p>Target gains 1 additional Stress Counter. All other friendly Models within 2" of the target gain 1 Stress Counter if attacker has LoS to them.</p>
+        </div>
+
+        <div class="keyword-block">
+          <h4>Deploy</h4>
+          <p>A weapon with this keyword must be set up before it can fire. Spending 1 Action deploys the weapon. If the model moves after deploying, the weapon returns to an undeployed state.</p>
+        </div>
+
+        <div class="keyword-block">
+          <h4>Encumbered (ENC)</h4>
+          <p>Reduces Move by 2" (minimum 4").</p>
+        </div>
+
+        <div class="keyword-block">
+          <h4>Explosive (Expl X)</h4>
+          <p>Explodes in X inch radius from impact. All Models within radius resolve hits separately. Explosive attacks ignore cover.</p>
+        </div>
+
+        <div class="keyword-block">
+          <h4>Indirect Fire (IDF)</h4>
+          <p>May attack without LoS. Must make Indirect Fire Test unless target has LoS, or Smoke/Illumination targeting a point. Test: needs 10 to succeed. Miss without target moving: next test succeeds on 9+, improving by 1 each time (minimum 2). Target moves: resets to 10.</p>
+        </div>
+
+        <div class="keyword-block">
+          <h4>Injured</h4>
+          <p>When CEV &lt;= half starting value: Injured. Reduces Move by 3", rolls 1 fewer die Shooting (minimum 1).</p>
+        </div>
+
+        <div class="keyword-block">
+          <h4>ISR (Spotted)</h4>
+          <p>While affected: cover reduced by 1 (minimum 1). Indirect Fire attacks resolve normally without test. <em>Deferred — no current model uses this keyword. Rules pending playtesting.</em></p>
+        </div>
+
+        <div class="keyword-block">
+          <h4>Lob</h4>
+          <p>Throw grenades up to 4". Roll 1D10: 7+ hits and detonates, 2–3 fails, 1 critical fail explodes at attacker. Grenades: 3 dice, hit on 7+, 2" explosion radius. Ignores Light Cover. Heavy Cover reduces hits by 2 as normal.</p>
+        </div>
+
+        <div class="keyword-block">
+          <h4>Marked Token</h4>
+          <p>US Army faction token. Placed on a target when a US Army Model Shoots at it. A friendly U.S. Army Model that shoots at a Marked target may spend the token to gain +1 attack die. Removed when spent or during Cleanup. Weapons with the Explosive keyword may not benefit from Mark tokens.</p>
+        </div>
+
+        <div class="keyword-block">
+          <h4>One Shot</h4>
+          <p>After firing, weapon unusable for remainder of game.</p>
+        </div>
+
+        <div class="keyword-block">
+          <h4>Reload (RLD)</h4>
+          <p>After firing, the weapon may not be used again until the Model spends 1 Action to reload. A Model may reload and Shoot in the same activation.</p>
+        </div>
+
+        <div class="keyword-block">
+          <h4>Smoke</h4>
+          <p>When deployed, place a Smoke token at the target point. The token projects a 2" radius half-sphere cloud extending 2" in all directions horizontally and 2" vertically from the token base. The cloud completely blocks LoS for any line passing through it. Models on elevated positions above 2" may have LoS over the cloud. Removed during Cleanup Phase of the current Turn.</p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- QUICK REFERENCE -->
+    <section class="doc-section" id="quickref">
+      <h2>QUICK REFERENCE</h2>
+
+      <div class="qr-grid">
+        <div class="qr-block">
+          <h3>GAME AT A GLANCE</h3>
+          <div class="table-wrap">
+            <table class="rule-table">
+              <thead><tr><th>Battlefield</th><th>Turns</th><th>Point Limit</th><th>Dice</th></tr></thead>
+              <tbody><tr><td>3' × 3'</td><td>5</td><td>1000 pts</td><td>D10</td></tr></tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="qr-block">
+          <h3>TURN PHASES</h3>
+          <div class="table-wrap">
+            <table class="rule-table">
+              <thead><tr><th>Phase</th><th>What Happens</th></tr></thead>
+              <tbody>
+                <tr><td>1. Give Orders</td><td>Player with initiative issues SL Orders first. Remaining cards shuffled into shared Order Deck.</td></tr>
+                <tr><td>2. Model Activation</td><td>Players alternate activating Models (face-up token) or drawing Order Tokens.</td></tr>
+                <tr><td>3. Cleanup</td><td>Return Order Tokens. Remove temp tokens. Stress/Wounds remain.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="qr-block">
+          <h3>ATTACK SEQUENCE</h3>
+          <div class="table-wrap">
+            <table class="rule-table">
+              <thead><tr><th>Step</th><th>Action</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>Determine Line of Sight</td></tr>
+                <tr><td>2</td><td>Determine Cover (note level — does NOT reduce dice)</td></tr>
+                <tr><td>3</td><td>Attack Roll — roll full dice pool</td></tr>
+                <tr><td>4</td><td>Count Hits (dice &gt;= Hit value)</td></tr>
+                <tr><td>5</td><td>Assign Stress — 1 for targeted + hits total. BEFORE cover.</td></tr>
+                <tr><td>6</td><td>Apply Cover — Light: -1 hit / Heavy: -2 hits. Min 0.</td></tr>
+                <tr><td>7</td><td>Defense Roll — per remaining hit. &gt;= DR: negated. Lower: wound.</td></tr>
+                <tr><td>8</td><td>Wound Allocation — CEV -1 per wound. CEV 0: removed.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="qr-block">
+          <h3>STRESS EXPLOITATION</h3>
+          <div class="table-wrap">
+            <table class="rule-table">
+              <thead><tr><th>Stress Spent</th><th>Effect</th></tr></thead>
+              <tbody>
+                <tr><td>2</td><td>Target loses 1 attack die on their next Shoot action</td></tr>
+                <tr><td>3</td><td>Target's Move value halved next activation</td></tr>
+                <tr><td>4</td><td>Target's cover reduced by 1 until end of Turn (min 0)</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="qr-block">
+          <h3>LEADERSHIP ABILITIES</h3>
+          <div class="table-wrap">
+            <table class="rule-table">
+              <thead><tr><th>Ability</th><th>Who</th><th>Cost</th><th>Effect</th></tr></thead>
+              <tbody>
+                <tr><td>Lead From The Front</td><td>TL</td><td>TL +1 Stress</td><td>Target stressed model acts at full actions this activation</td></tr>
+                <tr><td>Stress Transfer</td><td>TL</td><td>TL absorbs stress</td><td>Intercept Exploitation on Fireteam Model within 2"</td></tr>
+                <tr><td>Rally</td><td>SL</td><td>1 Action + SL +1 Stress</td><td>Roll D5, distribute Stress removals across friendlies within 3"</td></tr>
+                <tr><td>Authority Override</td><td>SL</td><td>SL absorbs stress</td><td>Prevent forced Hit-the-Dirt on friendly within Command Range</td></tr>
+                <tr><td>Command Imperative (VDV)</td><td>SL</td><td>1 Action + SL +1 Stress</td><td>Grant friendly model 1 immediate action</td></tr>
+                <tr><td>Coercive Authority (VDV)</td><td>SL</td><td>+2 Stress cost</td><td>Rally and Authority Override cost +2 Stress instead of +1</td></tr>
+                <tr><td>Steady Aim</td><td>Marksman</td><td>1 Action</td><td>Enter Aimed state. Next Shoot gains +1 die and ignores Light Cover. Lost if model moves.</td></tr>
+                <tr><td>Field Treatment</td><td>Medic</td><td>1 Action</td><td>Select friendly within 3" and LoS. That Model removes all Stress. Medic gains +1 Stress.</td></tr>
+                <tr><td>Last Chance</td><td>Medic</td><td>Passive / 1 Action</td><td>When a friendly within 3" is removed, attempt revival next activation. Roll 1D10, 8+: returns within 3" with Stress = half Morale rounded up.</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Operation Urban Storm. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

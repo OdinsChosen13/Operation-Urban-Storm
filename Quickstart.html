@@ -1,488 +1,204 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quickstart Guide - Operation Urban Storm</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/Quickstart.css">
-  </head>
-  <body>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quickstart Guide — Operation Urban Storm</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/doc.css">
+</head>
+<body>
 
-    <nav class="main-nav">
-      <div class="nav-container">
-        <div class="nav-brand">OPERATION URBAN STORM</div>
-        <div class="nav-links">
-          <a href="index.html">HOME</a>
-          <a href="rules.html">RULES</a>
-          <a href="listBuilder.html">LIST BUILDER</a>
-          <a href="#" class="disabled">STORE</a>
-        </div>
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">OPERATION URBAN STORM</div>
+      <div class="nav-links">
+        <a href="index.html">HOME</a>
+        <a href="rules.html" class="active">RULES</a>
+        <a href="listBuilder.html">LIST BUILDER</a>
+        <a href="#" class="disabled">STORE</a>
       </div>
-    </nav>
+    </div>
+  </nav>
 
-    <main class="quickstart-main">
-      <header class="quickstart-header">
-        <h1>QUICKSTART GUIDE</h1>
-        <div class="version-badge">V1.6.0</div>
-        <p>At-a-glance reference for gameplay. Keep this page open during your match.</p>
-      </header>
+  <main class="doc-main">
 
-      <!-- Jump Navigation -->
-      <nav class="jump-nav">
-        <a href="#basics">BASICS</a>
-        <a href="#turn-structure">TURN STRUCTURE</a>
-        <a href="#actions">ACTIONS</a>
-        <a href="#combat">COMBAT</a>
-        <a href="#stress">STRESS</a>
-        <a href="#leadership">LEADERSHIP</a>
-        <a href="#keywords">KEYWORDS</a>
-        <a href="#factions">FACTIONS</a>
-      </nav>
+    <div class="doc-page-header">
+      <a href="rules.html" class="back-link">← BACK TO RULES</a>
+      <h1>QUICKSTART GUIDE</h1>
+      <div class="version-badge">V1.6.0</div>
+      <p>Keep this page open during your match. All essential rules at a glance.</p>
+    </div>
 
-      <!-- BASICS -->
-      <section id="basics" class="qs-section">
-        <h2>GAME BASICS</h2>
-        <div class="info-grid">
-          <div class="info-card">
-            <h3>Battlefield</h3>
-            <p><strong>3' × 3'</strong> board<br>
-            <strong>40%</strong> Heavy Cover<br>
-            <strong>30%</strong> Light Cover</p>
-          </div>
-          <div class="info-card">
-            <h3>Game Length</h3>
-            <p><strong>5 Turns</strong><br>
-            <strong>1000pts</strong> per list<br>
-            <strong>60-90 min</strong> play time</p>
-          </div>
-          <div class="info-card">
-            <h3>Dice</h3>
-            <p><strong>D10</strong> for all rolls<br>
-            <strong>D5</strong>: roll D10<br>
-            1-2=1, 3-4=2, 5-6=3<br>7-8=4, 9-10=5</p>
-          </div>
-          <div class="info-card">
-            <h3>Measurements</h3>
-            <p>All in <strong>inches (")</strong><br>
-            Measure <strong>base-to-base</strong><br>
-            Measure <strong>anytime</strong></p>
-          </div>
-        </div>
-      </section>
+    <div class="qs-grid">
 
-      <!-- TURN STRUCTURE -->
-      <section id="turn-structure" class="qs-section">
-        <h2>TURN STRUCTURE</h2>
-        <div class="flowchart">
-          <div class="flow-step">
-            <div class="step-number">1</div>
-            <h3>GIVE ORDERS PHASE</h3>
-            <ul>
-              <li>Initiative player issues orders first</li>
-              <li>Squad Leader orders models within 3" + LoS</li>
-              <li>Place Order Tokens next to ordered models</li>
-              <li>Shuffle remaining tokens into shared deck</li>
-            </ul>
-          </div>
-          <div class="flow-arrow">↓</div>
-          <div class="flow-step">
-            <div class="step-number">2</div>
-            <h3>MODEL ACTIVATION PHASE</h3>
-            <ul>
-              <li>Initiative player takes first activation</li>
-              <li>Players alternate activations</li>
-              <li>Activate ordered model OR draw from deck</li>
-              <li>Perform up to 2 actions per activation</li>
-            </ul>
-          </div>
-          <div class="flow-arrow">↓</div>
-          <div class="flow-step">
-            <div class="step-number">3</div>
-            <h3>CLEANUP PHASE</h3>
-            <ul>
-              <li>Return all Order Tokens</li>
-              <li>Remove temp tokens (Marked, etc.)</li>
-              <li>Stress and Wounds remain</li>
-              <li>Convoy advance (if applicable)</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="rule-box">
-          <h4>INITIATIVE (Turn 2+)</h4>
-          <p>Count models with 1+ Stress. <strong>Lower total goes first.</strong> Tied = previous initiative player retains.</p>
-        </div>
-      </section>
-
-      <!-- ACTIONS -->
-      <section id="actions" class="qs-section">
-        <h2>ACTIONS</h2>
-        <div class="action-grid">
-          <div class="action-card">
-            <h3>MOVE</h3>
-            <p>Move up to MOV stat. May take twice per activation. Infantry move through friendlies. Cannot end overlapping bases.</p>
-          </div>
-          <div class="action-card">
-            <h3>SHOOT</h3>
-            <p>Attack with one weapon. Roll dice pool, count hits, assign stress, apply cover, defender rolls saves.</p>
-          </div>
-          <div class="action-card">
-            <h3>OBJECTIVE ACTION</h3>
-            <p>Perform action defined by active Objective Card. Once per activation.</p>
-          </div>
-          <div class="action-card">
-            <h3>SIGHT-IN</h3>
-            <p>Remain stationary. Reroll up to 2 dice when Shooting this activation.</p>
-          </div>
-          <div class="action-card">
-            <h3>HIT-THE-DIRT</h3>
-            <p>Gain Light Cover until end of Turn. Remove D5 Stress. Only action this activation.</p>
-          </div>
-          <div class="action-card">
-            <h3>AMBUSH</h3>
-            <p>React at start/end of enemy action. Once per Turn per model. Move, Shoot, Hit-the-Dirt, or Special.</p>
-          </div>
-          <div class="action-card">
-            <h3>BREACH</h3>
-            <p>Coordinated forced entry through doorway. CQB weapons get +1 die, +1 hit value. Non-CQB get -1 die, -1 hit.</p>
-          </div>
-          <div class="action-card">
-            <h3>EMBARK / DISEMBARK</h3>
-            <p>Enter/exit vehicle within 1". Cannot do both in same activation.</p>
-          </div>
-        </div>
-
-        <div class="rule-box critical">
-          <h4>ACTION RESTRICTIONS</h4>
-          <p><strong>Each action type once per activation</strong> (except Move, which can be taken twice).<br>
-          <strong>Stress ≥ Morale:</strong> Only 1 action this activation.<br>
-          <strong>Stress ≥ 2× Morale:</strong> Forced Hit-the-Dirt (Excessive Stress).</p>
-        </div>
-
-        <div class="rule-box">
-          <h4>ENGAGED MODELS (Within 1")</h4>
-          <p>May <strong>only Shoot with CQB weapons</strong> while Engaged.</p>
-        </div>
-      </section>
-
-      <!-- COMBAT -->
-      <section id="combat" class="qs-section">
-        <h2>COMBAT RESOLUTION</h2>
-        <div class="combat-sequence">
-          <div class="combat-step">
-            <div class="step-num">1</div>
-            <h4>Line of Sight</h4>
-            <p>True LoS. If any part visible (excluding base), LoS exists.</p>
-          </div>
-          <div class="combat-step">
-            <div class="step-num">2</div>
-            <h4>Determine Cover</h4>
-            <p>50%+ obscured = cover. Does NOT reduce dice pool.</p>
-          </div>
-          <div class="combat-step">
-            <div class="step-num">3</div>
-            <h4>Attack Roll</h4>
-            <p>Roll full dice pool from weapon profile.</p>
-          </div>
-          <div class="combat-step">
-            <div class="step-num">4</div>
-            <h4>Count Hits</h4>
-            <p>Dice ≥ Hit value = hits.</p>
-          </div>
-          <div class="combat-step">
-            <div class="step-num">5</div>
-            <h4>Assign Stress</h4>
-            <p>+1 for being targeted + hits total. <strong>BEFORE cover.</strong></p>
-          </div>
-          <div class="combat-step">
-            <div class="step-num">6</div>
-            <h4>Apply Cover</h4>
-            <p>Light: -1 hit. Heavy: -2 hits. Min 0.</p>
-          </div>
-          <div class="combat-step">
-            <div class="step-num">7</div>
-            <h4>Defense Roll</h4>
-            <p>Per remaining hit: ≥ DR = negated. Lower = wound.</p>
-          </div>
-          <div class="combat-step">
-            <div class="step-num">8</div>
-            <h4>Wounds</h4>
-            <p>CEV -1 per wound. CEV 0 = removed.</p>
-          </div>
-        </div>
-      </section>
-
-      <!-- STRESS -->
-      <section id="stress" class="qs-section">
-        <h2>STRESS & MORALE</h2>
-        
-        <div class="stress-thresholds">
-          <div class="threshold-card">
-            <h3>Stress &lt; Morale</h3>
-            <p class="status-ok">FULL ACTIONS</p>
-            <p>Model acts normally. 2 actions per activation.</p>
-          </div>
-          <div class="threshold-card">
-            <h3>Stress ≥ Morale</h3>
-            <p class="status-warning">REDUCED ACTIONS</p>
-            <p>Only 1 action this activation.</p>
-          </div>
-          <div class="threshold-card">
-            <h3>Stress ≥ 2× Morale</h3>
-            <p class="status-critical">EXCESSIVE STRESS</p>
-            <p>Forced Hit-the-Dirt. Activation ends.</p>
-          </div>
-        </div>
-
-        <div class="rule-box">
-          <h4>STRESS REMOVAL (At Activation Start)</h4>
-          <p>Roll 1D10 per Stress Counter. On <strong>7, 8, 9, or 10</strong>: remove 1 Stress.</p>
-        </div>
-
-        <div class="subsection">
-          <h3>STRESS EXPLOITATION</h3>
-          <p class="intro-text">Spend Stress as currency when enemy declares an action. Declare before movement/dice. Once per model per activation.</p>
-          <table class="data-table">
-            <thead>
-              <tr>
-                <th>Stress Spent</th>
-                <th>Effect</th>
-              </tr>
-            </thead>
+      <div class="qs-card">
+        <h3>GAME AT A GLANCE</h3>
+        <div class="table-wrap">
+          <table class="rule-table">
             <tbody>
-              <tr>
-                <td><strong>2</strong></td>
-                <td>Target loses 1 attack die on next Shoot</td>
-              </tr>
-              <tr>
-                <td><strong>3</strong></td>
-                <td>Target's Move halved next activation</td>
-              </tr>
-              <tr>
-                <td><strong>4</strong></td>
-                <td>Target's cover reduced by 1 until end of Turn</td>
-              </tr>
+              <tr><td>Battlefield</td><td><strong>3' × 3'</strong></td></tr>
+              <tr><td>Game Length</td><td><strong>5 Turns</strong></td></tr>
+              <tr><td>Point Limit</td><td><strong>1000 pts</strong></td></tr>
+              <tr><td>Dice</td><td><strong>D10</strong></td></tr>
+              <tr><td>For D5</td><td>Roll D10: 1–2=1, 3–4=2, 5–6=3, 7–8=4, 9–10=5</td></tr>
             </tbody>
           </table>
-          <div class="rule-box">
-            <h4>TEAM LEADER INTERCEPTION</h4>
-            <p>When Exploitation declared against Fireteam model within 2" of TL: TL may intercept. Stress transfers to TL. Effect negated.</p>
-          </div>
         </div>
-      </section>
+      </div>
 
-      <!-- LEADERSHIP -->
-      <section id="leadership" class="qs-section">
-        <h2>LEADERSHIP</h2>
-        <p class="intro-text">Leadership redistributes, delays, or pushes through Stress at a cost. <strong>One Leadership ability per model per activation.</strong></p>
+      <div class="qs-card">
+        <h3>TURN STRUCTURE</h3>
+        <ol class="rule-list">
+          <li><strong>Give Orders Phase</strong> — Player with initiative issues SL Orders first (within 3" + LoS). Remaining tokens shuffled into shared Order Deck.</li>
+          <li><strong>Model Activation Phase</strong> — Players alternate. Activate a Model with a face-up token OR draw from the Order Deck.</li>
+          <li><strong>Cleanup Phase</strong> — Return Order Tokens. Remove temp tokens (Marked, Smoke). Stress & Wounds remain.</li>
+        </ol>
+      </div>
 
-        <div class="leadership-grid">
-          <div class="leader-card tl-card">
-            <h3>TEAM LEADER (2" Range)</h3>
-            <div class="ability">
-              <h4>Aggression (Passive)</h4>
-              <p>Fireteam models within 2" gain <strong>+1 attack die</strong> on Shoot actions.</p>
-            </div>
-            <div class="ability">
-              <h4>Lead From The Front (Once/Turn)</h4>
-              <p>Target stressed Fireteam model within 2" acts at <strong>full actions</strong> regardless of Stress. TL gains +1 Stress.</p>
-            </div>
-            <div class="ability">
-              <h4>Stress Transfer</h4>
-              <p>Intercept Exploitation on Fireteam model within 2". Stress transfers to TL. Effect negated.</p>
-            </div>
-          </div>
+      <div class="qs-card">
+        <h3>INITIATIVE</h3>
+        <ul class="rule-list">
+          <li><strong>Turn 1:</strong> Defender goes first.</li>
+          <li><strong>Turn 2+:</strong> Count stressed models (1+ Stress Counter each). Lower count goes first.</li>
+          <li><strong>Tie:</strong> Previous initiative holder retains it.</li>
+        </ul>
+      </div>
 
-          <div class="leader-card sl-card">
-            <h3>SQUAD LEADER (3" Range)</h3>
-            <div class="ability">
-              <h4>Orders</h4>
-              <p>During Give Orders Phase, issue orders to models within 3" + LoS. Free action.</p>
-            </div>
-            <div class="ability">
-              <h4>Rally (1 Action)</h4>
-              <p>Roll D5. Distribute removals across friendlies within 3". SL gains +1 Stress.</p>
-            </div>
-            <div class="ability">
-              <h4>Authority Override (Once/Turn)</h4>
-              <p>Prevent forced Hit-the-Dirt on friendly within range. SL absorbs the Stress.</p>
-            </div>
-          </div>
+      <div class="qs-card full-width">
+        <h3>ATTACK SEQUENCE</h3>
+        <div class="table-wrap">
+          <table class="rule-table">
+            <thead><tr><th>Step</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Determine <strong>Line of Sight</strong> — crouch behind model, look from head height. Any part visible = LoS.</td></tr>
+              <tr><td>2</td><td>Determine <strong>Cover</strong> — 50%+ obscured = cover. Does NOT reduce dice pool.</td></tr>
+              <tr><td>3</td><td><strong>Attack Roll</strong> — roll full dice pool from Loadout Card.</td></tr>
+              <tr><td>4</td><td>Count <strong>Hits</strong> — dice equal to or above Hit value.</td></tr>
+              <tr><td>5</td><td>Assign <strong>Stress</strong> — 1 for being targeted + 1 per hit. Applied BEFORE cover.</td></tr>
+              <tr><td>6</td><td>Apply <strong>Cover</strong> — Light: remove 1 hit. Heavy: remove 2 hits. Minimum 0.</td></tr>
+              <tr><td>7</td><td><strong>Defense Roll</strong> — per remaining hit. Roll vs DR. Equal/above: negated. Below: wound.</td></tr>
+              <tr><td>8</td><td><strong>Wound Allocation</strong> — CEV -1 per wound. CEV 0: model removed.</td></tr>
+            </tbody>
+          </table>
         </div>
+      </div>
 
-        <div class="rule-box critical">
-          <h4>VDV COERCIVE AUTHORITY</h4>
-          <p>VDV Rally and Authority Override cost <strong>+2 Stress</strong> instead of +1.</p>
+      <div class="qs-card">
+        <h3>ACTIONS (2 per activation)</h3>
+        <ul class="rule-list">
+          <li><strong>Move</strong> — up to Move value. May be taken twice.</li>
+          <li><strong>Shoot</strong> — one weapon. Once per activation.</li>
+          <li><strong>Sight-In</strong> — stationary; re-roll up to 2 dice this activation.</li>
+          <li><strong>Hit-the-Dirt</strong> — only action this activation. Gain Light Cover. Remove D5 Stress.</li>
+          <li><strong>Ambush</strong> — react to enemy action. Move, Shoot, or Hit-the-Dirt.</li>
+          <li><strong>OBJACT</strong> — per Objective Card. Once per activation.</li>
+          <li><strong>Embark / Disembark</strong> — enter/exit vehicle within 1". Not both same activation.</li>
+        </ul>
+      </div>
+
+      <div class="qs-card">
+        <h3>STRESS & MORALE</h3>
+        <ul class="rule-list">
+          <li>Gain <strong>1 Stress</strong> when targeted.</li>
+          <li>Gain <strong>+1 Stress per hit</strong> (before cover).</li>
+          <li>At activation start: roll 1D10 per Stress. <strong>7+:</strong> remove one.</li>
+        </ul>
+        <div class="table-wrap" style="margin-top:12px">
+          <table class="rule-table">
+            <thead><tr><th>Stress Level</th><th>Effect</th></tr></thead>
+            <tbody>
+              <tr><td>Stress &gt;= Morale</td><td>1 action only</td></tr>
+              <tr><td>Stress &gt;= 2× Morale</td><td>Forced Hit-the-Dirt, activation ends</td></tr>
+            </tbody>
+          </table>
         </div>
+      </div>
 
-        <div class="rule-box critical">
-          <h4>VDV COMMAND IMPERATIVE</h4>
-          <p>Once per Turn: SL spends 1 Action to grant friendly model within 3" <strong>1 immediate action</strong>. SL gains +1 Stress.</p>
+      <div class="qs-card">
+        <h3>STRESS EXPLOITATION</h3>
+        <p>Declare before enemy action resolves. Spend Stress from the targeted model.</p>
+        <div class="table-wrap" style="margin-top:12px">
+          <table class="rule-table">
+            <thead><tr><th>Spend</th><th>Effect</th></tr></thead>
+            <tbody>
+              <tr><td>2</td><td>Target loses 1 attack die this activation</td></tr>
+              <tr><td>3</td><td>Target's Move halved next activation</td></tr>
+              <tr><td>4</td><td>Target's cover reduced by 1 until end of Turn</td></tr>
+            </tbody>
+          </table>
         </div>
+        <p style="margin-top:10px; font-size:12px; color:var(--text-dim)">TL within 2" may intercept — absorbs stress, negates effect.</p>
+      </div>
 
-        <div class="rule-box critical">
-          <h4>VDV COMMAND COLLAPSE</h4>
-          <p>When VDV SL dies: all friendly Infantry within 6" + LoS gain <strong>+1 Stress immediately</strong>.</p>
+      <div class="qs-card">
+        <h3>LEADERSHIP</h3>
+        <div class="table-wrap">
+          <table class="rule-table">
+            <thead><tr><th>Ability</th><th>Who</th><th>Effect</th></tr></thead>
+            <tbody>
+              <tr><td>Aggression (passive)</td><td>TL</td><td>+1 die to Fireteam models within 2"</td></tr>
+              <tr><td>Lead From The Front</td><td>TL</td><td>Stressed model acts at full actions. TL +1 Stress.</td></tr>
+              <tr><td>Rally</td><td>SL</td><td>1 Action. Roll D5, remove that many Stress from friendlies within 3". SL +1 Stress.</td></tr>
+              <tr><td>Authority Override</td><td>SL</td><td>Prevent forced Hit-the-Dirt. SL absorbs the Stress.</td></tr>
+            </tbody>
+          </table>
         </div>
-      </section>
+      </div>
 
-      <!-- KEYWORDS -->
-      <section id="keywords" class="qs-section">
-        <h2>KEYWORD GLOSSARY</h2>
-        <div class="keyword-grid">
-          <div class="keyword-card">
-            <h4>CQB (Close Quarters Combat)</h4>
-            <p>+1 die while Engaged. Only CQB weapons can Shoot while Engaged.</p>
-          </div>
-          <div class="keyword-card">
-            <h4>C-FIRE (Covering Fire)</h4>
-            <p>Target gains +1 Stress. Friendlies within 2" of target gain +1 Stress if attacker has LoS.</p>
-          </div>
-          <div class="keyword-card">
-            <h4>ENC (Encumbered)</h4>
-            <p>Move -2" (min 4").</p>
-          </div>
-          <div class="keyword-card">
-            <h4>RLD (Reload)</h4>
-            <p>After firing, spend 1 Action to reload. May reload + Shoot same activation.</p>
-          </div>
-          <div class="keyword-card">
-            <h4>EXPL X (Explosive)</h4>
-            <p>X" radius. All models within resolve separately. Ignores cover.</p>
-          </div>
-          <div class="keyword-card">
-            <h4>LOB (Lob Grenade)</h4>
-            <p>Throw up to 4". Roll D10: 7+ detonates. 3D / 7+ / 2" radius. Ignores Light Cover.</p>
-          </div>
-          <div class="keyword-card">
-            <h4>IDF (Indirect Fire)</h4>
-            <p>Attack without LoS. Roll 10+ to hit. Improves by 1 each miss (min 2). Resets if target moves.</p>
-          </div>
-          <div class="keyword-card">
-            <h4>DEPLOY</h4>
-            <p>Spend 1 Action to deploy before firing. Moving undeploys.</p>
-          </div>
-          <div class="keyword-card">
-            <h4>ONE-SHOT</h4>
-            <p>After firing, unusable rest of game.</p>
-          </div>
-          <div class="keyword-card">
-            <h4>SMOKE</h4>
-            <p>2" radius half-sphere. Blocks LoS. Removed at Cleanup.</p>
-          </div>
-          <div class="keyword-card">
-            <h4>CONCEALMENT</h4>
-            <p>Treat Light as Heavy. Heavy removes 3 hits instead of 2.</p>
-          </div>
-          <div class="keyword-card">
-            <h4>INJURED</h4>
-            <p>CEV ≤ half starting: Move -3", -1 attack die (min 1).</p>
-          </div>
-          <div class="keyword-card">
-            <h4>PEN X (Penetration)</h4>
-            <p>vs Vehicles: PEN &lt; Armor = no effect. PEN ≥ Armor = resolves normally.</p>
-          </div>
-          <div class="keyword-card">
-            <h4>ASSISTED RELOAD</h4>
-            <p>If Loader unactivated + within 2" of Gunner: RLD costs no action. Loader has -1 action.</p>
-          </div>
-        </div>
-      </section>
+      <div class="qs-card">
+        <h3>VEHICLES</h3>
+        <ul class="rule-list">
+          <li>2 actions per activation: Move, Shoot, Special.</li>
+          <li>Hit only if PEN &gt;= Armor Rating.</li>
+          <li>Gain 1 Stress when targeted.</li>
+          <li><strong>Disabled</strong> (Stress &gt;= 2× Morale): cannot Move, -1 attack die.</li>
+          <li><strong>Recovery</strong>: roll 1D10 at start of activation. 8+: clear all Stress.</li>
+          <li><strong>Destruction</strong>: CEV 0 = wreckage. Roll 1D10 — 6+: explodes.</li>
+        </ul>
+      </div>
 
-      <!-- FACTIONS -->
-      <section id="factions" class="qs-section">
-        <h2>FACTION TRAITS</h2>
+      <div class="qs-card">
+        <h3>COVER & LINE OF SIGHT</h3>
+        <ul class="rule-list">
+          <li><strong>LoS:</strong> True LoS — crouch behind model, look from head height.</li>
+          <li><strong>Cover:</strong> Model is 50%+ obscured from attacker's view.</li>
+          <li><strong>Light Cover:</strong> Remove 1 hit (after attack roll).</li>
+          <li><strong>Heavy Cover:</strong> Remove 2 hits (after attack roll).</li>
+          <li>Cover does NOT reduce dice pool.</li>
+          <li>Stress from hits is applied BEFORE cover removes hits.</li>
+        </ul>
+      </div>
 
-        <div class="faction-block usa">
-          <h3>U.S. ARMY — "Fireteam Cohesion"</h3>
-          <div class="trait">
-            <h4>Fireteam Cohesion</h4>
-            <p>When within 2" of another Fireteam model: <strong>reroll 1 failed die</strong> on Move or Shoot.</p>
-          </div>
-          <div class="trait">
-            <h4>Coordinated Fire</h4>
-            <p>When Shooting: place Marked Token on target. Friendlies shooting Marked target may spend token for <strong>+1 attack die</strong>. Removed at Cleanup.</p>
-          </div>
-        </div>
+      <div class="qs-card">
+        <h3>BREACH QUICK RULES</h3>
+        <ul class="rule-list">
+          <li>Requires at least one enemy visible inside upon completing Move.</li>
+          <li>Through doorways only — no window entry.</li>
+          <li>CQB weapon: +1 die, hit improved by 1.</li>
+          <li>Non-CQB weapon: -1 die, hit worsened by 1.</li>
+          <li>Defender with Ambush: additional +1 hit improvement.</li>
+          <li>Already-activated defender: -1 die, +1 hit worsened, primary weapon only.</li>
+        </ul>
+      </div>
 
-        <div class="faction-block vdv">
-          <h3>VDV (RUSSIAN AIRBORNE) — "Forced Momentum"</h3>
-          <div class="trait">
-            <h4>Assault Mobility</h4>
-            <p>VDV Infantry <strong>do not carry ENC</strong> on any weapons (except Kornet Gunner).</p>
-          </div>
-          <div class="trait">
-            <h4>Command Imperative</h4>
-            <p>Once per Turn: SL spends 1 Action to grant friendly model <strong>1 immediate action</strong>. SL gains +1 Stress.</p>
-          </div>
-          <div class="trait">
-            <h4>Coercive Authority</h4>
-            <p>Rally and Authority Override cost SL <strong>+2 Stress</strong> instead of +1.</p>
-          </div>
-          <div class="trait">
-            <h4>Command Collapse</h4>
-            <p>When SL dies: all friendly Infantry within 6" + LoS gain <strong>+1 Stress</strong>.</p>
-          </div>
-        </div>
+      <div class="qs-card">
+        <h3>VICTORY</h3>
+        <ul class="rule-list">
+          <li>Highest Victory Points at end of Turn 5 wins.</li>
+          <li>VP earned per active Objective Card.</li>
+          <li>Tie: most models alive wins.</li>
+          <li>Still tied: draw.</li>
+        </ul>
+      </div>
 
-        <div class="faction-block insurgent">
-          <h3>INSURGENTS — "Pressure & Fragmentation"</h3>
-          <div class="trait">
-            <h4>Asymmetric Force Ratio</h4>
-            <p>Cheapest models in game. <strong>Outnumber opponents</strong>. Losing models acceptable — losing tempo is not.</p>
-          </div>
-          <div class="trait">
-            <h4>Tempo Saturation</h4>
-            <p>More models = <strong>more Order Cards</strong> in shared deck. Use unpredictability as a weapon.</p>
-          </div>
-          <div class="trait">
-            <h4>Ambush Shock</h4>
-            <p>When Ambush Shoot scores 1+ hits: target gains <strong>+1 additional Stress</strong> (even if no damage).</p>
-          </div>
-          <div class="trait">
-            <h4>IED Network</h4>
-            <p>Place 2 IED + 2 Blank tokens face-down during setup. 3" from Attacker zone, 6" apart. Detonate: 1 Action, 24" range, no LoS. <strong>4D / 5+ / EXPL 3" / +1 Stress</strong>.</p>
-          </div>
-        </div>
-      </section>
+    </div>
 
-      <!-- VEHICLES -->
-      <section id="vehicles" class="qs-section">
-        <h2>VEHICLES</h2>
-        <div class="vehicle-rules">
-          <div class="vehicle-card">
-            <h4>Movement</h4>
-            <p>Measure from hull center. Tape may bend. Hull must fit through spaces. May Move twice. Reverse at half Move.</p>
-          </div>
-          <div class="vehicle-card">
-            <h4>Damage</h4>
-            <p>PEN &lt; Armor: no effect. PEN ≥ Armor: resolves normally. Gain 1 Stress when targeted.</p>
-          </div>
-          <div class="vehicle-card">
-            <h4>Disabled</h4>
-            <p>Stress ≥ 2× Morale: Disabled. Cannot Move, cannot OBJACT, Shoot at -1 die.</p>
-          </div>
-          <div class="vehicle-card">
-            <h4>Recovery</h4>
-            <p>At activation start: roll D10. 8-10: remove all Stress, no longer Disabled.</p>
-          </div>
-          <div class="vehicle-card">
-            <h4>Destruction</h4>
-            <p>CEV 0: destroyed, impassable wreckage. Roll D10: 6+ explodes. Embarked models roll D10: 7+ = hit. All survivors gain +2 Stress.</p>
-          </div>
-          <div class="vehicle-card">
-            <h4>Arc Armor (F/S/R)</h4>
-            <p>Front/Side/Rear armor values. Crosshair method: draw lines lengthwise + widthwise. Attacker's quadrant determines arc.</p>
-          </div>
-        </div>
-      </section>
+  </main>
 
-    </main>
+  <footer>
+    <p>© 2026 Operation Urban Storm. All rights reserved.</p>
+  </footer>
 
-    <footer>
-      <p>© 2025 Operation Urban Storm. All rights reserved.</p>
-    </footer>
-
-  </body>
+</body>
 </html>
