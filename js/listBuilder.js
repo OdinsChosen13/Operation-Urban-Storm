@@ -1148,7 +1148,7 @@ const factions = {
         { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1 instead. ONE-USE." }
       ],
       independent: true,
-      maxPerList: 3
+      maxPerList: 1
     },
  
     // -------------------------
@@ -1170,7 +1170,7 @@ const factions = {
       socketLimits: {},
       upgrades: [],
       independent: true,
-      maxPerList: 3
+      maxPerList: 1
     },
  
     // -------------------------
