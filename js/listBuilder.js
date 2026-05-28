@@ -2099,7 +2099,7 @@ function renderUnitBrowser() {
   const infantry    = faction.units.filter(u => u.role === "Infantry" || u.role === "Rifleman" || u.role === "Gunner");
   const specialists = faction.units.filter(u => u.role === "Specialist");
   const vehicles    = faction.units.filter(u => u.role === "Vehicle" || u.role === "Vehicles");
-  const independent = faction.units.filter(u => u.independent === true && u.role !== "Vehicle" && u.role !== "Vehicles");
+  const independent = faction.units.filter(u => u.independent === true && u.role !== "Vehicle" && u.role !== "Vehicles" && u.role !== "Independent — Drone Team");
 
   let html = '<div class="section-label">LEADERS</div>';
   leaders.forEach(unit => {
@@ -2222,6 +2222,24 @@ function renderActiveList() {
       html += renderListEntry(entry);
     });
   }
+  
+  const droneTeams = faction.units.filter(u => u.role === "Independent — Drone Team");
+
+if (droneTeams.length > 0) {
+  html += '<div class="section-label" style="margin-top:20px">DRONE TEAMS</div>';
+  droneTeams.forEach(unit => {
+    html += `
+      <div class="unit-card" onclick="openUnitModal('${unit.id}')">
+        <div class="unit-card-role">${unit.role}</div>
+        <div class="unit-card-row">
+          <div class="unit-card-name">${unit.name}</div>
+          <div class="unit-card-pts">${unit.pts}pts</div>
+        </div>
+        ${unit.maxPerList ? '<div class="unit-note">MAX ' + unit.maxPerList + ' PER LIST</div>' : ''}
+      </div>
+    `;
+  });
+}
 
   // Vehicles
   const vehicleUnits = activeList.filter(e => e.unit.role === "Vehicle" || e.unit.role === "Vehicles");
