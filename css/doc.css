@@ -54,6 +54,13 @@
 .faction-header.vdv h1      { color: #e05c5c; }
 .faction-header.insurgents h1 { color: #d4a017; }
 .faction-header.tdf h1        { color: #8fbc5a; }
+.faction-header.tdf {
+  background: linear-gradient(135deg, #2e4a28 0%, #4a6741 50%, #1a6b3c 100%);
+}
+
+.faction-header.tdf .doctrine-subtitle {
+  color: #8fbc5a;
+}
 
 /* ---- Table of Contents ---- */
 .doc-toc {
