@@ -53,6 +53,7 @@
 .faction-header.us-army h1  { color: #7ec8e3; }
 .faction-header.vdv h1      { color: #e05c5c; }
 .faction-header.insurgents h1 { color: #d4a017; }
+.faction-header.tdf h1        { color: #8fbc5a; }
 
 /* ---- Table of Contents ---- */
 .doc-toc {
