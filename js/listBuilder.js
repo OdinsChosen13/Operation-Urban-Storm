@@ -2248,24 +2248,6 @@ function renderActiveList() {
     });
   }
 
-  const droneTeams = faction.units.filter(u => u.role === "Independent — Drone Team");
-
-if (droneTeams.length > 0) {
-  html += '<div class="section-label" style="margin-top:20px">DRONE TEAMS</div>';
-  droneTeams.forEach(unit => {
-    html += `
-      <div class="unit-card" onclick="openUnitModal('${unit.id}')">
-        <div class="unit-card-role">${unit.role}</div>
-        <div class="unit-card-row">
-          <div class="unit-card-name">${unit.name}</div>
-          <div class="unit-card-pts">${unit.pts}pts</div>
-        </div>
-        ${unit.maxPerList ? '<div class="unit-note">MAX ' + unit.maxPerList + ' PER LIST</div>' : ''}
-      </div>
-    `;
-  });
-}
-
   // Vehicles
   const vehicleUnits = activeList.filter(e => e.unit.role === "Vehicle" || e.unit.role === "Vehicles");
   if (vehicleUnits.length > 0) {
