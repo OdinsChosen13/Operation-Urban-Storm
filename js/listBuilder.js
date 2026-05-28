@@ -350,6 +350,7 @@ const factions = {
           { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
+          { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 8+" },
           { socket: "EQUIPMENT", name: "SL Radio", pts: 25, effect: "Issue orders to RTO regardless of distance/LoS." }
         ],
         required: true,
@@ -374,6 +375,7 @@ const factions = {
           { socket: "EQUIPMENT", name: "RGD-5 Grenade", pts: 6, effect: "3D / 6+ / 8\" / EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
+          { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 8+" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
         ]
       },
@@ -394,6 +396,7 @@ const factions = {
           { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
+          { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 8+" },
           { socket: "EQUIPMENT", name: "SL Radio", pts: 25, effect: "Issue orders to RTO regardless of distance/LoS." }
         ]
       },
@@ -415,6 +418,7 @@ const factions = {
           { socket: "EQUIPMENT", name: "RGD-5 Grenade", pts: 6, effect: "3D / 6+ / 8\" / EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
+          { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 8+" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
         ]
       },
@@ -433,6 +437,7 @@ const factions = {
         upgrades: [
           { socket: "EQUIPMENT", name: "RGD-5 Grenade", pts: 6, effect: "3D / 6+ / 8\" / EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
+          { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 8+" },
           { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" },
           { socket: "SUPPORT", name: "Assault Pack", pts: 15, effect: "C-FIRE generates +2 Stress instead of +1" }
         ]
@@ -451,6 +456,7 @@ const factions = {
         socketLimits: { EQUIPMENT: 1 },
         upgrades: [
           { socket: "EQUIPMENT", name: "RGD-5 Grenade", pts: 6, effect: "3D / 6+ / 8\" / EXPL 1 / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 8+" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
         ]
       },
@@ -502,6 +508,7 @@ const factions = {
         abilities: ["Minimum Range 6\"", "Coherency Range 2\"", "Ambush Shock"],
         socketLimits: {EQUIPMENT: 1 },
         upgrades: [
+          { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 8+" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
         ],
         independent: true,
@@ -521,6 +528,7 @@ const factions = {
         socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
         upgrades: [
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 8+" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
         ],
         independent: true,
