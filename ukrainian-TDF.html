@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ukrainian TDF Doctrine — Operation Urban Storm</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/doc.css">
+  <style>
+    /* TDF faction color overrides — add to doc.css if preferred */
+    .faction-header.tdf {
+      background: linear-gradient(135deg, #2e4a28 0%, #4a6741 50%, #1a6b3c 100%);
+    }
+    .tdf .doctrine-subtitle {
+      color: #8fbc5a;
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="main-nav">
+    <div class="nav-container">
+      <div class="nav-brand">OPERATION URBAN STORM</div>
+      <div class="nav-links">
+        <a href="index.html">HOME</a>
+        <a href="rules.html" class="active">RULES</a>
+        <a href="listBuilder.html">LIST BUILDER</a>
+        <a href="#" class="disabled">STORE</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="doc-main">
+
+    <div class="doc-page-header faction-header tdf">
+      <a href="rules.html" class="back-link">← BACK TO RULES</a>
+      <div class="faction-eyebrow">FACTION DOCTRINE</div>
+      <h1>UKRAINIAN TDF</h1>
+      <div class="doctrine-subtitle">Hold the Line</div>
+      <div class="version-badge">V1.7.0 — DRAFT</div>
+    </div>
+
+    <nav class="doc-toc">
+      <h2>CONTENTS</h2>
+      <ol>
+        <li><a href="#overview">Faction Overview</a></li>
+        <li><a href="#traits">Faction Traits</a></li>
+        <li><a href="#drone-rules">Drone Rules</a></li>
+        <li><a href="#listbuilding">List Building</a></li>
+        <li><a href="#ordercards">Order Card Structure</a></li>
+      </ol>
+    </nav>
+
+    <!-- FACTION OVERVIEW -->
+    <section class="doc-section" id="overview">
+      <h2>FACTION OVERVIEW</h2>
+      <div class="rule-block faction-overview-block">
+        <p>Ukrainian Territorial Defense Forces are motivated defenders fighting for their own ground. They are not the most professional or best-equipped force on the battlefield — but they know their terrain, they have prepared their positions, and they are not going anywhere.</p>
+        <p>TDF wins by making every meter of advance costly. The Designated Sector creates a defined kill zone that rewards patience and punishes recklessness. Models that hold their ground fight better — faster, more accurate, harder to kill. Models that leave their prepared positions become vulnerable.</p>
+        <p>TDF's second edge is drone superiority. No other faction fields drone operators with the same frequency or lethality. A TDF list may include up to 3 Drone Operators — each independently selecting Recon, Loiter, or FPV Strike configuration at list building. No other faction may field more than 1 Drone Operator.</p>
+        <p>TDF is a moderate-complexity faction. The Designated Sector requires planning and positional discipline. The drone system adds a tactical layer no other faction has. <strong>Played well, TDF dictates the terms of every engagement.</strong></p>
+      </div>
+    </section>
+
+    <!-- FACTION TRAITS -->
+    <section class="doc-section" id="traits">
+      <h2>FACTION TRAITS</h2>
+
+      <div class="rule-block trait-block">
+        <div class="trait-number">1</div>
+        <div class="trait-body">
+          <h3>Designated Sector</h3>
+          <p>The Squad Commander surveys the ground and designates a defensive sector before the first shot is fired.</p>
+          <ul class="rule-list">
+            <li>During <strong>Step 6 of Game Setup</strong>, the Serzhant places one Designated Sector token. The token represents the center of an <strong>8" diameter zone</strong>.</li>
+            <li>All friendly TDF models within the zone gain: <strong>Move +1"</strong>, <strong>DR -1</strong>, and <strong>Hit +1</strong> (e.g. 6+ becomes 5+).</li>
+            <li>Benefits apply at the moment an action is declared, not after movement resolves.</li>
+            <li>The Serzhant may spend their <strong>entire activation (2 Actions)</strong> to relocate the Designated Sector token anywhere within Command Range. No other actions may be taken this activation.</li>
+            <li>If the Serzhant is removed from play, the token remains in its current position for the rest of the game and <strong>cannot be relocated</strong>.</li>
+          </ul>
+          <div class="rule-note">The zone is placed at Step 6 — before deployment. The TDF player commits to ground without seeing where the opponent deploys. This is intentional. Experienced TDF players read the mission and terrain to predict attack vectors. The relocation option exists but costs the entire SL activation — a real decision on a 5-turn game.</div>
+        </div>
+      </div>
+
+      <div class="rule-block trait-block">
+        <div class="trait-number">2</div>
+        <div class="trait-body">
+          <h3>Drone Superiority</h3>
+          <p>TDF Drone Operators deliver ISR with greater effect than any other faction.</p>
+          <ul class="rule-list">
+            <li>When a TDF Drone Operator's Recon Drone applies <strong>ISR (Spotted)</strong> to an enemy model, cover is reduced to <strong>0</strong> instead of 1.</li>
+            <li>Friendly TDF models attacking a Spotted model gain <strong>+1 attack die</strong>.</li>
+            <li>TDF lists may include <strong>up to 3 Drone Operators</strong>. No other faction may field more than 1.</li>
+          </ul>
+          <div class="rule-note">The base ISR keyword (cover -1, indirect fire resolves normally) applies to all factions with drone-capable units. Drone Superiority is TDF-exclusive — it represents the most advanced small-unit drone integration doctrine in the world.</div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- DRONE RULES -->
+    <section class="doc-section" id="drone-rules">
+      <h2>DRONE RULES</h2>
+
+      <div class="rule-block">
+        <p>The Drone Operator is a <strong>two-model unit</strong>. The Operator and Drone share a single activation with a combined action economy of <strong>2 actions</strong>. Actions may be split in any combination between the two models.</p>
+      </div>
+
+      <div class="rule-block">
+        <h3>Drone Model Rules</h3>
+        <ul class="rule-list">
+          <li>The Drone has its own Move stat, LoS, and DR — it is measured and targeted independently.</li>
+          <li><strong>Evasive:</strong> Attacks targeting the Drone always treat it as having Light Cover regardless of terrain.</li>
+          <li><strong>Immune to Stress:</strong> Cannot be targeted by Stress Exploitation. Stress rules do not apply.</li>
+          <li>If the Drone is destroyed, the Operator continues as standard infantry for the rest of the game.</li>
+          <li>Drone type is selected during list building via the Operator's [WEAPON] socket. One type per Operator.</li>
+        </ul>
+      </div>
+
+      <div class="rule-block">
+        <h3>Recon Drone</h3>
+        <ul class="rule-list">
+          <li>Operates <strong>outdoors only</strong>.</li>
+          <li><strong>SPOT (1 Action):</strong> Select one enemy model within LoS of the Drone. That model gains the ISR (Spotted) token until end of current turn.</li>
+          <li>TDF Drone Superiority doctrine bonus applies — cover reduced to 0, +1 attack die for friendly TDF models targeting Spotted model.</li>
+        </ul>
+      </div>
+
+      <div class="rule-block">
+        <h3>Loiter Drone</h3>
+        <ul class="rule-list">
+          <li>Operates <strong>outdoors only</strong>.</li>
+          <li><strong>ATTACK (1 Action):</strong> The Drone must be within <strong>4"</strong> of the target model. Resolve as standard attack — 4D / 6+ / C-FIRE / EXPL 1. No LoS required.</li>
+          <li>If the Drone uses an Attack action this activation, the Operator <strong>may not use a Shoot action</strong>.</li>
+          <li>Benefits from TDF Drone Superiority doctrine bonus when targeting a Spotted model.</li>
+        </ul>
+      </div>
+
+      <div class="rule-block">
+        <h3>FPV Strike Drone</h3>
+        <ul class="rule-list">
+          <li>Operates <strong>indoors and outdoors</strong>.</li>
+          <li><strong>ATTACK (1 Action):</strong> Move the Drone within <strong>1"</strong> of the target. Resolve as standard attack — 5D / 5+ / PEN 1 / EXPL 1. No LoS required.</li>
+          <li>The Drone is <strong>removed from play</strong> after the attack resolves regardless of outcome.</li>
+          <li>The Operator continues as standard infantry after the Drone is expended.</li>
+        </ul>
+      </div>
+
+    </section>
+
+    <!-- LIST BUILDING -->
+    <section class="doc-section" id="listbuilding">
+      <h2>LIST BUILDING</h2>
+      <div class="rule-block">
+        <ul class="rule-list">
+          <li>1000 points or fewer.</li>
+          <li>Fire Teams, each led by one Team Leader.</li>
+          <li>Fire Teams must include at least two Models.</li>
+          <li>Fire Teams may only have one specialist of each type.</li>
+          <li>One <strong>Squad Leader (Serzhant)</strong> required.</li>
+          <li>One AT Team may be included per list.</li>
+          <li>Up to <strong>3 Drone Operators</strong> may be included per list.</li>
+        </ul>
+        <div class="rule-note">TDF lists reward planning. Place your Designated Sector to cover your most important objective and build your Fireteams to hold it. Drone Operators are a significant investment — consider whether Recon, Loiter, and Strike configurations cover different tactical roles before committing points.</div>
+      </div>
+    </section>
+
+    <!-- ORDER CARD STRUCTURE -->
+    <section class="doc-section" id="ordercards">
+      <h2>ORDER CARD STRUCTURE</h2>
+      <div class="table-wrap">
+        <table class="rule-table">
+          <thead>
+            <tr><th>Order Card</th><th>Units Using This Card</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Serzhant</strong></td><td>Squad Leader</td></tr>
+            <tr><td><strong>Molodshyi</strong></td><td>Team Leader</td></tr>
+            <tr><td><strong>Strilets</strong></td><td>Rifleman</td></tr>
+            <tr><td><strong>Spetsialist</strong></td><td>Kulemetnik, Hranatometnik, Strilok, Feldcher, Shturmovyk, Dronivnyk</td></tr>
+            <tr><td><strong>Nezalezhnyi</strong></td><td>Protytankist, AT Loader, Drone</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p>© 2026 Operation Urban Storm. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
