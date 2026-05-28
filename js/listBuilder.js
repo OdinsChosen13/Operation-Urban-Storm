@@ -850,7 +850,442 @@ const factions = {
         independent: true,
       },
     ]
-  }
+  },
+"tdf": {
+  name: "Ukrainian TDF",
+  color: "#4a6741",
+  accent: "#8fbc5a",
+  units: [
+ 
+    // -------------------------
+    // SQUAD LEADER
+    // -------------------------
+    {
+      id: "tdf_serzhant",
+      name: "Serzhant",
+      role: "Squad Leader",
+      pts: 95,
+      stats: { MOV: '7"', MOR: 4, CEV: 3, DR: "8+" },
+      weapons: [
+        { name: "AK-74", dice: 6, hit: "6+", range: '36"', keywords: "" },
+        { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+      ],
+      abilities: [
+        "Squad Leader (3\")",
+        "Rally",
+        "Authority Override",
+        "Designated Sector: Places Designated Sector token during Step 6 of Game Setup. May spend full activation (2 Actions) to relocate token within Command Range."
+      ],
+      socketLimits: { WEAPON: 1, EQUIPMENT: 2 },
+      upgrades: [
+        { socket: "WEAPON", name: "AK-74M", pts: 8, effect: "6D / 5+ / 36\" — replaces AK-74" },
+        { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+        { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
+        { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 6\" / DR 7+" },
+        { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1 instead. ONE-USE." }
+      ],
+      required: true,
+      maxPerList: 1
+    },
+ 
+    // -------------------------
+    // TEAM LEADER
+    // -------------------------
+    {
+      id: "tdf_molodshyi",
+      name: "Molodshyi",
+      role: "Team Leader",
+      pts: 80,
+      stats: { MOV: '7"', MOR: 3, CEV: 3, DR: "8+" },
+      weapons: [
+        { name: "AK-74", dice: 6, hit: "6+", range: '36"', keywords: "" },
+        { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+      ],
+      abilities: [
+        "Lead From The Front (Once per Turn)",
+        "Stress Transfer"
+      ],
+      socketLimits: { WEAPON: 1, EQUIPMENT: 2 },
+      upgrades: [
+        { socket: "WEAPON", name: "AK-74M", pts: 8, effect: "6D / 5+ / 36\" — replaces AK-74" },
+        { socket: "WEAPON", name: "GP-25", pts: 10, effect: "Adds 3D / 5+ / 24\" / EXPL 1 / RLD / LOB — underslung, does not replace AK-74" },
+        { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+        { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
+        { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 6\" / DR 7+" },
+        { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1 instead. ONE-USE." }
+      ]
+    },
+ 
+    // -------------------------
+    // RIFLEMAN
+    // -------------------------
+    {
+      id: "tdf_strilets",
+      name: "Strilets",
+      role: "Rifleman",
+      pts: 70,
+      stats: { MOV: '7"', MOR: 3, CEV: 2, DR: "8+" },
+      weapons: [
+        { name: "AK-74", dice: 6, hit: "6+", range: '36"', keywords: "" }
+      ],
+      abilities: [],
+      socketLimits: { WEAPON: 1, EQUIPMENT: 2 },
+      upgrades: [
+        { socket: "WEAPON", name: "AK-74M", pts: 8, effect: "6D / 5+ / 36\" — replaces AK-74" },
+        { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+        { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
+        { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 6\" / DR 7+" },
+        { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1 instead. ONE-USE." },
+        { socket: "EQUIPMENT", name: "RTO Radio", pts: 25, effect: "Issue orders to friendlies within 2\". Requires SL Radio. List limit 1." }
+      ]
+    },
+ 
+    // -------------------------
+    // MACHINE GUNNER
+    // -------------------------
+    {
+      id: "tdf_kulemetnik",
+      name: "Kulemetnik",
+      role: "Specialist",
+      pts: 100,
+      stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "8+" },
+      weapons: [
+        { name: "RPK-74", dice: 7, hit: "7+", range: '36"', keywords: "C-FIRE / ENC" },
+        { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+      ],
+      abilities: [],
+      socketLimits: { EQUIPMENT: 1, SUPPORT: 1 },
+      upgrades: [
+        { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+        { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 7+ (ENC stacks with armor weight)" },
+        { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1 instead. ONE-USE." },
+        { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" },
+        { socket: "SUPPORT", name: "Assault Pack", pts: 15, effect: "C-FIRE generates +2 Stress instead of +1" }
+      ]
+    },
+ 
+    // -------------------------
+    // GRENADIER
+    // -------------------------
+    {
+      id: "tdf_hranatometnik",
+      name: "Hranatometnik",
+      role: "Specialist",
+      pts: 90,
+      stats: { MOV: '5"', MOR: 3, CEV: 2, DR: "8+" },
+      weapons: [
+        { name: "RPG-7", dice: 4, hit: "5+", range: '36"', keywords: "EXPL 2 / RLD / ENC / PEN 1" },
+        { name: "AK-74", dice: 6, hit: "6+", range: '36"', keywords: "" }
+      ],
+      abilities: [],
+      socketLimits: { EQUIPMENT: 1 },
+      upgrades: [
+        { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+        { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
+        { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1 instead. ONE-USE." }
+      ]
+    },
+ 
+    // -------------------------
+    // MARKSMAN
+    // -------------------------
+    {
+      id: "tdf_strilok",
+      name: "Strilok",
+      role: "Specialist",
+      pts: 85,
+      stats: { MOV: '6"', MOR: 3, CEV: 2, DR: "8+" },
+      weapons: [
+        { name: "SVD Dragunov", dice: 3, hit: "4+", range: '36"', keywords: "" },
+        { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+      ],
+      abilities: [
+        "Steady Aim (1 Action): This model does not shoot this action. It enters an Aimed state. The next Shoot action gains +1 die and ignores Light Cover. Aimed state is lost if model moves before firing."
+      ],
+      socketLimits: { SUPPORT: 1 },
+      upgrades: [
+        { socket: "SUPPORT", name: "Rangefinder", pts: 15, effect: "+1 hit value improvement on all Shoot actions. List limit 1." },
+        { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" }
+      ]
+    },
+ 
+    // -------------------------
+    // MEDIC
+    // -------------------------
+    {
+      id: "tdf_feldcher",
+      name: "Feldcher",
+      role: "Specialist",
+      pts: 85,
+      stats: { MOV: '6"', MOR: 3, CEV: 2, DR: "8+" },
+      weapons: [
+        { name: "AK-74", dice: 6, hit: "6+", range: '36"', keywords: "" },
+        { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+      ],
+      abilities: [
+        "Field Treatment (1 Action): Select one friendly Model within 3\" and LoS. That Model removes all Stress Counters. Feldcher gains +1 Stress. Cannot target itself.",
+        "Last Chance: When a friendly Model within 3\" and LoS is removed from play, the Feldcher may attempt revival next activation. Costs 1 Action. Roll 1D10 — meet or beat DR to return within 3\" with Stress equal to half Morale rounded up. Fail = permanently removed. Cannot attempt if under Excessive Stress."
+      ],
+      socketLimits: { EQUIPMENT: 1, SUPPORT: 1 },
+      upgrades: [
+        { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
+        { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1 instead. ONE-USE." },
+        { socket: "SUPPORT", name: "Advanced Aid Bag", pts: 15, effect: "Last Chance roll improved by 1" },
+        { socket: "SUPPORT", name: "Trauma Kit", pts: 10, effect: "Field Treatment may target this model" }
+      ]
+    },
+ 
+    // -------------------------
+    // CQB SPECIALIST
+    // -------------------------
+    {
+      id: "tdf_shturmovyk",
+      name: "Shturmovyk",
+      role: "Specialist",
+      pts: 110,
+      stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "8+" },
+      weapons: [
+        { name: "AK-74U", dice: 6, hit: "6+", range: '24"', keywords: "CQB" },
+        { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+      ],
+      abilities: [
+        "Aggressive Entry: When this model moves into a building, it may immediately make a free CQB Shoot action against one enemy model already inside before either model activates.",
+        "Urban Predator (Passive): When inside a building or enclosed structure this model gains +1 Move."
+      ],
+      socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
+      upgrades: [
+        { socket: "WEAPON", name: "Shotgun", pts: 8, effect: "6D / 7+ / 8\" / CQB — replaces AK-74U" },
+        { socket: "WEAPON", name: "MP5", pts: 8, effect: "5D / 6+ / 12\" / CQB — replaces AK-74U" },
+        { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
+        { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+        { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1 instead. ONE-USE." }
+      ]
+    },
+ 
+    // -------------------------
+    // AT TEAM — GUNNER
+    // -------------------------
+    {
+      id: "tdf_protytankist",
+      name: "Protytankist",
+      role: "Independent — AT Team",
+      pts: 120,
+      stats: { MOV: '5"', MOR: 3, CEV: 2, DR: "8+" },
+      weapons: [
+        { name: "RPG-7", dice: 4, hit: "5+", range: '36"', keywords: "EXPL 2 / RLD / ENC / PEN 1" },
+        { name: "AK-74", dice: 6, hit: "6+", range: '36"', keywords: "" }
+      ],
+      abilities: [
+        "Minimum Range 6\"",
+        "Coherency Range 2\""
+      ],
+      socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
+      upgrades: [
+        { socket: "WEAPON", name: "NLAW", pts: 15, effect: "3D / 4+ / 24\" / PEN 3 / ONE-SHOT / ENC — replaces RPG-7" },
+        { socket: "WEAPON", name: "FGM-148 Javelin", pts: 30, effect: "4D / 4+ / 48\" / PEN 4 / RLD / ENC / Deploy — replaces RPG-7" },
+        { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1 instead. ONE-USE." }
+      ],
+      independent: true,
+      maxPerList: 1
+    },
+ 
+    // -------------------------
+    // AT TEAM — LOADER
+    // -------------------------
+    {
+      id: "tdf_at_loader",
+      name: "AT Loader",
+      role: "Independent — AT Team",
+      pts: 70,
+      stats: { MOV: '6"', MOR: 3, CEV: 2, DR: "8+" },
+      weapons: [
+        { name: "AK-74", dice: 6, hit: "6+", range: '36"', keywords: "" }
+      ],
+      abilities: [
+        "Assisted Reload: If this model has not yet activated this turn and is within 2\" of the Protytankist, the Gunner's RLD costs no action. This model has one fewer action this activation."
+      ],
+      socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
+      upgrades: [
+        { socket: "WEAPON", name: "AK-74M", pts: 8, effect: "6D / 5+ / 36\" — replaces AK-74" },
+        { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+        { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1 instead. ONE-USE." }
+      ],
+      independent: true,
+      maxPerList: 1
+    },
+ 
+    // -------------------------
+    // DRONE OPERATOR
+    // -------------------------
+    {
+      id: "tdf_dronivnyk",
+      name: "Dronivnyk",
+      role: "Independent — Drone Team",
+      pts: 80,
+      stats: { MOV: '6"', MOR: 3, CEV: 2, DR: "8+" },
+      weapons: [
+        { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
+      ],
+      abilities: [
+        "Drone Controller: Shares combined action economy of 2 actions per activation with paired Drone. Actions may be split in any combination.",
+        "If Drone is destroyed, Dronivnyk continues as standard infantry.",
+        "Must purchase one drone type via [WEAPON] socket. No drone included by default."
+      ],
+      socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
+      upgrades: [
+        { socket: "WEAPON", name: "Recon Drone", pts: 20, effect: "SPOT (1 Action): target within drone LoS gains ISR (Spotted). Cover reduced to 0. +1 attack die for TDF models targeting Spotted model. Outdoors only. Persistent." },
+        { socket: "WEAPON", name: "Loiter Drone", pts: 30, effect: "ATTACK (1 Action): 4D / 6+ / 4\" proximity / EXPL 1 / C-FIRE. No LoS required. Operator cannot Shoot if drone attacked this activation. Outdoors only. Persistent." },
+        { socket: "WEAPON", name: "FPV Strike Drone", pts: 25, effect: "ATTACK (1 Action): 5D / 5+ / 1\" / PEN 1 / EXPL 1. No LoS required. Drone removed after attack resolves. Indoors and outdoors." },
+        { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 7+" },
+        { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1 instead. ONE-USE." }
+      ],
+      independent: true,
+      maxPerList: 3
+    },
+ 
+    // -------------------------
+    // DRONE MODEL
+    // -------------------------
+    {
+      id: "tdf_drone",
+      name: "Drone",
+      role: "Independent — Drone Team",
+      pts: 0,
+      stats: { MOV: '10"', MOR: "—", CEV: 1, DR: "8+" },
+      weapons: [],
+      abilities: [
+        "Evasive: Attacks targeting this model always treat it as having Light Cover regardless of terrain.",
+        "Immune to Stress: Cannot be targeted by Stress Exploitation. Stress rules do not apply.",
+        "Shares activation with paired Dronivnyk. Drone type determined by Dronivnyk WEAPON socket selection.",
+        "If destroyed, Dronivnyk continues as standard infantry."
+      ],
+      socketLimits: {},
+      upgrades: [],
+      independent: true,
+      maxPerList: 3
+    },
+ 
+    // -------------------------
+    // VEHICLES — T1
+    // -------------------------
+    {
+      id: "tdf_pickup",
+      name: "Pickup Truck",
+      role: "Vehicles",
+      pts: 80,
+      stats: { MOV: '8"', MOR: 3, CEV: 2, Passengers: 4, Armor: 0, DR: "9+" },
+      weapons: [
+        { name: "PKM", dice: 8, hit: "6+", range: '36"', keywords: "C-FIRE" }
+      ],
+      abilities: [],
+      socketLimits: { WEAPON: 1 },
+      upgrades: [
+        { socket: "WEAPON", name: "M2 .50 Cal", pts: 20, effect: "6D / 6+ / 36\" / C-FIRE / PEN 1 — replaces PKM. Improvised mount reduces accuracy." },
+        { socket: "WEAPON", name: "SPG-9", pts: 25, effect: "3D / 5+ / 36\" / EXPL 2 / RLD / PEN 2 — replaces PKM" }
+      ],
+      independent: true
+    },
+ 
+    {
+      id: "tdf_hmmwv",
+      name: "HMMWV",
+      role: "Vehicles",
+      pts: 100,
+      stats: { MOV: '8"', MOR: 3, CEV: 2, Passengers: 4, Armor: 1, DR: "7+" },
+      weapons: [
+        { name: "M2 .50 Cal", dice: 6, hit: "5+", range: '36"', keywords: "C-FIRE / PEN 1" }
+      ],
+      abilities: [],
+      socketLimits: { WEAPON: 1 },
+      upgrades: [
+        { socket: "WEAPON", name: "Mk19 Grenade Launcher", pts: 35, effect: "5D / 5+ / 36\" / EXPL 2 — replaces M2 .50 Cal" }
+      ],
+      independent: true
+    },
+ 
+    // -------------------------
+    // VEHICLES — T2
+    // -------------------------
+    {
+      id: "tdf_btr70",
+      name: "BTR-70",
+      role: "Vehicles",
+      pts: 150,
+      stats: { MOV: '6"', MOR: 3, CEV: 3, Passengers: 7, Armor: "F2/S1/R1", DR: "7+" },
+      weapons: [
+        { name: "DShK HMG", dice: 7, hit: "7+", range: '36"', keywords: "C-FIRE" }
+      ],
+      abilities: [],
+      socketLimits: { WEAPON: 1 },
+      upgrades: [
+        { socket: "WEAPON", name: "14.5mm KPVT", pts: 20, effect: "7D / 6+ / 36\" / C-FIRE / PEN 1 — replaces DShK HMG" },
+        { socket: "WEAPON", name: "ZU-23 Autocannon", pts: 30, effect: "8D / 7+ / 36\" / C-FIRE / EXPL 1 / PEN 1 — replaces DShK HMG" }
+      ],
+      independent: true
+    },
+ 
+    {
+      id: "tdf_mastiff",
+      name: "Mastiff PPV",
+      role: "Vehicles",
+      pts: 175,
+      stats: { MOV: '5"', MOR: 3, CEV: 3, Passengers: 6, Armor: "F2/S2/R1", DR: "6+" },
+      weapons: [
+        { name: "L7 GPMG", dice: 7, hit: "6+", range: '36"', keywords: "C-FIRE" }
+      ],
+      abilities: [],
+      socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
+      upgrades: [
+        { socket: "WEAPON", name: "M2 .50 Cal", pts: 20, effect: "6D / 5+ / 36\" / C-FIRE / PEN 1 — replaces L7 GPMG" },
+        { socket: "WEAPON", name: "Javelin ATGM", pts: 40, effect: "4D / 4+ / 48\" / PEN 4 / RLD / Deploy — replaces L7 GPMG" },
+        { socket: "EQUIPMENT", name: "Smoke Launchers", pts: 15, effect: "Once per game: deploy 2\" SMOKE radius centered on vehicle." }
+      ],
+      independent: true
+    },
+ 
+    // -------------------------
+    // VEHICLES — T3
+    // -------------------------
+    {
+      id: "tdf_bradley",
+      name: "M2 Bradley",
+      role: "Vehicles",
+      pts: 450,
+      stats: { MOV: '4"', MOR: 4, CEV: 5, Passengers: 6, Armor: "F4/S3/R2", DR: "7+" },
+      weapons: [
+        { name: "25mm M242 Bushmaster", dice: 8, hit: "5+", range: '36"', keywords: "C-FIRE / EXPL 1 / PEN 2" }
+      ],
+      abilities: [],
+      socketLimits: { WEAPON: 1, EQUIPMENT: 2 },
+      upgrades: [
+        { socket: "WEAPON", name: "BGM-71 TOW", pts: 60, effect: "2D / 4+ / 48\" / PEN 4 / RLD — adds weapon, does not replace Bushmaster" },
+        { socket: "EQUIPMENT", name: "Smoke Launchers", pts: 15, effect: "Once per game: deploy 2\" SMOKE radius centered on vehicle." },
+        { socket: "EQUIPMENT", name: "ERA Package", pts: 12, effect: "First hit against Front arc is ignored. ONE-USE." }
+      ],
+      independent: true
+    },
+ 
+    {
+      id: "tdf_bmp2",
+      name: "BMP-2",
+      role: "Vehicles",
+      pts: 350,
+      stats: { MOV: '6"', MOR: 4, CEV: 4, Passengers: 6, Armor: "F3/S2/R1", DR: "7+" },
+      weapons: [
+        { name: "30mm 2A42 Autocannon", dice: 8, hit: "6+", range: '36"', keywords: "C-FIRE / EXPL 1 / PEN 1" },
+        { name: "9M113 Konkurs ATGM", dice: 3, hit: "4+", range: '48"', keywords: "PEN 3 / RLD" }
+      ],
+      abilities: [],
+      socketLimits: { EQUIPMENT: 2 },
+      upgrades: [
+        { socket: "EQUIPMENT", name: "Smoke Launchers", pts: 15, effect: "Once per game: deploy 2\" SMOKE radius centered on vehicle." },
+        { socket: "EQUIPMENT", name: "ERA Package", pts: 12, effect: "First hit against Front arc is ignored. ONE-USE." }
+      ],
+      independent: true
+    }
+ 
+  ] // end units
+} // end tdf faction
 };
 
 // ============================================
