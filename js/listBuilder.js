@@ -1998,10 +1998,10 @@ let battleDeckHTML = '';
     .print-deck-header { font-size: 14px; letter-spacing: 6px; font-weight: bold; border-bottom: 3px solid; padding-bottom: 8px; margin-bottom: 16px; }
     .print-deck-category { margin-bottom: 20px; }
     .print-deck-cat-label { font-size: 10px; letter-spacing: 4px; color: #888; border-bottom: 1px solid #ddd; padding-bottom: 4px; margin-bottom: 12px; }
-    .print-deck-grid { display: flex; flex-wrap: wrap; gap: 12px; }
-    .print-battle-card { width: 220px; page-break-inside: avoid; break-inside: avoid; }
+    .print-deck-grid { display: flex; flex-wrap: wrap; gap: 20px; }
+    .print-battle-card { width: 340px; page-break-inside: avoid; break-inside: avoid; }
     .print-battle-card img { width: 100%; height: auto; display: block; border: 1px solid #ddd; }
-    .print-battle-card-name { font-size: 10px; letter-spacing: 2px; text-align: center; padding: 4px 0; color: #555; }
+    .print-battle-card-name { font-size: 13px; letter-spacing: 2px; text-align: center; padding: 6px 0; color: #555; }
     @media print {
       body { padding: 12px; }
       .no-print { display: none !important; }
