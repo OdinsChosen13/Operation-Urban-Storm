@@ -787,3 +787,109 @@
     padding: 16px 18px;
   }
 }
+/* ============================================
+   BATTLE DECK — append to ListBuilder.css
+   ============================================ */
+ 
+#battle-deck-section {
+  padding: 0 16px 40px 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+ 
+.bd-wrapper {
+  border: 1px solid #2a2f38;
+  background: #0d1117;
+  padding: 24px;
+}
+ 
+.bd-header {
+  border-bottom: 2px solid;
+  padding-bottom: 12px;
+  margin-bottom: 24px;
+}
+ 
+.bd-title {
+  font-size: 16px;
+  letter-spacing: 6px;
+  font-weight: bold;
+  margin-bottom: 4px;
+}
+ 
+.bd-subtitle {
+  font-size: 10px;
+  letter-spacing: 2px;
+  color: #556;
+}
+ 
+.bd-category {
+  margin-bottom: 28px;
+}
+ 
+.bd-cat-label {
+  font-size: 11px;
+  letter-spacing: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 14px;
+  border-bottom: 1px solid #1e2530;
+  padding-bottom: 8px;
+}
+ 
+.bd-count {
+  font-size: 10px;
+  letter-spacing: 1px;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 2px;
+}
+ 
+.bd-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+ 
+@media (max-width: 700px) {
+  .bd-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+ 
+.bd-card {
+  border: 2px solid #2a2f38;
+  background: #111418;
+  cursor: pointer;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.1s;
+  overflow: hidden;
+}
+ 
+.bd-card:hover {
+  border-color: #445;
+  transform: translateY(-2px);
+}
+ 
+.bd-card-selected {
+  transform: translateY(-2px);
+}
+ 
+.bd-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+ 
+.bd-card-label {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-align: center;
+  padding: 8px 4px;
+  color: #778;
+  background: #0d1117;
+  border-top: 1px solid #1e2530;
+}
+ 
+.bd-card-selected .bd-card-label {
+  background: #0d1117;
+}

@@ -5,6 +5,23 @@
 // UPDATED: Error modals, upgrade selection UI, clone button, VDV faction
 // ============================================
 
+const BATTLE_DECK = {
+  objectives: [
+    { id: "obj_badintel",    name: "Bad Intel",      file: "Objs_Deployments/BadIntel.png" },
+    { id: "obj_forcedentry", name: "Forced Entry",   file: "Objs_Deployments/ForcedEntry.png" },
+    { id: "obj_goldrush",    name: "Gold Rush",      file: "Objs_Deployments/GoldRush.png" },
+    { id: "obj_hardrain",    name: "Hard Rain",      file: "Objs_Deployments/HardRain.png" }
+  ],
+  deployments: [
+    { id: "dep_battlelines",     name: "Battle Lines",     file: "Objs_Deployments/BattleLines.png" },
+    { id: "dep_contestedground", name: "Contested Ground", file: "Objs_Deployments/ContestedGround.png" },
+    { id: "dep_crossroads",      name: "Crossroads",       file: "Objs_Deployments/CrossRoads.png" },
+    { id: "dep_encirclement",    name: "Encirclement",     file: "Objs_Deployments/Encirclement.png" }
+  ]
+};
+const BATTLE_DECK_LIMIT = 3;
+
+
 const GAME_VERSION = "1.6.0";
 const POINTS_LIMIT = 1000;
 
@@ -1304,6 +1321,8 @@ let currentFaction = null;
 let activeList = [];
 let fireteams = [];
 let nextFireteamId = 0;
+let selectedObjectives = [];
+let selectedDeployments = [];
 
 const fireteamNames = [
   "Alpha", "Bravo", "Charlie", "Delta", "Echo", "Foxtrot",
@@ -1332,6 +1351,8 @@ function saveCurrentList(name) {
     activeList: activeList,
     fireteams: fireteams,
     nextFireteamId: nextFireteamId,
+    selectedObjectives: selectedObjectives,
+    selectedDeployments: selectedDeployments,
     savedAt: new Date().toISOString()
   };
   localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
@@ -1346,6 +1367,8 @@ function loadSavedList(name) {
   activeList = data.activeList;
   fireteams = data.fireteams;
   nextFireteamId = data.nextFireteamId;
+  selectedObjectives  = data.selectedObjectives  || [];
+  selectedDeployments = data.selectedDeployments || [];
   return true;
 }
 
@@ -1423,6 +1446,67 @@ function showSaveModal() {
   overlay.onclick = (e) => { if (e.target === overlay) document.body.removeChild(overlay); };
   setTimeout(() => input.focus(), 50);
 }
+function toggleBattleCard(type, cardId) {
+  const list = type === 'objectives' ? selectedObjectives : selectedDeployments;
+  const idx = list.indexOf(cardId);
+  if (idx !== -1) {
+    list.splice(idx, 1);
+  } else {
+    if (list.length >= BATTLE_DECK_LIMIT) {
+      showToast('MAX ' + BATTLE_DECK_LIMIT + ' CARDS PER CATEGORY');
+      return;
+    }
+    list.push(cardId);
+  }
+  renderBattleDeck();
+}
+ 
+function renderBattleDeck() {
+  const container = document.getElementById('battle-deck-section');
+  if (!container) return;
+ 
+  const faction = factions[currentFaction];
+  const color  = faction ? faction.color  : '#8fbc8f';
+  const accent = faction ? faction.accent : '#8fbc8f';
+ 
+  const objCount = selectedObjectives.length;
+  const depCount = selectedDeployments.length;
+ 
+  function buildCardGrid(cards, selectedList, type) {
+    return cards.map(card => {
+      const isSelected = selectedList.includes(card.id);
+      return (
+        '<div class="bd-card' + (isSelected ? ' bd-card-selected' : '') + '"' +
+        ' onclick="toggleBattleCard(\'' + type + '\', \'' + card.id + '\')"' +
+        (isSelected ? ' style="border-color:' + color + ';box-shadow:0 0 0 2px ' + color + ';"' : '') + '>' +
+        '<img src="' + card.file + '" alt="' + card.name + '" loading="lazy" />' +
+        '<div class="bd-card-label"' + (isSelected ? ' style="color:' + color + ';"' : '') + '>' +
+        (isSelected ? '✓ ' : '') + card.name.toUpperCase() +
+        '</div></div>'
+      );
+    }).join('');
+  }
+ 
+  container.innerHTML =
+    '<div class="bd-wrapper">' +
+      '<div class="bd-header" style="border-color:' + color + ';">' +
+        '<div class="bd-title" style="color:' + color + ';">⬡ BATTLE DECK</div>' +
+        '<div class="bd-subtitle">SELECT UP TO ' + BATTLE_DECK_LIMIT + ' CARDS PER CATEGORY — BRING TO TABLE FOR DRAFT</div>' +
+      '</div>' +
+      '<div class="bd-category">' +
+        '<div class="bd-cat-label" style="color:' + accent + ';">OBJECTIVES' +
+          '<span class="bd-count" style="background:' + color + ';">' + objCount + ' / ' + BATTLE_DECK_LIMIT + '</span>' +
+        '</div>' +
+        '<div class="bd-grid">' + buildCardGrid(BATTLE_DECK.objectives, selectedObjectives, 'objectives') + '</div>' +
+      '</div>' +
+      '<div class="bd-category">' +
+        '<div class="bd-cat-label" style="color:' + accent + ';">DEPLOYMENTS' +
+          '<span class="bd-count" style="background:' + color + ';">' + depCount + ' / ' + BATTLE_DECK_LIMIT + '</span>' +
+        '</div>' +
+        '<div class="bd-grid">' + buildCardGrid(BATTLE_DECK.deployments, selectedDeployments, 'deployments') + '</div>' +
+      '</div>' +
+    '</div>';
+}
 
 function showLoadModal() {
   const saved = getSavedLists();
@@ -1491,10 +1575,12 @@ function showLoadModal() {
               <div id="unit-list"></div>
               <div id="active-list"></div>
             </div>
+            <div id="battle-deck-section"></div>
           `;
           renderUnitBrowser();
           renderActiveList();
           updatePointsDisplay();
+          renderBattleDeck();
           showToast('LIST LOADED: ' + name);
         }
       };
@@ -1709,7 +1795,46 @@ function exportList() {
       </div>
     `;
   });
+let battleDeckHTML = '';
+  const hasCards = selectedObjectives.length > 0 || selectedDeployments.length > 0;
 
+  if (hasCards) {
+    const baseUrl = window.location.href.replace(/\/[^\/]*$/, '/');
+
+    function buildPrintCards(ids, deck) {
+      return ids.map(id => {
+        const card = deck.find(c => c.id === id);
+        if (!card) return '';
+        return (
+          '<div class="print-battle-card">' +
+          '<img src="' + baseUrl + card.file + '" alt="' + card.name + '" />' +
+          '<div class="print-battle-card-name">' + card.name.toUpperCase() + '</div>' +
+          '</div>'
+        );
+      }).join('');
+    }
+
+    const objHTML = selectedObjectives.length > 0
+      ? '<div class="print-deck-category">' +
+          '<div class="print-deck-cat-label">OBJECTIVES (' + selectedObjectives.length + ')</div>' +
+          '<div class="print-deck-grid">' + buildPrintCards(selectedObjectives, BATTLE_DECK.objectives) + '</div>' +
+        '</div>'
+      : '';
+
+    const depHTML = selectedDeployments.length > 0
+      ? '<div class="print-deck-category">' +
+          '<div class="print-deck-cat-label">DEPLOYMENTS (' + selectedDeployments.length + ')</div>' +
+          '<div class="print-deck-grid">' + buildPrintCards(selectedDeployments, BATTLE_DECK.deployments) + '</div>' +
+        '</div>'
+      : '';
+
+    battleDeckHTML =
+      '<div class="print-deck-wrapper">' +
+        '<div class="print-deck-header" style="border-color:' + factionColor + ';color:' + factionColor + ';">BATTLE DECK</div>' +
+        objHTML +
+        depHTML +
+      '</div>';
+  }
   const validationBlock = errors.length > 0
     ? `<div class="print-warning">⚠ ${errors.join(' / ')}</div>`
     : `<div class="print-valid">✓ LIST VALID — READY FOR DEPLOYMENT</div>`;
@@ -1869,6 +1994,14 @@ function exportList() {
       margin-bottom: 18px;
       display: block;
     }
+      .print-deck-wrapper { margin-top: 28px; }
+    .print-deck-header { font-size: 14px; letter-spacing: 6px; font-weight: bold; border-bottom: 3px solid; padding-bottom: 8px; margin-bottom: 16px; }
+    .print-deck-category { margin-bottom: 20px; }
+    .print-deck-cat-label { font-size: 10px; letter-spacing: 4px; color: #888; border-bottom: 1px solid #ddd; padding-bottom: 4px; margin-bottom: 12px; }
+    .print-deck-grid { display: flex; flex-wrap: wrap; gap: 12px; }
+    .print-battle-card { width: 220px; page-break-inside: avoid; break-inside: avoid; }
+    .print-battle-card img { width: 100%; height: auto; display: block; border: 1px solid #ddd; }
+    .print-battle-card-name { font-size: 10px; letter-spacing: 2px; text-align: center; padding: 4px 0; color: #555; }
     @media print {
       body { padding: 12px; }
       .no-print { display: none !important; }
@@ -1888,6 +2021,8 @@ function exportList() {
   </div>
   <button class="no-print" onclick="window.print()">⎙ PRINT / SAVE AS PDF</button>
   ${cardsHTML}
+  ${battleDeckHTML}
+  <div class="print-footer">
   <div class="print-footer">
     ${validationBlock}
     <span>odinschosen13.github.io/Operation-Urban-Storm</span>
@@ -2812,6 +2947,8 @@ function selectFaction(factionKey) {
   activeList = [];
   fireteams = [];
   nextFireteamId = 0;
+  selectedObjectives = [];
+  selectedDeployments = [];
 
   const factionSelect = document.getElementById('faction-select');
   factionSelect.style.display = 'none';
@@ -2833,11 +2970,13 @@ function selectFaction(factionKey) {
       <div id="unit-list"></div>
       <div id="active-list"></div>
     </div>
+    <div id="battle-deck-section"></div>
   `;
 
   renderUnitBrowser();
   renderActiveList();
   updatePointsDisplay();
+  renderBattleDeck();
 }
 
 // ============================================
