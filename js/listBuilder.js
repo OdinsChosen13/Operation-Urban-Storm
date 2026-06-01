@@ -420,7 +420,7 @@ const factions = {
       {
         id: "ins_vet_fighter",
         name: "Street Fighter - Veteran Fighter",
-        role: "Infantry",
+        role: "Specialist",
         pts: 85,
         stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "7+" },
         weapons: [
