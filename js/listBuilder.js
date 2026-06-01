@@ -7,16 +7,16 @@
 
 const BATTLE_DECK = {
   objectives: [
-    { id: "obj_badintel",    name: "Bad Intel",      file: "Objs_Deployments/BadIntel.png" },
-    { id: "obj_forcedentry", name: "Forced Entry",   file: "Objs_Deployments/ForcedEntry.png" },
-    { id: "obj_goldrush",    name: "Gold Rush",      file: "Objs_Deployments/GoldRush.png" },
-    { id: "obj_hardrain",    name: "Hard Rain",      file: "Objs_Deployments/HardRain.png" }
+    { id: "obj_badintel",        name: "Bad Intel",        file: "Objs_Deployments/BadIntel.png" },
+    { id: "obj_contestedground", name: "Contested Ground", file: "Objs_Deployments/ContestedGround.png" },
+    { id: "obj_goldrush",        name: "Gold Rush",        file: "Objs_Deployments/GoldRush.png" },
+    { id: "obj_hardrain",        name: "Hard Rain",        file: "Objs_Deployments/HardRain.png" }
   ],
   deployments: [
-    { id: "dep_battlelines",     name: "Battle Lines",     file: "Objs_Deployments/BattleLines.png" },
-    { id: "dep_contestedground", name: "Contested Ground", file: "Objs_Deployments/ContestedGround.png" },
-    { id: "dep_crossroads",      name: "Crossroads",       file: "Objs_Deployments/CrossRoads.png" },
-    { id: "dep_encirclement",    name: "Encirclement",     file: "Objs_Deployments/Encirclement.png" }
+    { id: "dep_battlelines",  name: "Battle Lines",  file: "Objs_Deployments/BattleLines.png" },
+    { id: "dep_forcedentry",  name: "Forced Entry",  file: "Objs_Deployments/ForcedEntry.png" },
+    { id: "dep_crossroads",   name: "Crossroads",    file: "Objs_Deployments/CrossRoads.png" },
+    { id: "dep_encirclement", name: "Encirclement",  file: "Objs_Deployments/Encirclement.png" }
   ]
 };
 const BATTLE_DECK_LIMIT = 3;
@@ -1999,7 +1999,7 @@ let battleDeckHTML = '';
     .print-deck-category { margin-bottom: 20px; }
     .print-deck-cat-label { font-size: 10px; letter-spacing: 4px; color: #888; border-bottom: 1px solid #ddd; padding-bottom: 4px; margin-bottom: 12px; }
     .print-deck-grid { display: flex; flex-wrap: wrap; gap: 20px; }
-    .print-battle-card { width: 340px; page-break-inside: avoid; break-inside: avoid; }
+    .print-battle-card { width: 100%; page-break-inside: avoid; break-inside: avoid; }
     .print-battle-card img { width: 100%; height: auto; display: block; border: 1px solid #ddd; }
     .print-battle-card-name { font-size: 13px; letter-spacing: 2px; text-align: center; padding: 6px 0; color: #555; }
     @media print {
