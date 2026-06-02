@@ -128,7 +128,7 @@ const factions = {
         pts: 105,
         stats: { MOV: '5"', MOR: 3, CEV: 3, DR: "7+" },
         weapons: [
-          { name: "M3 MAAWS", dice: 4, hit: "4+", range: '36"', keywords: "EXPL 2 / RLD / ENC" },
+          { name: "M3 MAAWS", dice: 4, hit: "4+", range: '36"', keywords: "EXPL 2 / RLD / ENC / PEN 2" },
           { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" }
         ],
         abilities: ["Fireteam Cohesion", "Coordinated Fire"],
