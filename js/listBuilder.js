@@ -166,7 +166,7 @@ const factions = {
         pts: 100,
         stats: { MOV: '5"', MOR: 3, CEV: 3, DR: "7+" },
         weapons: [
-          { name: "M110A1 CSASS", dice: 3, hit: "4+", range: '42"', keywords: "" },
+          { name: "M110A1 CSASS", dice: 3, hit: "4+", range: '36"', keywords: "" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Fireteam Cohesion", "Coordinated Fire", "Steady Aim"],
