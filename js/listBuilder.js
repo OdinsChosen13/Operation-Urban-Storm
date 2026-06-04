@@ -2142,7 +2142,7 @@ function calculateTotalPoints() {
 
 function getPointsColor(points) {
   const percent = (points / POINTS_LIMIT) * 100;
-  if (percent >= 100) return "#e74c3c"; // red
+  if (percent > 100) return "#e74c3c"; // red
   if (percent >= 85) return "#e67e22";  // orange
   return "#8fbc8f";                      // green
 }
