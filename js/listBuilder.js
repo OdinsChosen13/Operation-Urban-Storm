@@ -333,7 +333,7 @@ const factions = {
           { name: "25 mm M242 Bushmaster chain gun", dice: 8, hit: "5+", range: '36"', keywords: "C-Fire / EXPL 1" },
         ],
         abilities: [""],
-        socketLimits: { WEAPON: 1},
+        socketLimits: { EQUIPMENT: 1},
         upgrades: [
           { socket: "EQUIPMENT", name: "BGM-71 TOW anti-tank missile", pts: 60, effect: "2D / 4+ / 36\" / PEN 4" },
         ],
