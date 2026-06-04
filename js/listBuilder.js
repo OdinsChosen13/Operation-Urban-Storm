@@ -156,7 +156,7 @@ const factions = {
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
-          { socket: "SUPPORT", name: "Smoke Rounds", pts: 8, effect: "M320 fires SMOKE at a target location instead of EXPL using M320. List limit 1." / SMOKE / ONE-SHOT }
+          { socket: "SUPPORT", name: "Smoke Rounds", pts: 8, effect: "M320 fires SMOKE at a target location instead of EXPL using M320. List limit 1. / SMOKE / ONE-SHOT " }
         ]
       },
       {
