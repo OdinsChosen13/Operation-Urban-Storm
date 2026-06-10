@@ -335,7 +335,7 @@ const factions = {
         abilities: [""],
         socketLimits: { EQUIPMENT: 1},
         upgrades: [
-          { socket: "EQUIPMENT", name: "BGM-71 TOW anti-tank missile", pts: 60, effect: "2D / 4+ / 36\" / PEN 4" },
+          { socket: "EQUIPMENT", name: "BGM-71 TOW anti-tank missile", pts: 60, effect: "2D / 4+ / 36\" / PEN 4 / ONE-SHOT" },
         ],
         independent: true,
       }
