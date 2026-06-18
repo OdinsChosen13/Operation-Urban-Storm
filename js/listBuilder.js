@@ -128,7 +128,7 @@ const factions = {
         pts: 105,
         stats: { MOV: '5"', MOR: 3, CEV: 3, DR: "7+" },
         weapons: [
-          { name: "M3 MAAWS", dice: 4, hit: "4+", range: '36"', keywords: "EXPL 2 / RLD / ENC / PEN 2" },
+          { name: "M3 MAAWS", dice: 4, hit: "4+", range: '36"', keywords: "EXPL 1 / RLD / ENC / PEN 2" },
           { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" }
         ],
         abilities: ["Fireteam Cohesion", "Coordinated Fire"],
@@ -183,7 +183,7 @@ const factions = {
         pts: 120,
         stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
         weapons: [
-          { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '24"', keywords: "CQB" },
+          { name: "M4A1 CQBR", dice: 5, hit: "5+", range: '24"', keywords: "CQB" },
           { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Aggressive Entry", "Urban Predator", "Fireteam Cohesion", "Coordinated Fire"],
