@@ -446,7 +446,7 @@ const factions = {
         pts: 105,
         stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "8+" },
         weapons: [
-          { name: "RPK Machine Gun", dice: 7, hit: "8+", range: '36"', keywords: "ENC / C-Fire" },
+          { name: "RPK Machine Gun", dice: 9, hit: "8+", range: '36"', keywords: "ENC / C-Fire" },
           { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Ambush Shock"],
