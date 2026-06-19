@@ -330,7 +330,7 @@ const factions = {
         pts: 500,
         stats: { MOV: '4"', MOR: 5, CEV: 5, Passengers: 6, Armor: "F4/S3/R2", DR: "6+" },
         weapons: [
-          { name: "25 mm M242 Bushmaster chain gun", dice: 8, hit: "5+", range: '36"', keywords: "C-Fire / EXPL 1" },
+          { name: "25 mm M242 Bushmaster chain gun", dice: 8, hit: "5+", range: '36"', keywords: "C-Fire / EXPL 1 / Pen 1" },
         ],
         abilities: [""],
         socketLimits: { EQUIPMENT: 1},
