@@ -601,13 +601,13 @@ const factions = {
         pts: 100,
         stats: { MOV: '6"', MOR: 4, CEV: 4, DR: "6+" },
         weapons: [
-          { name: "AK-12", dice: 6, hit: "6+", range: '36"', keywords: "" },
-          { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+          { name: "AK-74M", dice: 6, hit: "6+", range: '36"', keywords: "" },
         ],
         abilities: ["Squad Leader (3\")", "Rally (+2 Stress)", "Authority Override (+2 Stress)", "Command Imperative", "Command Collapse"],
         socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
         upgrades: [
-          { socket: "WEAPON", name: "AK-15", pts: 12, effect: "5D / 4+ / 36\" — replaces AK-12" },
+          //remove ak-15
+          { socket: "WEAPON", name: "AK-15", pts: 12, effect: "5D / 4+ / 36\" — replaces AK-74M" },
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
@@ -624,13 +624,12 @@ const factions = {
         pts: 85,
         stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
         weapons: [
-          { name: "AK-12", dice: 6, hit: "6+", range: '36"', keywords: "" },
-          { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+          { name: "AK-74M", dice: 6, hit: "6+", range: '36"', keywords: "" },
         ],
         abilities: ["Lead From The Front", "Stress Transfer"],
         socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
         upgrades: [
-          { socket: "WEAPON", name: "AK-15", pts: 12, effect: "5D / 4+ / 36\" — replaces AK-12" },
+          { socket: "WEAPON", name: "AK-15", pts: 12, effect: "5D / 4+ / 36\" — replaces AK-74M" },
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
@@ -644,14 +643,13 @@ const factions = {
         pts: 85,
         stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
         weapons: [
-          { name: "AK-12", dice: 6, hit: "6+", range: '36"', keywords: "" },
-          { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+          { name: "AK-74M", dice: 6, hit: "6+", range: '36"', keywords: "" },
         ],
         abilities: ["Assault Mobility"],
         socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
         upgrades: [
-          { socket: "WEAPON", name: "AK-15", pts: 12, effect: "5D / 4+ / 36\" — replaces AK-12" },
-          { socket: "WEAPON", name: "AK-12K", pts: 12, effect: "6D / 6+ / 18\" / CQB — replaces AK-12. Desantnik and Shturmovnik only." },
+          { socket: "WEAPON", name: "AK-15", pts: 12, effect: "5D / 4+ / 36\" — replaces AK-74M" },
+          { socket: "WEAPON", name: "AK-74k", pts: 12, effect: "6D / 6+ / 18\" / CQB — replaces AK-74M. Desantnik and Shturmovnik only." },
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed from play, remain at CEV 1 instead. ONE-USE." },
@@ -666,7 +664,6 @@ const factions = {
         stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
         weapons: [
           { name: "PKM", dice: 8, hit: "6+", range: '36"', keywords: "C-FIRE" },
-          { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Assault Mobility (no ENC on PKM)"],
         socketLimits: { EQUIPMENT: 1, SUPPORT: 1 },
@@ -678,14 +675,14 @@ const factions = {
         ]
       },
       {
-        id: "vdv_rpg",
-        name: "RPG Operator",
+        id: "vdv_rpo",
+        name: "RPO Operator",
         role: "Specialist",
         pts: 115,
         stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
         weapons: [
-          { name: "RPG-7D", dice: 4, hit: "5+", range: '36"', keywords: "EXPL 2 / RLD" },
-          { name: "AK-12", dice: 6, hit: "6+", range: '36"', keywords: "" }
+          { name: "RPO-A Shmel", dice: 3, hit: "4+", range: '24"', keywords: "EXPL 2 / ONE-SHOT / PEN-2" },
+          { name: "AK-74M", dice: 6, hit: "6+", range: '36"', keywords: "" }
         ],
         abilities: ["Assault Mobility (no ENC on RPG-7D)"],
         socketLimits: { EQUIPMENT: 1 },
@@ -702,14 +699,13 @@ const factions = {
         pts: 130,
         stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
         weapons: [
-          { name: "AK-12K", dice: 6, hit: "6+", range: '18"', keywords: "CQB" },
-          { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+          { name: "AK-74M", dice: 6, hit: "6+", range: '20"', keywords: "CQB" },
         ],
         abilities: ["Aggressive Entry", "Urban Predator", "Assault Mobility"],
         socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
         upgrades: [
-          { socket: "WEAPON", name: "PP-19 Bizon", pts: 10, effect: "5D / 6+ / 12\" / CQB — replaces AK-12K" },
-          { socket: "WEAPON", name: "Saiga-12", pts: 15, effect: "6D / 6+ / 8\" / CQB — replaces AK-12K" },
+          { socket: "WEAPON", name: "PP-19 Bizon", pts: 10, effect: "5D / 6+ / 12\" / CQB — replaces AK-74M" },
+          { socket: "WEAPON", name: "AK-74U", pts: 15, effect: "6D / 6+ / 8\" / CQB — replaces AK-74M" },
           { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed from play, remain at CEV 1 instead. ONE-USE." }
         ]
@@ -721,26 +717,24 @@ const factions = {
         pts: 105,
         stats: { MOV: '5"', MOR: 3, CEV: 3, DR: "7+" },
         weapons: [
-          { name: "VSS Vintorez", dice: 3, hit: "4+", range: '36"', keywords: "" },
-          { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+          { name: "SVDS Dragonov", dice: 3, hit: "4+", range: '36"', keywords: "" },
         ],
         abilities: ["Steady Aim"],
         socketLimits: { WEAPON: 1, SUPPORT: 1 },
         upgrades: [
-          { socket: "WEAPON", name: "AS Val", pts: 12, effect: "4D / 4+ / 24\" / CQB — replaces VSS Vintorez" },
+          { socket: "WEAPON", name: "VSS Vintorez", pts: 10, effect: "3D / 4+ / 36\" / CQB — replaces SVD Dragonov" },
           { socket: "SUPPORT", name: "Rangefinder", pts: 15, effect: "+1 hit value improvement on all Shoot actions this model takes. List limit 1." },
           { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot actions if this model did not Move this activation" }
         ]
       },
       {
-        id: "vdv_sanitar",
-        name: "Sanitár",
+        id: "vdv_vrach",
+        name: "Vrach",
         role: "Specialist",
         pts: 105,
         stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
         weapons: [
-          { name: "AK-12", dice: 6, hit: "6+", range: '36"', keywords: "" },
-          { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+          { name: "AK-74M", dice: 6, hit: "6+", range: '36"', keywords: "" },
         ],
         abilities: ["Field Treatment (+2 Stress)", "Last Chance"],
         socketLimits: { EQUIPMENT: 1, SUPPORT: 1 },
@@ -758,7 +752,6 @@ const factions = {
         stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "8+" },
         weapons: [
           { name: "SV-98", dice: 2, hit: "3+", range: '48"', keywords: "RLD / ENC" },
-          { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Concealment", "Minimum Range 8\"", "Coherency Range 2\""],
         socketLimits: { SUPPORT: 1 },
@@ -776,13 +769,12 @@ const factions = {
         pts: 85,
         stats: { MOV: '6"', MOR: 2, CEV: 3, DR: "8+" },
         weapons: [
-          { name: "AK-12", dice: 6, hit: "6+", range: '36"', keywords: "" },
-          { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+          { name: "AK-74M", dice: 6, hit: "6+", range: '36"', keywords: "" },
         ],
         abilities: ["Overwatch Correction", "Acquire Target"],
         socketLimits: { WEAPON: 1, SUPPORT: 1 },
         upgrades: [
-          { socket: "WEAPON", name: "AK-15", pts: 12, effect: "5D / 4+ / 36\" — replaces AK-12" },
+          { socket: "WEAPON", name: "AK-15", pts: 12, effect: "5D / 4+ / 36\" — replaces AK-74M" },
           { socket: "SUPPORT", name: "Laser Designator", pts: 8, effect: "Acquire Target grants +2 dice instead of +1" }
         ],
         independent: true,
@@ -796,7 +788,6 @@ const factions = {
         stats: { MOV: '6"', MOR: 3, CEV: 2, DR: "7+" },
         weapons: [
           { name: "9M133 Kornet", dice: 4, hit: "4+", range: '36"', keywords: "RLD / ENC / PEN 4 / Deploy" },
-          { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
         ],
         abilities: ["Deploy", "Minimum Range 6\"", "Coherency Range 2\""],
         socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
@@ -814,13 +805,12 @@ const factions = {
         pts: 85,
         stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
         weapons: [
-          { name: "AK-12", dice: 6, hit: "6+", range: '36"', keywords: "" },
-          { name: "Makarov PM", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
+          { name: "AK-74M", dice: 6, hit: "6+", range: '36"', keywords: "" },
         ],
         abilities: ["Assisted Reload"],
         socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
         upgrades: [
-          { socket: "WEAPON", name: "AK-15", pts: 12, effect: "5D / 4+ / 36\" — replaces AK-12" },
+          { socket: "WEAPON", name: "AK-15", pts: 12, effect: "5D / 4+ / 36\" — replaces AK-74M" },
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed from play, remain at CEV 1 instead. ONE-USE." }
         ],
@@ -866,11 +856,11 @@ const factions = {
         weapons: [
           { name: "100 mm 2A70 cannon", dice: 2, hit: "6+", range: '36"', keywords: "EXPL 3 / PEN 3" },
           { name: "30 mm 2A72 Auto Cannon", dice: 7, hit: "6+", range: '36"', keywords: "EXPL 1 / C-Fire" },
-          { name: "9M113 Konkurs ATGM", dice: 7, hit: "6+", range: '36"', keywords: "PEN 4" },
         ],
         abilities: [""],
-        socketLimits: {},
+        socketLimits: { EQUIPMENT: 1},
         upgrades: [
+          { socket: "EQUIPMENT", name: "9M113 Konkurs ATGM", pts: 50, effect: "3D / 6+ / 36\" / ONE-SHOT / PEN 4"},
           ],
         independent: true,
       },
