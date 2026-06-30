@@ -556,7 +556,7 @@ const factions = {
         name: "Technical",
         role: "Vehicles",
         pts: 110,
-        stats: { MOV: '8"', MOR: 3, CEV: 3, Passengers: 4, Armor: 1, DR: "8+" },
+        stats: { MOV: '8"', MOR: 3, CEV: 3, Passengers: 4, Armor: 0, DR: "6+" },
         weapons: [
           { name: "DShK 1938 Machine Gun", dice: 8, hit: "7+", range: '36"', keywords: "C-Fire" },
         ],
@@ -821,8 +821,8 @@ const factions = {
         id: "vdv_UAZ",
         name: "UAZ-469",
         role: "Vehicles",
-        pts: 100,
-        stats: { MOV: '9"', MOR: 3, CEV: 2, Passengers: 4, Armor: 1, DR: "6+" },
+        pts: 80,
+        stats: { MOV: '9"', MOR: 3, CEV: 2, Passengers: 4, Armor: 0, DR: "6+" },
         weapons: [ "None"
         ],
         abilities: [""],
