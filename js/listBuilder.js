@@ -215,44 +215,6 @@ const factions = {
         ]
       },
       {
-        id: "usa_sniper",
-        name: "Sniper",
-        role: "Independent — Sniper Team",
-        pts: 120,
-        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "8+" },
-        weapons: [
-          { name: "M110A1 CSASS", dice: 2, hit: "3+", range: '48"', keywords: "RLD / ENC" },
-          { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
-        ],
-        abilities: ["Concealment", "Minimum Range 8\"", "Coherency Range 2\""],
-        socketLimits: { SUPPORT: 1 },
-        upgrades: [
-          { socket: "SUPPORT", name: "Ghillie Suit", pts: 20, effect: "Cannot be targeted beyond 8\" unless fired this turn" },
-          { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" }
-        ],
-        independent: true,
-        maxPerList: 1
-      },
-      {
-        id: "usa_spotter",
-        name: "Spotter",
-        role: "Independent — Sniper Team",
-        pts: 85,
-        stats: { MOV: '6"', MOR: 2, CEV: 3, DR: "8+" },
-        weapons: [
-          { name: "M4A1 Carbine", dice: 5, hit: "5+", range: '36"', keywords: "" },
-          { name: "M9 Pistol", dice: 3, hit: "6+", range: '12"', keywords: "CQB" }
-        ],
-        abilities: ["Overwatch Correction", "Acquire Target"],
-        socketLimits: { WEAPON: 1, SUPPORT: 1 },
-        upgrades: [
-          { socket: "WEAPON", name: "XM7 Rifle", pts: 10, effect: "5D / 4+ / 36\" — replaces M4A1" },
-          { socket: "SUPPORT", name: "Laser Designator", pts: 8, effect: "Acquire Target grants +2 dice instead of +1" }
-        ],
-        independent: true,
-        maxPerList: 1
-      },
-      {
         id: "usa_at_gunner",
         name: "Javelin Gunner",
         role: "Independent — AT Team",
@@ -743,42 +705,6 @@ const factions = {
           { socket: "SUPPORT", name: "Advanced Aid Bag", pts: 15, effect: "Last Chance roll improved by 1" },
           { socket: "SUPPORT", name: "Trauma Kit", pts: 10, effect: "Field Treatment may target this model" }
         ]
-      },
-      {
-        id: "vdv_sniper",
-        name: "Sniper",
-        role: "Independent — Sniper Team",
-        pts: 125,
-        stats: { MOV: '6"', MOR: 2, CEV: 2, DR: "8+" },
-        weapons: [
-          { name: "SV-98", dice: 2, hit: "3+", range: '48"', keywords: "RLD / ENC" },
-        ],
-        abilities: ["Concealment", "Minimum Range 8\"", "Coherency Range 2\""],
-        socketLimits: { SUPPORT: 1 },
-        upgrades: [
-          { socket: "SUPPORT", name: "Ghillie Suit", pts: 20, effect: "Cannot be targeted beyond 8\" unless fired this turn" },
-          { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot actions if this model did not Move this activation" }
-        ],
-        independent: true,
-        maxPerList: 1
-      },
-      {
-        id: "vdv_spotter",
-        name: "Spotter",
-        role: "Independent — Sniper Team",
-        pts: 85,
-        stats: { MOV: '6"', MOR: 2, CEV: 3, DR: "8+" },
-        weapons: [
-          { name: "AK-74M", dice: 6, hit: "6+", range: '36"', keywords: "" },
-        ],
-        abilities: ["Overwatch Correction", "Acquire Target"],
-        socketLimits: { WEAPON: 1, SUPPORT: 1 },
-        upgrades: [
-          { socket: "WEAPON", name: "AK-15", pts: 12, effect: "5D / 4+ / 36\" — replaces AK-74M" },
-          { socket: "SUPPORT", name: "Laser Designator", pts: 8, effect: "Acquire Target grants +2 dice instead of +1" }
-        ],
-        independent: true,
-        maxPerList: 1
       },
       {
         id: "vdv_kornet",
