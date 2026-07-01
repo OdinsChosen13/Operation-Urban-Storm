@@ -639,7 +639,7 @@ const factions = {
       {
         id: "vdv_desantnik",
         name: "Desantnik",
-        role: "Assault Trooper",
+        role: "Rifleman",
         pts: 85,
         stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
         weapons: [
