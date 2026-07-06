@@ -26,12 +26,86 @@
     <div class="doc-page-header">
       <a href="rules.html" class="back-link">← BACK TO RULES</a>
       <h1>CHANGELOG</h1>
-      <div class="doctrine-subtitle">Version History — V1.1.2 to V1.6.0</div>
-      <div class="version-badge">V1.6.0</div>
+      <div class="doctrine-subtitle">Version History — V1.1.2 to V1.7.0</div>
+      <div class="version-badge">V1.7.0</div>
     </div>
 
     <section class="doc-section">
       <p class="changelog-intro">Complete record of all changes, additions, balance updates, and design decisions across every version of Operation Urban Storm.</p>
+
+      <!-- V1.7.0 -->
+      <div class="changelog-version">
+        <div class="changelog-version-header">
+          <span class="changelog-version-number">V1.7.0</span>
+          <span class="changelog-version-date">July 2026</span>
+          <span class="changelog-version-type type-minor">MINOR — STRESS ECONOMY OVERHAUL</span>
+        </div>
+        <p class="changelog-summary">V1.7.0 rebuilds the Stress economy end to end based on playtest data: simplified Stress inflow, a hard Stress Cap, reworked Exploitation costs, the new Lethal keyword, an Insurgent Ambush Shock buff, and rulings closing the Shoot-then-Breach loop, Breach Exploitation timing, and Marked Token generation during Breaches.</p>
+
+        <div class="changelog-section-label">RULES — STRESS ECONOMY</div>
+        <div class="rule-block">
+          <h4>Stress Inflow Simplified — Section 5.2</h4>
+          <p>A targeted Model now gains Stress equal to the number of hits rolled, before cover is applied. If the attack rolls no hits, the target gains 1 Stress instead. Replaces the previous "1 for being targeted plus hits" formula. Total inflow per attack is reduced by 1 and no addition is ever required at the table.</p>
+        </div>
+        <div class="rule-block">
+          <h4>Stress Cap — Section 5.2</h4>
+          <p>A Model may never have more than 10 Stress Counters. Stress gained beyond 10 is lost. Stress Exploitation and other effects spend or remove Counters from a capped Model normally. Eliminates runaway Stress totals and enables single-die (D10) tracking per Model.</p>
+        </div>
+        <div class="rule-block">
+          <h4>Stress Exploitation Reworked — Section 5.4</h4>
+          <p>The 2-Stress spend (lose 1 attack die) is removed. New tiers: Spend 3 — target's hit value worsened by 1 on their next Shoot action this activation; Spend 3 — target's Move halved next activation; Spend 4 — target's cover reduced by 1 until end of Turn. The hit-value penalty applies equally to all dice pool sizes, correcting the disproportionate impact of die removal on small pools.</p>
+        </div>
+
+        <div class="changelog-section-label">NEW — KEYWORD</div>
+        <div class="rule-block">
+          <h4>Lethal X</h4>
+          <p>After cover is applied, up to X of the remaining hits from this attack inflict damage automatically with no Defense Roll. Lethal affects infantry Defense Rolls only and has no interaction with vehicle Armor or PEN.</p>
+        </div>
+
+        <div class="changelog-section-label">BALANCE — UNITS & TRAITS</div>
+        <div class="rule-block">
+          <h4>Marksman Rifles — Lethal 1</h4>
+          <p>All four faction marksman primaries gain Lethal 1: M110A1 CSASS (US Army), SVD Dragunov (Insurgents and TDF), SVDS Dragonov (VDV), and the VSS Vintorez weapon upgrade. All fire full-power rifle cartridges that defeat body armor; the keyword gives 3-die precision platforms a reliable payoff against high Defense Roll targets. Points unchanged pending playtest data.</p>
+        </div>
+        <div class="rule-block">
+          <h4>Insurgent Ambush Shock — +2 Stress</h4>
+          <p>Ambush Shock increased from +1 to +2 additional Stress when an Insurgent Ambush Shoot attack rolls at least one hit. Makes Insurgent ambushes meaningfully punishing within the reduced-inflow economy.</p>
+        </div>
+        <div class="rule-block">
+          <h4>VDV Command Collapse — Reworked</h4>
+          <p>When the VDV Squad Leader is removed from play, ALL friendly Infantry Models immediately gain +2 Stress, regardless of range or LoS. Replaces the previous +1 Stress within 6" and LoS. The loss of top-down command is now a force-wide event.</p>
+        </div>
+        <div class="rule-block">
+          <h4>VDV Naming Corrections</h4>
+          <p>Order Card structure corrected: Desantnik (standard trooper) moved to the Ryadovoy card; Vrach confirmed as the medic name; RPO Operator corrected from RPG Operator; Kornet Loader corrected from AT Loader; Sniper and Spotter removed from the VDV roster entirely.</p>
+        </div>
+
+        <div class="changelog-section-label">RULES — KEYWORD GLOSSARY CONSOLIDATION</div>
+        <div class="rule-block">
+          <h4>All Keywords Now Live in the Glossary</h4>
+          <p>Unit abilities previously defined only in the Leadership quick-reference table — Steady Aim, Field Treatment, Last Chance, Urban Predator, Aggressive Entry — moved to the Keyword Glossary. Five keywords that appeared on unit cards without any rulebook definition added: Coherency Range X, Evasive, Immune to Stress, Minimum Range X, and Penetration (PEN X). The Keyword Glossary is now the single authoritative home for all keyword definitions.</p>
+        </div>
+
+        <div class="changelog-section-label">RULINGS — BREACH</div>
+        <div class="rule-block">
+          <h4>No Shoot-then-Breach</h4>
+          <p>A Model that has performed a Shoot action this activation may not initiate or join a Breach. A Breach is that Model's shooting for the activation.</p>
+        </div>
+        <div class="rule-block">
+          <h4>Stress Exploitation vs Breach — Timing Defined</h4>
+          <p>The Exploitation window against a Breach opens after breaching Models are nominated and before Breach movement begins. Standard Exploitation effects apply; no Breach-specific effects exist.</p>
+        </div>
+        <div class="rule-block">
+          <h4>Marked Tokens During Breach</h4>
+          <p>A Marked Token placed during Breach resolution may not be spent in the same round of Breach shooting in which it was placed. It may be spent in subsequent rounds of that Breach or after the Breach ends.</p>
+        </div>
+
+        <div class="changelog-section-label">FAQ & CLARIFICATIONS</div>
+        <div class="rule-block">
+          <h4>Eight New FAQ Entries</h4>
+          <p>Missed attacks and the minimum 1 Stress; Stress Cap behavior; Lethal vs cover ordering; Lethal vs PEN distinction; Covering Fire splash receives no minimum Stress on zero-hit attacks; Shoot-then-Breach; Exploitation cost rework rationale; Marked Tokens during Breach.</p>
+        </div>
+      </div>
 
       <!-- V1.6.0 -->
       <div class="changelog-version">

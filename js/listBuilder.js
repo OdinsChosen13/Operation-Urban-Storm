@@ -1,6 +1,6 @@
 // ============================================
 // OPERATION URBAN STORM - LIST BUILDER
-// Version 1.6.0
+// Version 1.7.0
 // Unit data sourced from OUS Unit Card Master
 // UPDATED: Error modals, upgrade selection UI, clone button, VDV faction
 // ============================================
@@ -22,7 +22,7 @@ const BATTLE_DECK = {
 const BATTLE_DECK_LIMIT = 3;
 
 
-const GAME_VERSION = "1.6.0";
+const GAME_VERSION = "1.7.0";
 const POINTS_LIMIT = 1000;
 
 // ============================================
@@ -684,7 +684,7 @@ const factions = {
         abilities: ["Steady Aim"],
         socketLimits: { WEAPON: 1, SUPPORT: 1 },
         upgrades: [
-          { socket: "WEAPON", name: "VSS Vintorez", pts: 10, effect: "3D / 4+ / 36\" / CQB — replaces SVD Dragonov" },
+          { socket: "WEAPON", name: "VSS Vintorez", pts: 10, effect: "3D / 4+ / 36\" / CQB / Lethal 1 — replaces SVD Dragonov" },
           { socket: "SUPPORT", name: "Rangefinder", pts: 15, effect: "+1 hit value improvement on all Shoot actions this model takes. List limit 1." },
           { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot actions if this model did not Move this activation" }
         ]
