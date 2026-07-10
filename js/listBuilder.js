@@ -716,7 +716,7 @@ const factions = {
         socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
         upgrades: [
           { socket: "WEAPON", name: "RPG-29 Vampir", pts: 0, effect: "3D / 4+ / 24\" / RLD / PEN 2 — free swap, no Deploy required" },
-          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed from play, remain at CEV 1 instead. ONE-USE." }
+          { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed from play, remain at CEV 1 instead. ONE-USE." },
           { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 7+" },
         ],
         independent: true,
