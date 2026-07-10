@@ -191,7 +191,6 @@ const factions = {
         upgrades: [
           { socket: "WEAPON", name: "M870 Shotgun", pts: 12, effect: "6D / 6+ / 8\" / CQB — replaces M4A1" },
           { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
-          { socket: "EQUIPMENT", name: "Breaching Charge", pts: 12, effect: "Destroy one door/window within 1\". EXPL / ONE-SHOT." },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
         ]
       },
@@ -657,13 +656,13 @@ const factions = {
         pts: 130,
         stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
         weapons: [
-          { name: "AK-74M", dice: 6, hit: "6+", range: '20"', keywords: "CQB" },
+          { name: "AK-105", dice: 6, hit: "6+", range: '20"', keywords: "CQB" },
         ],
         abilities: ["Aggressive Entry", "Urban Predator", "Assault Mobility"],
         socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
         upgrades: [
-          { socket: "WEAPON", name: "PP-19 Bizon", pts: 10, effect: "5D / 6+ / 12\" / CQB — replaces AK-74M" },
-          { socket: "WEAPON", name: "AK-74U", pts: 15, effect: "6D / 6+ / 8\" / CQB — replaces AK-74M" },
+          { socket: "WEAPON", name: "PP-19 Bizon", pts: 10, effect: "5D / 6+ / 12\" / CQB — replaces AK-105" },
+          { socket: "WEAPON", name: "AK-74U", pts: 15, effect: "6D / 6+ / 8\" / CQB — replaces AK-105" },
           { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed from play, remain at CEV 1 instead. ONE-USE." }
         ]
