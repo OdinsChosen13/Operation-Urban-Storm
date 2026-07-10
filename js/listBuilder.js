@@ -619,7 +619,7 @@ const factions = {
         pts: 130,
         stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "8+" },
         weapons: [
-          { name: "PKM", dice: 8, hit: "6+", range: '36"', keywords: "C-FIRE" },
+          { name: "PKM", dice: 8, hit: "6+", range: '36"', keywords: "C-FIRE / ENC" },
         ],
         abilities: ["Assault Mobility (no ENC on PKM)"],
         socketLimits: { EQUIPMENT: 1, SUPPORT: 1 },
