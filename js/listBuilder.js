@@ -329,7 +329,6 @@ const factions = {
           { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
-          { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 8+" },
           { socket: "EQUIPMENT", name: "SL Radio", pts: 25, effect: "Issue orders to RTO regardless of distance/LoS." }
         ],
         required: true,
@@ -354,7 +353,6 @@ const factions = {
           { socket: "EQUIPMENT", name: "RGD-5 Grenade", pts: 6, effect: "3D / 6+ / 8\" / EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
-          { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 8+" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
         ]
       },
@@ -397,7 +395,6 @@ const factions = {
           { socket: "EQUIPMENT", name: "RGD-5 Grenade", pts: 6, effect: "3D / 6+ / 8\" / EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
-          { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 8+" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
         ]
       },
@@ -416,7 +413,6 @@ const factions = {
         upgrades: [
           { socket: "EQUIPMENT", name: "RGD-5 Grenade", pts: 6, effect: "3D / 6+ / 8\" / EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." },
-          { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 8+" },
           { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" },
           { socket: "SUPPORT", name: "Assault Pack", pts: 15, effect: "C-FIRE generates +2 Stress instead of +1" }
         ]
@@ -435,7 +431,6 @@ const factions = {
         socketLimits: { EQUIPMENT: 1 },
         upgrades: [
           { socket: "EQUIPMENT", name: "RGD-5 Grenade", pts: 6, effect: "3D / 6+ / 8\" / EXPL 1 / LOB / ONE-SHOT" },
-          { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 8+" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
         ]
       },
@@ -487,7 +482,6 @@ const factions = {
         abilities: ["Minimum Range 6\"", "Coherency Range 2\"", "Ambush Shock"],
         socketLimits: {EQUIPMENT: 1 },
         upgrades: [
-          { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 8+" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1. ONE-USE." }
         ],
         independent: true,
@@ -603,7 +597,7 @@ const factions = {
         name: "Desantnik",
         role: "Rifleman",
         pts: 85,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "8+" },
         weapons: [
           { name: "AK-74M", dice: 6, hit: "6+", range: '36"', keywords: "" },
         ],
@@ -614,6 +608,7 @@ const factions = {
           { socket: "WEAPON", name: "AK-74k", pts: 12, effect: "6D / 6+ / 18\" / CQB — replaces AK-74M. Desantnik and Shturmovnik only." },
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 7+" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed from play, remain at CEV 1 instead. ONE-USE." },
           { socket: "EQUIPMENT", name: "RTO Radio", pts: 25, effect: "May issue orders as if Squad Leader to friendlies within 2\" and LoS. Requires SL Radio. List limit 1." }
         ]
@@ -623,7 +618,7 @@ const factions = {
         name: "PKM Operator",
         role: "Specialist",
         pts: 130,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "8+" },
         weapons: [
           { name: "PKM", dice: 8, hit: "6+", range: '36"', keywords: "C-FIRE" },
         ],
@@ -641,7 +636,7 @@ const factions = {
         name: "RPO Operator",
         role: "Specialist",
         pts: 115,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "8+" },
         weapons: [
           { name: "RPO-A Shmel", dice: 3, hit: "4+", range: '24"', keywords: "EXPL 2 / ONE-SHOT / PEN-2" },
           { name: "AK-74M", dice: 6, hit: "6+", range: '36"', keywords: "" }
@@ -651,6 +646,7 @@ const factions = {
         upgrades: [
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
           { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 7+" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed from play, remain at CEV 1 instead. ONE-USE." }
         ]
       },
@@ -677,7 +673,7 @@ const factions = {
         name: "Marksman",
         role: "Specialist",
         pts: 105,
-        stats: { MOV: '5"', MOR: 3, CEV: 3, DR: "7+" },
+        stats: { MOV: '5"', MOR: 3, CEV: 3, DR: "8+" },
         weapons: [
           { name: "SVDS Dragonov", dice: 3, hit: "4+", range: '36"', keywords: "" },
         ],
@@ -694,7 +690,7 @@ const factions = {
         name: "Vrach",
         role: "Specialist",
         pts: 105,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "8+" },
         weapons: [
           { name: "AK-74M", dice: 6, hit: "6+", range: '36"', keywords: "" },
         ],
@@ -702,6 +698,7 @@ const factions = {
         socketLimits: { EQUIPMENT: 1, SUPPORT: 1 },
         upgrades: [
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed from play, remain at CEV 1 instead. ONE-USE." },
+          { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 7+" },
           { socket: "SUPPORT", name: "Advanced Aid Bag", pts: 15, effect: "Last Chance roll improved by 1" },
           { socket: "SUPPORT", name: "Trauma Kit", pts: 10, effect: "Field Treatment may target this model" }
         ]
@@ -711,7 +708,7 @@ const factions = {
         name: "Kornet Gunner",
         role: "Independent — AT Team",
         pts: 150,
-        stats: { MOV: '6"', MOR: 3, CEV: 2, DR: "7+" },
+        stats: { MOV: '6"', MOR: 3, CEV: 2, DR: "8+" },
         weapons: [
           { name: "9M133 Kornet", dice: 4, hit: "4+", range: '36"', keywords: "RLD / ENC / PEN 4 / Deploy" },
         ],
@@ -720,6 +717,7 @@ const factions = {
         upgrades: [
           { socket: "WEAPON", name: "RPG-29 Vampir", pts: 0, effect: "3D / 4+ / 24\" / RLD / PEN 2 — free swap, no Deploy required" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed from play, remain at CEV 1 instead. ONE-USE." }
+          { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 7+" },
         ],
         independent: true,
         maxPerList: 1
@@ -729,7 +727,7 @@ const factions = {
         name: "Kornet Loader",
         role: "Independent — AT Team",
         pts: 85,
-        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "7+" },
+        stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "8+" },
         weapons: [
           { name: "AK-74M", dice: 6, hit: "6+", range: '36"', keywords: "" },
         ],
@@ -738,6 +736,7 @@ const factions = {
         upgrades: [
           { socket: "WEAPON", name: "AK-15", pts: 12, effect: "5D / 4+ / 36\" — replaces AK-74M" },
           { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+          { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 7+" },
           { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed from play, remain at CEV 1 instead. ONE-USE." }
         ],
         independent: true,
@@ -806,7 +805,7 @@ const factions = {
       name: "Serzhant",
       role: "Squad Leader",
       pts: 95,
-      stats: { MOV: '7"', MOR: 4, CEV: 3, DR: "8+" },
+      stats: { MOV: '7"', MOR: 4, CEV: 3, DR: "7+" },
       weapons: [
         { name: "AK-74", dice: 6, hit: "6+", range: '36"', keywords: "" },
         { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
@@ -837,7 +836,7 @@ const factions = {
       name: "Molodshyi",
       role: "Team Leader",
       pts: 80,
-      stats: { MOV: '7"', MOR: 3, CEV: 3, DR: "8+" },
+      stats: { MOV: '7"', MOR: 3, CEV: 3, DR: "7+" },
       weapons: [
         { name: "AK-74", dice: 6, hit: "6+", range: '36"', keywords: "" },
         { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
@@ -898,7 +897,7 @@ const factions = {
       socketLimits: { EQUIPMENT: 1, SUPPORT: 1 },
       upgrades: [
         { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
-        { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 7+ (ENC stacks with armor weight)" },
+        { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 7+" },
         { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1 instead. ONE-USE." },
         { socket: "SUPPORT", name: "Bipod", pts: 10, effect: "+1 die on Shoot if this model did not Move this activation" },
         { socket: "SUPPORT", name: "Assault Pack", pts: 15, effect: "C-FIRE generates +2 Stress instead of +1" }
@@ -923,6 +922,7 @@ const factions = {
       upgrades: [
         { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
         { socket: "EQUIPMENT", name: "Smoke Grenade", pts: 6, effect: "SMOKE / LOB / ONE-SHOT" },
+        { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 7+" },
         { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1 instead. ONE-USE." }
       ]
     },
@@ -984,7 +984,7 @@ const factions = {
       name: "Shturmovyk",
       role: "Specialist",
       pts: 110,
-      stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "8+" },
+      stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
       weapons: [
         { name: "AK-74U", dice: 6, hit: "6+", range: '24"', keywords: "CQB" },
         { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
@@ -1024,6 +1024,7 @@ const factions = {
       upgrades: [
         { socket: "WEAPON", name: "NLAW", pts: 15, effect: "3D / 4+ / 24\" / PEN 3 / ONE-SHOT / ENC — replaces RPG-7" },
         { socket: "WEAPON", name: "FGM-148 Javelin", pts: 30, effect: "4D / 4+ / 48\" / PEN 4 / RLD / ENC / Deploy — replaces RPG-7" },
+        { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 7+" },
         { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1 instead. ONE-USE." }
       ],
       independent: true,
@@ -1049,6 +1050,7 @@ const factions = {
       upgrades: [
         { socket: "WEAPON", name: "AK-74M", pts: 8, effect: "6D / 5+ / 36\" — replaces AK-74" },
         { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
+        { socket: "EQUIPMENT", name: "Body Armor", pts: 10, effect: "Move 5\" / DR 7+" },
         { socket: "EQUIPMENT", name: "IFAK", pts: 12, effect: "When removed, remain at CEV 1 instead. ONE-USE." }
       ],
       independent: true,
