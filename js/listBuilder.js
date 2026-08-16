@@ -992,7 +992,7 @@ const factions = {
         "Aggressive Entry: When this model moves into a building, it may immediately make a free CQB Shoot action against one enemy model already inside before either model activates.",
         "Urban Predator (Passive): When inside a building or enclosed structure this model gains +1 Move."
       ],
-      socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
+      socketLimits: { WEAPON: 1, EQUIPMENT: 2 },
       upgrades: [
         { socket: "WEAPON", name: "Shotgun", pts: 8, effect: "8D / 7+ / 8\" / CQB — replaces AK-74U" },
         { socket: "WEAPON", name: "MP5", pts: 8, effect: "5D / 6+ / 12\" / CQB — replaces AK-74U" },
