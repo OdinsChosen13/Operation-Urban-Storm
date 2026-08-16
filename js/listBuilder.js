@@ -804,7 +804,7 @@ const factions = {
       name: "Serzhant",
       role: "Squad Leader",
       pts: 95,
-      stats: { MOV: '7"', MOR: 4, CEV: 3, DR: "7+" },
+      stats: { MOV: '7"', MOR: 4, CEV: 3, DR: "8+" },
       weapons: [
         { name: "AK-74", dice: 6, hit: "6+", range: '36"', keywords: "" },
         { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
@@ -985,7 +985,7 @@ const factions = {
       pts: 110,
       stats: { MOV: '6"', MOR: 3, CEV: 3, DR: "6+" },
       weapons: [
-        { name: "AK-74U", dice: 6, hit: "6+", range: '24"', keywords: "CQB" },
+        { name: "AK-74U", dice: 6, hit: "7+", range: '24"', keywords: "CQB" },
         { name: "TT-33 Pistol", dice: 3, hit: "7+", range: '12"', keywords: "CQB" }
       ],
       abilities: [
@@ -994,7 +994,7 @@ const factions = {
       ],
       socketLimits: { WEAPON: 1, EQUIPMENT: 1 },
       upgrades: [
-        { socket: "WEAPON", name: "Shotgun", pts: 8, effect: "6D / 7+ / 8\" / CQB — replaces AK-74U" },
+        { socket: "WEAPON", name: "Shotgun", pts: 8, effect: "8D / 7+ / 8\" / CQB — replaces AK-74U" },
         { socket: "WEAPON", name: "MP5", pts: 8, effect: "5D / 6+ / 12\" / CQB — replaces AK-74U" },
         { socket: "EQUIPMENT", name: "Flashbang", pts: 10, effect: "Defenders lose Ambush bonus this Breach. ONE-SHOT." },
         { socket: "EQUIPMENT", name: "Frag Grenade", pts: 8, effect: "EXPL 1 / LOB / ONE-SHOT" },
